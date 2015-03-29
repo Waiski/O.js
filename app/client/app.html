@@ -8,7 +8,7 @@
 
       {{>yield region="header"}}
 
-      {{#RenderController target="content"}}
+      {{#RenderController target="content" transition=getMaincontentTransition}}
         {{>yield}}
       {{/RenderController}}
 
@@ -44,4 +44,10 @@
   {{#each drinks}}
     <div class="drink">{{name}}</div>
   {{/each}}
+</template>
+
+<template name="drink">
+  {{#Surface size="[undefined,undefined]"}}
+    This drink's name is {{name}}
+  {{/Surface}}
 </template>
