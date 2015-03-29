@@ -1,5 +1,7 @@
 Template.drinksList.helpers
-  drinks: ->
-    Drinks.find {}, {sort: {name: 1}}
   categories: ->
     Categories.find()
+
+Template.drinkCategory.helpers
+  drinks: ->
+    Drinks.find {categoryId: @._id}, {sort: {name: 1}}
