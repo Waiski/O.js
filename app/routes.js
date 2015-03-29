@@ -9,7 +9,7 @@ Router.route('/', function() {
   name: 'home',
   onBeforeAction: function() {
     Session.set('leftAction', 'searchIcon');
-    Session.set('rightAction', 'empty');
+    Session.set('rightAction', 'addIcon');
     Session.set('headerCenter', 'searchBar');
     Session.set('mainContentTransition', 'slideWindowRight');
     this.next();

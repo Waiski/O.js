@@ -20,25 +20,33 @@
 
 <template name="searchIcon">
   {{#Surface size="[undefined,true]"}}
-    This is search icon template
+    <i class="fa fa-2x fa-search fa-flip-horizontal"></i>
   {{/Surface}}
 </template>
 
 <template name="searchBar">
   {{#Surface size="[undefined,true]"}}
-    This is search bar
+    Search bar will come here
   {{/Surface}}
 </template>
 
 <template name="backIcon">
   {{#Surface size="[undefined,true]"}}
-    This is back icon
+    <a href="{{pathFor "home"}}">
+      <i class="fa fa-2x fa-arrow-left"></i>
+    </a>
+  {{/Surface}}
+</template>
+
+<template name="addIcon">
+  {{#Surface size="[undefined,true]"}}
+      <i class="fa fa-2x fa-plus-circle"></i>
   {{/Surface}}
 </template>
 
 <template name="editIcon">
   {{#Surface size="[undefined,true]"}}
-    This is edit icon
+    <i class="fa fa-2x fa-pencil"></i>
   {{/Surface}}
 </template>
 

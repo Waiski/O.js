@@ -41,6 +41,9 @@ minimongo@1.0.7
 mjn:famous@0.3.5
 mobile-status-bar@1.0.3
 mongo@1.1.0
+natestrauser:font-awesome@4.3.0
+nemo64:bootstrap@3.3.1_1
+nemo64:bootstrap-data@3.3.1_1
 observe-sequence@1.0.5
 ordered-dict@1.0.3
 pierreeric:cssc@1.0.4
@@ -52,6 +55,7 @@ retry@1.0.3
 routepolicy@1.0.5
 sdecima:javascript-detect-element-resize@0.5.3
 session@1.1.0
+simison:bootstrap3-less@0.3.0
 spacebars@1.0.6
 spacebars-compiler@1.0.5
 templating@1.1.0
