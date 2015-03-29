@@ -3,6 +3,9 @@ Router.configure({
 });
 
 Router.route('/', function() {
-    this.render('headerTmpl', {to: 'header'});
-    this.render('drinksList');
+  Session.set('leftAction', 'searchIcon');
+  Session.set('rightAction', 'empty');
+  Session.set('headerCenter', 'searchBar');
+  this.render('headerTmpl', {to: 'header'});
+  this.render('drinksList');
 });

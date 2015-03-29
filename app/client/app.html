@@ -16,20 +16,12 @@
   {{/famousContext}}
 </template>
 
-<template name="headerTmpl">
-  {{#SequentialLayout direction="X" target="header"}}
-    {{#Surface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}#1{{/Surface}}
-    {{#Surface align="[0,0]" origin="[0,0]" proportions="[0.7,1]"}}#2{{/Surface}}
-    {{#Surface align="[0,0]" origin="[0,0]" proportions="[0.1,1]"}}#3{{/Surface}}
-  {{/SequentialLayout}}
-</template>
-
 <template name="drinksList">
   {{#SequentialLayout direction="X"}}
     {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
       {{#Scrollview}}
         {{#famousEach categories}}
-          {{#Surface size="[undefined,50]"}}
+          {{#Surface size="[undefined,true]"}}
             <div class="category">{{name}}</div>
           {{/Surface}}
         {{/famousEach}}

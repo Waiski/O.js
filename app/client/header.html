@@ -1,0 +1,42 @@
+<template name="headerTmpl">
+  {{#SequentialLayout direction="X" target="header"}}
+    {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
+      {{#RenderController transition="opacity"}}
+        {{>showTemplate name=leftActionTemplate}}
+      {{/RenderController}}
+    {{/ContainerSurface}}
+    {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.7,1]"}}
+      {{#RenderController transition="opacity"}}
+        {{>showTemplate name=headerCenterTemplate}}
+      {{/RenderController}}
+    {{/ContainerSurface}}
+    {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.1,1]"}}
+      {{#RenderController transition="opacity"}}
+        {{>showTemplate name=rightActionTemplate}}
+      {{/RenderController}}
+    {{/ContainerSurface}}
+  {{/SequentialLayout}}
+</template>
+
+<template name="searchIcon">
+  {{#Surface size="[undefined,true]"}}
+    This is search icon template
+  {{/Surface}}
+</template>
+
+<template name="searchBar">
+  {{#Surface size="[undefined,true]"}}
+    This is search bar
+  {{/Surface}}
+</template>
+
+<template name="backIcon">
+  {{#Surface size="[undefined,true]"}}
+    This is back icon
+  {{/Surface}}
+</template>
+
+<template name="empty">
+  {{#Surface size="[undefined,true]"}}
+  {{/Surface}}
+</template>
