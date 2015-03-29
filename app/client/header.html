@@ -1,56 +1,53 @@
 <template name="headerTmpl">
-  {{#SequentialLayout direction="X" target="header"}}
-    {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
-      {{#RenderController transition="opacity"}}
-        {{>showTemplate name=leftActionTemplate}}
-      {{/RenderController}}
-    {{/ContainerSurface}}
-    {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.7,1]"}}
-      {{#RenderController transition="opacity"}}
-        {{>showTemplate name=headerCenterTemplate}}
-      {{/RenderController}}
-    {{/ContainerSurface}}
-    {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.1,1]"}}
-      {{#RenderController transition="opacity"}}
-        {{>showTemplate name=rightActionTemplate}}
-      {{/RenderController}}
-    {{/ContainerSurface}}
-  {{/SequentialLayout}}
+  {{#ContainerSurface target="header" class="header-container"}}
+    {{#SequentialLayout direction="X" target="header"}}
+      {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
+        {{#RenderController transition="opacity"}}
+          {{#Surface size="[undefined,true]"}}
+            {{>showTemplate name=leftActionTemplate}}
+          {{/Surface}}
+        {{/RenderController}}
+      {{/ContainerSurface}}
+      {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.6,1]"}}
+        {{#RenderController transition="opacity"}}
+          {{#Surface size="[undefined,true]"}}
+            {{>showTemplate name=headerCenterTemplate}}
+          {{/Surface}}
+        {{/RenderController}}
+      {{/ContainerSurface}}
+      {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
+        {{#RenderController transition="opacity"}}
+          {{#Surface size="[undefined,true]"}}
+            {{>showTemplate name=rightActionTemplate}}
+          {{/Surface}}
+        {{/RenderController}}
+      {{/ContainerSurface}}
+    {{/SequentialLayout}}
+  {{/ContainerSurface}}
 </template>
 
 <template name="searchIcon">
-  {{#Surface size="[undefined,true]"}}
-    <i class="fa fa-2x fa-search fa-flip-horizontal"></i>
-  {{/Surface}}
+  <i class="fa fa-3x fa-search fa-flip-horizontal pull-right"></i>
 </template>
 
 <template name="searchBar">
-  {{#Surface size="[undefined,true]"}}
-    Search bar will come here
-  {{/Surface}}
+  <div id="search" contentEditable="true" placeholder="Search..."></div>
 </template>
 
 <template name="backIcon">
-  {{#Surface size="[undefined,true]"}}
-    <a href="{{pathFor "home"}}">
-      <i class="fa fa-2x fa-arrow-left"></i>
-    </a>
-  {{/Surface}}
+  <a href="{{pathFor "home"}}">
+    <i class="fa fa-3x fa-arrow-left"></i>
+  </a>
 </template>
 
 <template name="addIcon">
-  {{#Surface size="[undefined,true]"}}
-      <i class="fa fa-2x fa-plus-circle"></i>
-  {{/Surface}}
+  <i class="fa fa-3x fa-plus-circle"></i>
 </template>
 
 <template name="editIcon">
-  {{#Surface size="[undefined,true]"}}
-    <i class="fa fa-2x fa-pencil"></i>
-  {{/Surface}}
+  <i class="fa fa-3x fa-pencil"></i>
 </template>
 
 <template name="empty">
-  {{#Surface size="[undefined,true]"}}
-  {{/Surface}}
+
 </template>

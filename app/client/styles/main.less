@@ -1,0 +1,19 @@
+@import 'custom.bootstrap.import.less';
+@import 'custom.bootstrap.mixins.import.less';
+
+#search {
+    border-bottom: 1px dashed @gray-light;
+    height: 50px;
+    font-size: 50px;
+    margin-left: 10px;
+    display: inline-block;
+    min-width: 300px;
+    &:empty:before {
+        content: attr(placeholder);
+        color: @gray-light; 
+    }
+}
+
+.header-container {
+    margin-top: 10px;
+}

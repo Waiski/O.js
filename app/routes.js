@@ -12,6 +12,7 @@ Router.route('/', function() {
     Session.set('rightAction', 'addIcon');
     Session.set('headerCenter', 'searchBar');
     Session.set('mainContentTransition', 'slideWindowRight');
+    Session.set('search', '');
     this.next();
   }
 });

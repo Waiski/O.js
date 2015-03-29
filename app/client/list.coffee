@@ -4,9 +4,9 @@ Template.drinksList.helpers
 
 Template.drinkCategory.helpers
   drinks: ->
-    Drinks.find {categoryId: @._id}, {sort: {name: 1}}
+    search = Session.get 'search'
+    Drinks.find {name: {$regex: search, $options:'i'},categoryId: @._id}, {sort: {name: 1}}
 
 Template.drinkCategory.events
   'click .drink': ->
-    Session.set 'mainContentTransition', 'slideWindowLeft'
     Router.go 'drink', {slug: @.name}
