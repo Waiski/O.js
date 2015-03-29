@@ -7,3 +7,8 @@
 meteor-platform
 autopublish
 insecure
+less
+coffeescript
+gadicohen:famous-views
+mjn:famous
+iron:router

@@ -1,0 +1,32 @@
+<head>
+  <title>Otyapp</title>
+</head>
+
+<template name="layout">
+  {{#famousContext id="mainCtx"}}
+    {{#HeaderFooterLayout headerSize="50" footerSize="0"}}
+
+      {{>yield region="header"}}
+
+      {{#RenderController target="content"}}
+        {{>yield}}
+      {{/RenderController}}
+
+    {{/HeaderFooterLayout}}
+  {{/famousContext}}
+</template>
+
+<template name="headerTmpl">
+  {{#SequentialLayout direction="X" target="header"}}
+    {{#Surface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}#1{{/Surface}}
+    {{#Surface align="[0,0]" origin="[0,0]" proportions="[0.7,1]"}}#2{{/Surface}}
+    {{#Surface align="[0,0]" origin="[0,0]" proportions="[0.1,1]"}}#3{{/Surface}}
+  {{/SequentialLayout}}
+</template>
+
+<template name="drinksList">
+  {{#SequentialLayout direction="X"}}
+    {{#Surface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}Kategoriat{{/Surface}}
+    {{#Surface align="[0,0]" origin="[0,0]" proportions="[0.8,1]"}}Juomat{{/Surface}}
+  {{/SequentialLayout}}
+</template>
