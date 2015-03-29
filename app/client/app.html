@@ -26,7 +26,23 @@
 
 <template name="drinksList">
   {{#SequentialLayout direction="X"}}
-    {{#Surface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}Kategoriat{{/Surface}}
-    {{#Surface align="[0,0]" origin="[0,0]" proportions="[0.8,1]"}}Juomat{{/Surface}}
+    {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
+    {{#Scrollview}}
+      {{#famousEach categories}}
+        {{#Surface size="[undefined,50]"}}
+          <div class="category">{{name}}</div>
+        {{/Surface}}
+      {{/famousEach}}
+    {{/Scrollview}}
+    {{/ContainerSurface}}
+    {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.8,1]"}}
+    {{#Scrollview}}
+      {{#famousEach drinks}}
+        {{#Surface size="[undefined,30]"}}
+          <div class="drink">{{name}}</div>
+        {{/Surface}}
+      {{/famousEach}}
+    {{/Scrollview}}
+    {{/ContainerSurface}}
   {{/SequentialLayout}}
 </template>
