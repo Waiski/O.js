@@ -5,6 +5,10 @@ Template.searchBar.events
     tmpl.$('#search').empty() if not content.length
     Session.set 'search', content
 
+Template.searchIcon.events
+  'click': ->
+    $('#search').focus()
+
 Template.headerTmpl.helpers
   showTemplate: ->
     Template[@.name]

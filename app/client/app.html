@@ -51,7 +51,12 @@
 </template>
 
 <template name="drinkRow">
-  <div class="drink">{{name}}</div>
+  <div class="drink">
+    {{name}}
+    <div class="pull-right drink-price">
+      {{price}}
+    </div>
+  </div>
 </template>
 
 <template name="drink">
