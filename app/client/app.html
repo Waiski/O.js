@@ -32,9 +32,7 @@
     {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.8,1]"}}
       {{#Scrollview}}
         {{#famousEach categories}}
-          {{#Surface class="categoryList" size="[undefined,true]"}}
-            {{>drinkCategory}}
-          {{/Surface}}
+          {{>drinkCategory}}
         {{/famousEach}}
       {{/Scrollview}}
     {{/ContainerSurface}}
@@ -42,10 +40,18 @@
 </template>
 
 <template name="drinkCategory">
-  <strong>{{name}}</strong>
-  {{#each drinks}}
-    <div class="drink">{{name}}</div>
-  {{/each}}
+  {{#Surface size="[undefined,true]"}}
+    <strong>{{name}}</strong>
+  {{/Surface}}
+  {{#famousEach drinks}}
+    {{#Surface class="categoryList" size="[undefined,true]"}}
+      {{>drinkRow}}
+    {{/Surface}}
+  {{/famousEach}}
+</template>
+
+<template name="drinkRow">
+  <div class="drink">{{name}}</div>
 </template>
 
 <template name="drink">
