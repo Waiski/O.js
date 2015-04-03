@@ -1,34 +1,57 @@
 @import 'custom.bootstrap.import.less';
 @import 'custom.bootstrap.mixins.import.less';
 
-#search {
-    border-bottom: 1px dashed white;
-    height: 50px;
-    font-size: 50px;
-    margin-left: 10px;
-    display: inline-block;
-    min-width: 300px;
-    &:empty:before {
-        content: attr(placeholder);
-        color: @gray; 
-    }
-}
-
-.categoryList {
-    border-top: 1px dashed #0000ff;
-    .drink {
-        max-width: 500px;
-        .drink-price {
-            width: 40px;
-        }
-    }
-}
-
-.header-container {
+.header-surface {
     background-color: @gray-lightest;
     border-bottom: 1px solid @gray-dark;
+    padding-top: 13px;
 }
 
-.header-surface {
-    margin-top: 10px;
+#search {
+    //border-bottom: 1px dashed @gray-dark;
+    height: 50px;
+    font-size: 50px;
+    display: inline-block;
+    width: 100%;
+    padding-left: 10px;
+    &:empty:before {
+        content: attr(placeholder);
+        color: @gray-light; 
+    }
+}
+
+.mainContent {
+    padding-top: 20px;
+}
+
+.categorySelector {
+    text-align: right;
+    font-size: 32px;
+    font-weight: bold;
+    padding-right: 10px;
+    overflow: hidden;
+}
+
+.list-category-name {
+    border-top: 1px solid @gray-light;
+    font-size: 24px;
+    margin-left: 10px;
+    font-weight: bold;
+    color: @gray-dark;
+    padding-top: 10px;
+    &:first-child {
+        padding-top: 0;
+        border: none;
+    }
+}
+
+.drink-row {
+    border-top: 1px solid @gray-light;
+    font-size: 18px;
+    margin-left: 10px;
+    padding-bottom: 4px;
+    .drink-price {
+        width: 40px;
+        font-weight: bold;
+    }
 }

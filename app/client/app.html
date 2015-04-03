@@ -19,49 +19,54 @@
 </template>
 
 <template name="drinksList">
-  {{#SequentialLayout direction="X"}}
-    {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
-      {{#Scrollview}}
-        {{#famousEach categories}}
-          {{#Surface size="[undefined,true]"}}
-            <div class="category">{{name}}</div>
-          {{/Surface}}
-        {{/famousEach}}
-      {{/Scrollview}}
-    {{/ContainerSurface}}
-    {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.8,1]"}}
-      {{#Scrollview}}
-        {{#famousEach categories}}
-          {{>drinkCategory}}
-        {{/famousEach}}
-      {{/Scrollview}}
-    {{/ContainerSurface}}
-  {{/SequentialLayout}}
+  {{#ContainerSurface class="mainContent"}}
+    {{#SequentialLayout direction="X"}}
+      {{#StateModifier size=getLeftBarSize}}
+        {{#Scrollview}}
+          {{#famousEach categories}}
+            {{#Surface size="[undefined,true]" class="categorySelector"}}
+              <div class="category">{{name}}</div>
+            {{/Surface}}
+          {{/famousEach}}
+        {{/Scrollview}}
+      {{/StateModifier}}
+      {{#StateModifier size=getMainSize}}
+        {{#Scrollview}}
+          {{#famousEach categories}}
+            {{>drinkCategory}}
+          {{/famousEach}}
+        {{/Scrollview}}
+      {{/StateModifier}}
+    {{/SequentialLayout}}
+  {{/ContainerSurface}}
 </template>
 
 <template name="drinkCategory">
-  {{#Surface size="[undefined,true]"}}
-    <strong>{{name}}</strong>
+  {{#Surface size="[undefined,true]" class="list-category-name"}}
+    {{name}}
   {{/Surface}}
   {{#famousEach drinks}}
-    {{#Surface class="categoryList" size="[undefined,true]"}}
+    {{#Surface size="[undefined,true]"}}
       {{>drinkRow}}
     {{/Surface}}
   {{/famousEach}}
 </template>
 
 <template name="drinkRow">
-  <div class="drink">
-    {{name}}
+  <div class="drink-row">
+    <div class="pull-left drink-name">
+      {{name}}
+    </div>
     <div class="pull-right drink-price">
       {{price}}
     </div>
+    <div class="clearfix"></div>
   </div>
 </template>
 
 <template name="drink">
-  {{#StateModifier size=gridsize align="[0.5,0]" origin="[0.5,0]" }}
-    {{#Surface size="[undefined,undefined]"}}
+  {{#StateModifier size=getSize align="[0.5,0]" origin="[0.5,0]"}}
+    {{#Surface size="[undefined,undefined]" class="mainContent"}}
       This drink's name is {{name}}
     {{/Surface}}
   {{/StateModifier}}
