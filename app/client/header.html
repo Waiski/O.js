@@ -3,21 +3,21 @@
     {{#SequentialLayout direction="X" target="header"}}
       {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
         {{#RenderController transition="opacity"}}
-          {{#Surface size="[undefined,true]"}}
+          {{#Surface size="[undefined,true]" class="header-surface"}}
             {{>showTemplate name=leftActionTemplate}}
           {{/Surface}}
         {{/RenderController}}
       {{/ContainerSurface}}
       {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.6,1]"}}
         {{#RenderController transition="opacity"}}
-          {{#Surface size="[undefined,true]"}}
+          {{#Surface size="[undefined,true]" class="header-surface"}}
             {{>showTemplate name=headerCenterTemplate}}
           {{/Surface}}
         {{/RenderController}}
       {{/ContainerSurface}}
       {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
         {{#RenderController transition="opacity"}}
-          {{#Surface size="[undefined,true]"}}
+          {{#Surface size="[undefined,true]" class="header-surface"}}
             {{>showTemplate name=rightActionTemplate}}
           {{/Surface}}
         {{/RenderController}}

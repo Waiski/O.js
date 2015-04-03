@@ -2,7 +2,7 @@
 @import 'custom.bootstrap.mixins.import.less';
 
 #search {
-    border-bottom: 1px dashed @gray-light;
+    border-bottom: 1px dashed white;
     height: 50px;
     font-size: 50px;
     margin-left: 10px;
@@ -10,17 +10,12 @@
     min-width: 300px;
     &:empty:before {
         content: attr(placeholder);
-        color: @gray-light; 
+        color: @gray; 
     }
 }
 
 .categoryList {
-    &:nth-child(even) {
-        background-color: @gray-lighter;
-    }
-    &:nth-child(odd) {
-        background-color: @gray-lightest;
-    }
+    border-top: 1px dashed #0000ff;
     .drink {
         max-width: 500px;
         .drink-price {
@@ -30,5 +25,10 @@
 }
 
 .header-container {
+    background-color: @gray-lightest;
+    border-bottom: 1px solid @gray-dark;
+}
+
+.header-surface {
     margin-top: 10px;
 }

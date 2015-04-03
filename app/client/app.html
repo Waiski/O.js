@@ -60,7 +60,9 @@
 </template>
 
 <template name="drink">
-  {{#Surface size="[undefined,undefined]"}}
-    This drink's name is {{name}}
-  {{/Surface}}
+  {{#StateModifier size=gridsize align="[0.5,0]" origin="[0.5,0]" }}
+    {{#Surface size="[undefined,undefined]"}}
+      This drink's name is {{name}}
+    {{/Surface}}
+  {{/StateModifier}}
 </template>
