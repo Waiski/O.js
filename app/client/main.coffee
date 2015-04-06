@@ -1,3 +1,6 @@
+Template.registerHelper 'editmode', ->
+    Session.get 'editMode'
+
 Template.layout.helpers
   getMaincontentTransition: ->
     Session.get 'mainContentTransition'

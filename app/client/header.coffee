@@ -9,6 +9,12 @@ Template.searchIcon.events
   'click': ->
     $('#search').focus()
 
+Template.editIcon.events
+  'click .fa-pencil': ->
+    Session.set 'editMode', true
+  'click .fa-check': ->
+    Session.set 'editMode', false
+
 Template.headerTmpl.helpers
   showTemplate: ->
     Template[@.name]

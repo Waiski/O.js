@@ -43,7 +43,15 @@
 </template>
 
 <template name="editIcon">
-  <i class="fa fa-3x fa-pencil"></i>
+  {{#if editmode}}
+    <i class="fa fa-3x fa-check"></i>
+  {{else}}
+    <i class="fa fa-3x fa-pencil"></i>
+  {{/if}}
+</template>
+
+<template name="doneIcon">
+  <i class="fa fa-3x fa-check"></i>
 </template>
 
 <template name="empty">
