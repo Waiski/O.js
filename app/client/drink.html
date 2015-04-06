@@ -1,11 +1,7 @@
 <template name="drink">
   {{#StateModifier size=getSize align="[0.5,0]" origin="[0.5,0]"}}
     {{#Surface size="[undefined,undefined]" class="mainContent"}}
-      {{#if Template.subscriptionsReady}}
-        {{>drinkPropertySheet}}
-      {{else}}
-        Loading...
-      {{/if}}
+      {{>drinkPropertySheet}}
     {{/Surface}}
   {{/StateModifier}}
 </template>

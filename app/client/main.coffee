@@ -1,9 +1,13 @@
+# Global client-side scripts go here
+
+Meteor.Spinner.options = 
+    radius: 70,
+    speed: 0.5,
+    width: 10,
+    length: 50
+
 Template.registerHelper 'editmode', ->
     Session.get 'editMode'
-
-Template.layout.helpers
-  getMaincontentTransition: ->
-    Session.get 'mainContentTransition'
 
 Meteor.startup ->
    $(window).resize ->

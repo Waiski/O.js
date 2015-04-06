@@ -10,7 +10,7 @@
 
       {{>yield region="header"}}
 
-      {{#RenderController target="content" transition=getMaincontentTransition}}
+      {{#RenderController target="content" transition="opacity"}}
         {{>yield}}
       {{/RenderController}}
 
@@ -62,4 +62,10 @@
     </div>
     <div class="clearfix"></div>
   </div>
+</template>
+
+<template name="loading">
+  {{#Surface size="[undefined,undefined]"}}
+    {{> spinner}}
+  {{/Surface}}
 </template>

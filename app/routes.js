@@ -2,35 +2,29 @@ Router.configure({
   layoutTemplate: 'layout'
 });
 
-Router.route('/', function() {
-  this.render('headerTmpl', {to: 'header'});
-  this.render('drinksList');
-}, {
+Router.route('/', {
   name: 'home',
   onBeforeAction: function() {
     Session.set('leftAction', 'searchIcon');
     Session.set('rightAction', 'addIcon');
     Session.set('headerCenter', 'searchBar');
-    Session.set('mainContentTransition', 'slideWindowRight');
     // If returning from editing, ensure that aditmode is not preserved
     Session.set('editMode', false);
     Session.set('search', '');
     this.next();
   },
-  waitOn: function() {
-    return [
-      Meteor.subscribe("drinks"),
-      Meteor.subscribe("categories")
-    ]
+  action: function() {
+    this.subscribe("drinks").wait();
+    this.subscribe("categories").wait();
+    this.render('headerTmpl', {to: 'header'});
+    if (this.ready()) {
+      this.render('drinksList');
+    } else
+      this.render('loading');
   }
 });
 
-Router.route('/:slug', function() {
-  this.render('headerTmpl', {to: 'header'});
-  this.render('drink', {
-    data: Drinks.findOne({name: this.params.slug})
-  });
-}, {
+Router.route('/:slug', {
   name: 'drink',
   onBeforeAction: function() {
     Session.set('leftAction', 'backIcon');
@@ -38,10 +32,16 @@ Router.route('/:slug', function() {
     Session.set('headerCenter', 'empty');
     // Don't reset editmode on reactive reruns
     Session.setDefault('editMode', false);
-    Session.set('mainContentTransition', 'slideWindowLeft');
     this.next();
   },
-  waitOn: function() {
-    return Meteor.subscribe("drink", this.params.slug)
+  action: function() {
+    this.subscribe("drink", this.params.slug).wait();
+    this.render('headerTmpl', {to: 'header'});
+    if (this.ready()) {
+      this.render('drink', {
+        data: Drinks.findOne({name: this.params.slug})
+      });
+    } else
+      this.render('loading');
   }
 });

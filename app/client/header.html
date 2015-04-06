@@ -1,27 +1,23 @@
 <template name="headerTmpl">
-  {{#SequentialLayout direction="X" target="header"}}
-    {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
-      {{#RenderController transition="opacity"}}
+  {{#ContainerSurface class="header-container" target="header"}}
+    {{#SequentialLayout direction="X"}}
+      {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
         {{#Surface size="[undefined,undefined]" class="header-surface"}}
           {{>showTemplate name=leftActionTemplate}}
         {{/Surface}}
-      {{/RenderController}}
-    {{/ContainerSurface}}
-    {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.605,1]"}}
-      {{#RenderController transition="opacity"}}
+      {{/ContainerSurface}}
+      {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.605,1]"}}
         {{#Surface size="[undefined,undefined]" class="header-surface"}}
           {{>showTemplate name=headerCenterTemplate}}
         {{/Surface}}
-      {{/RenderController}}
-    {{/ContainerSurface}}
-    {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
-      {{#RenderController transition="opacity"}}
+      {{/ContainerSurface}}
+      {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
         {{#Surface size="[undefined,undefined]" class="header-surface"}}
           {{>showTemplate name=rightActionTemplate}}
         {{/Surface}}
-      {{/RenderController}}
-    {{/ContainerSurface}}
-  {{/SequentialLayout}}
+      {{/ContainerSurface}}
+    {{/SequentialLayout}}
+  {{/ContainerSurface}}
 </template>
 
 <template name="searchIcon">
