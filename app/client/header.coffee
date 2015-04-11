@@ -21,10 +21,13 @@ Template.editIcon.events
     edit = Session.get 'edit'
     unless _.isEmpty edit.edits
       drink = Drinks.findOne( Session.get 'activeDrinkId' )
+      redirect = false # If name is changed, then user must be redirected to the new address.
       _.each edit.edits, (oldAndNew, property) ->
         # Clear all attribute fields that will be repopulated by update reactivity
         $('.drink-property').filter('[data-drink-property="' + property + '"]')[0].innerHTML = ""
-      Drinks.update drink._id, edit.setter()
+        if not redirect and property is 'name' then redirect = true
+      Drinks.update drink._id, edit.setter(), ->
+        if redirect then Router.go 'drink', slug: edit.edits.name.set
 
 Template.headerTmpl.helpers
   showTemplate: ->
