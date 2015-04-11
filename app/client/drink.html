@@ -1,8 +1,6 @@
 <template name="drink">
   {{#StateModifier size=getSize align="[0.5,0]" origin="[0.5,0]"}}
-    {{#Surface size="[undefined,undefined]" class="mainContent"}}
-      {{>drinkPropertySheet}}
-    {{/Surface}}
+    {{>Surface size="[undefined,undefined]" class="mainContent" template="drinkPropertySheet"}}
   {{/StateModifier}}
 </template>
 
