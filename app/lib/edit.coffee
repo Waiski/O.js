@@ -42,6 +42,12 @@ share.Edit.prototype =
     this.time = new Date
     $set: @get(false)
 
+  # Returns a modifier that adds this edit to the edits array
+  pusher: ->
+    saveable = @toJSONValue()
+    delete saveable.original # The original document info does not need to be saved
+    $push: editHistory: saveable
+
   undoSetter: ->
     $set: @get(true)
 

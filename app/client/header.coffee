@@ -26,7 +26,8 @@ Template.editIcon.events
         # Clear all attribute fields that will be repopulated by update reactivity
         $('.drink-property').filter('[data-drink-property="' + property + '"]')[0].innerHTML = ""
         if not redirect and property is 'name' then redirect = true
-      Drinks.update drink._id, edit.setter(), ->
+      modifier = _.extend edit.setter(), edit.pusher()
+      Drinks.update drink._id, modifier, ->
         if redirect then Router.go 'drink', slug: edit.edits.name.set
 
 Template.headerTmpl.helpers

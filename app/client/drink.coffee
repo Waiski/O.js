@@ -15,10 +15,6 @@ Template.drinkPropertySheet.events
     value = $(event.target).text()
     edit.add(property, value)
     Session.set 'edit', edit
-    # 'this' (@ in Coffee) contains the current data context (the drink)
-    #Drinks.update @_id, setter
-    #if property is 'name'
-    #  Router.go 'drink', slug: value
   'keydown .drink-property': (event) ->
     if event.keyCode is 13
       event.target.blur()
