@@ -11,6 +11,7 @@ Router.route('/', {
     // If returning from editing, ensure that editmode is not preserved
     Session.set('editMode', false);
     Session.set('search', '');
+    Session.set('edit', undefined);
     this.next();
   },
   action: function() {
@@ -24,6 +25,26 @@ Router.route('/', {
   }
 });
 
+Router.route('/add', {
+  name: 'add',
+  onBeforeAction: function() {
+    Session.set('leftAction', 'backIcon');
+    Session.set('rightAction', 'editIcon');
+    Session.set('headerCenter', 'empty');
+    Session.set('addDrink', true);
+    Session.set('editMode', true);
+    Session.set('edit', new __coffeescriptShare.Edit());
+    this.next();
+  },
+  action: function() {
+    this.render('headerTmpl', {to: 'header'});
+    this.render('drinkTmpl', {
+      data: { addition: true }
+    });
+  }
+});
+
+// THIS MUST BE DEFINED LAST SO THAT ALL OTHER ROUTES TAKE PRECEDENCE
 Router.route('/:slug', {
   name: 'drink',
   onBeforeAction: function() {
@@ -40,30 +61,8 @@ Router.route('/:slug', {
     if (this.ready()) {
       var drink = Drinks.findOne({name: this.params.slug});
       Session.set('activeDrinkId', drink._id);
-      this.render('drink', {
+      this.render('drinkTmpl', {
         data: drink
-      });
-    } else
-      this.render('loading');
-  }
-});
-
-Router.route('/add', {
-  name: 'addDrink',
-  onBeforeAction: function() {
-    Session.set('leftAction', 'backIcon');
-    Session.set('rightAction', 'editIcon');
-    Session.set('headerCenter', 'empty');
-    // Don't reset editmode on reactive reruns
-    Session.setDefault('editMode', false);
-    this.next();
-  },
-  action: function() {
-    this.subscribe("drink", this.params.slug).wait();
-    this.render('headerTmpl', {to: 'header'});
-    if (this.ready()) {
-      this.render('drink', {
-        data: { addition: true }
       });
     } else
       this.render('loading');

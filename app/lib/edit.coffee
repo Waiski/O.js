@@ -23,12 +23,11 @@ share.Edit.prototype =
     @original = EJSON.toJSONValue originalDoc
 
   add: (property, newVal, oldVal) ->
-    # Some way of getting the old value must be available
     if not oldVal
       if @original[property]
         oldVal = @original[property]
       else
-        throw new Meteor.Error 'No old value available!'
+        oldVal = "" # Default to empty
     if oldVal is newVal
       false
     else

@@ -1,4 +1,4 @@
-Template.drink.helpers
+Template.drinkTmpl.helpers
   getSize: ->
     width = Session.get 'viewportWidth' # This is set in main.coffee
     if width > 1000

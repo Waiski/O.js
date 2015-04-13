@@ -2,17 +2,17 @@
   {{#ContainerSurface class="header-container" target="header"}}
     {{#SequentialLayout direction="X"}}
       {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
-        {{#Surface size="[undefined,undefined]" class="header-surface"}}
+        {{#Surface size="[undefined,undefined]" class="header-surface header-left"}}
           {{>showTemplate name=leftActionTemplate}}
         {{/Surface}}
       {{/ContainerSurface}}
       {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.605,1]"}}
-        {{#Surface size="[undefined,undefined]" class="header-surface"}}
+        {{#Surface size="[undefined,undefined]" class="header-surface header-center"}}
           {{>showTemplate name=headerCenterTemplate}}
         {{/Surface}}
       {{/ContainerSurface}}
       {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
-        {{#Surface size="[undefined,undefined]" class="header-surface"}}
+        {{#Surface size="[undefined,undefined]" class="header-surface header-right"}}
           {{>showTemplate name=rightActionTemplate}}
         {{/Surface}}
       {{/ContainerSurface}}
@@ -29,13 +29,21 @@
 </template>
 
 <template name="backIcon">
-  <a href="{{pathFor "home"}}">
-    <i class="fa fa-3x fa-arrow-left"></i>
-  </a>
+  <div class="header-left-container">
+    {{#if editmode}}
+      <i class="fa fa-3x fa-times"></i>
+    {{else}}
+      <a href="{{pathFor "home"}}">
+        <i class="fa fa-3x fa-arrow-left"></i>
+      </a>
+    {{/if}}
+  </div>
 </template>
 
 <template name="addIcon">
-  <i class="fa fa-3x fa-plus-circle"></i>
+  <a href="{{pathFor "add"}}">
+    <i class="fa fa-3x fa-plus-circle"></i>
+  </a>
 </template>
 
 <template name="editIcon">
