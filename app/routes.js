@@ -37,10 +37,14 @@ Router.route('/add', {
     this.next();
   },
   action: function() {
+    this.subscribe("categories").wait();
     this.render('headerTmpl', {to: 'header'});
-    this.render('drinkTmpl', {
-      data: { addition: true }
-    });
+    if (this.ready()) {
+      this.render('drinkTmpl', {
+        data: { addition: true }
+      });
+    } else
+      this.render('loading');
   }
 });
 
@@ -57,6 +61,7 @@ Router.route('/:slug', {
   },
   action: function() {
     this.subscribe("drink", this.params.slug).wait();
+    this.subscribe("categories").wait();
     this.render('headerTmpl', {to: 'header'});
     if (this.ready()) {
       var drink = Drinks.findOne({name: this.params.slug});
