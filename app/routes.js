@@ -65,6 +65,8 @@ Router.route('/:slug', {
     this.render('headerTmpl', {to: 'header'});
     if (this.ready()) {
       var drink = Drinks.findOne({name: this.params.slug});
+      if (!drink)
+        this.redirect('home');
       Session.set('activeDrinkId', drink._id);
       this.render('drinkTmpl', {
         data: drink
