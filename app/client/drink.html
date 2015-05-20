@@ -24,6 +24,42 @@
   data-drink-property="name"
   contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{name}}</h1>
   <p
+  id="drink-manufacturer"
+  class="drink-property-set drink-property-show"
+  placeholder="Manufacturer (or brewery, distillery...)"
+  data-drink-property="manufacturer"
+  contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{manufacturer}}</p>
+  <p
+  id="drink-website"
+  class="drink-property-set drink-property-show"
+  placeholder="Manufacturer website URL"
+  data-drink-property="website"
+  contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{website}}</p>
+  <p
+  id="drink-region"
+  class="drink-property-set drink-property-show"
+  placeholder="Manufacturing country and region"
+  data-drink-property="region"
+  contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{region}}</p>
+  <p
+  id="drink-strength"
+  class="drink-property-set drink-property-show"
+  placeholder="Alcohol content vol-%"
+  data-drink-property="strength"
+  contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{strength}}</p>
+  <p
+  id="drink-subcategory"
+  class="drink-property-set drink-property-show"
+  placeholder="Subcategory (i.e. Pale ale, Bourbon, Armagnac...)"
+  data-drink-property="subcategory"
+  contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{subcategory}}</p>
+  <p
+  id="drink-temperature"
+  class="drink-property-set drink-property-show"
+  placeholder="Recommended serving temperature"
+  data-drink-property="temperature"
+  contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{temperature}}</p>
+  <p
   id="drink-description"
   class="drink-property-set drink-property-show"
   placeholder="Description"
