@@ -5,13 +5,34 @@
 </template>
 
 <template name="drinkPropertySheet">
-  <select id="drink-category-select" class="drink-property select{{#unless editmode}} hidden{{/unless}}" data-drink-property="categoryId">
+  {{!-- .drink-property-set -elements can be used for setting a property, .drink-property-show -elements display it --}}
+  <select
+  id="drink-category-select"
+  class="drink-property-set select{{#unless editmode}} hidden{{/unless}}"
+  data-drink-property="categoryId">
     {{#each categories}}
       <option value="{{_id}}">{{name}}</option>
     {{/each}}
   </select>
-  <p class="drink-property-display{{#if editmode}} hidden{{/if}}" data-drink-property="categoryId">{{getCategory}}</p>
-  <h1 id="drink-name" class="drink-property" placeholder="Drink name" data-drink-property="name" contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{name}}</h1>
-  <p id="drink-description" class="drink-property" placeholder="Description" data-drink-property="description" contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{description}}</p>
-  <strong id="drink-price" class="drink-property" placeholder="Price" data-drink-property="price" contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{price}}</strong>
+  <p
+  class="drink-property-show{{#if editmode}} hidden{{/if}}"
+  data-drink-property="categoryId">{{getCategory}}</p>
+  <h1 
+  id="drink-name"
+  class="drink-property-set drink-property-show"
+  placeholder="Drink name"
+  data-drink-property="name"
+  contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{name}}</h1>
+  <p
+  id="drink-description"
+  class="drink-property-set drink-property-show"
+  placeholder="Description"
+  data-drink-property="description"
+  contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{description}}</p>
+  <strong
+  id="drink-price"
+  class="drink-property-set drink-property-show"
+  placeholder="Price"
+  data-drink-property="price"
+  contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{price}}</strong>
 </template>

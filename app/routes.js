@@ -10,6 +10,7 @@ Router.route('/', {
     Session.set('headerCenter', 'searchBar');
     // If returning from editing, ensure that editmode is not preserved
     Session.set('editMode', false);
+    Session.set('addDrink', false);
     Session.set('search', '');
     Session.set('edit', undefined);
     this.next();
@@ -55,6 +56,7 @@ Router.route('/:slug', {
     Session.set('leftAction', 'backIcon');
     Session.set('rightAction', 'editIcon');
     Session.set('headerCenter', 'empty');
+    Session.set('addDrink', false);
     // Don't reset editmode on reactive reruns
     Session.setDefault('editMode', false);
     this.next();
