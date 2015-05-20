@@ -22,7 +22,3 @@ Template.drinkCategory.helpers
   drinks: ->
     search = Session.get 'search'
     Drinks.find {name: {$regex: search, $options:'i'},categoryId: @._id}, {sort: {name: 1}}
-
-Template.drinkRow.events
-  'click .drink-row': ->
-    Router.go 'drink', {slug: @.name}

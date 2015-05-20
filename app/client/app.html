@@ -54,13 +54,15 @@
 
 <template name="drinkRow">
   <div class="drink-row">
-    <div class="pull-left drink-name">
-      {{name}}
-    </div>
-    <div class="pull-right drink-price">
-      {{price}}
-    </div>
-    <div class="clearfix"></div>
+    <a href="{{pathFor 'drink' slug=name}}">
+      <div class="pull-left drink-name">
+        {{name}}
+      </div>
+      <div class="pull-right drink-price">
+        {{price}}
+      </div>
+      <div class="clearfix"></div>
+    </a>
   </div>
 </template>
 
