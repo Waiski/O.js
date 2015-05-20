@@ -26,6 +26,9 @@ Router.route('/', {
   }
 });
 
+// A global array of special routes, used so that a drink name cannot collide with any of these
+SpecialRoutes = ['add'];
+
 Router.route('/add', {
   name: 'add',
   onBeforeAction: function() {
