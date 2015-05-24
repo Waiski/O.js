@@ -19,27 +19,28 @@ The app makes use of several Javascript libraries and technologies, some of whic
 Software requirements
 ---------------------
 
-In order to develop this app, your computer needs to have [Git], [VirtualBox] and [Vagrant] installed. On Windows, you also need to install the unix-like tools that come with Git or some other package to be able to run ssh from command line.
+In order to develop this app, your computer needs to have [Git], [VirtualBox] and [Vagrant] installed. On Windows, you also need to install the unix-like tools that come with Git or some other package to be able to run ssh from command line. Using a virtual machine guarantees that development can be done on any platform and minimizes "works on my machine" -type problems.
 
 Installation
 ------------
 
 1. Clone this repository to your machine
 2. Run `vagrant up` in the main folder (the one with Vagrantfile). Vagrant's automated process will create a 64bit Ubuntu 14.01 virtual machine with all necessary sofware installed.
-3. Run `vagrant ssh`. Now you have connected with your virtual machine.
+3. Run `vagrant ssh`. This will connect you to your virtual machine.
 4. Run the following commands:
 
     ```sh
-    # Still in the home folder
+    # Still in the home folder (of the freshly created virtual machine)
     meteor create app
     cd app
     meteor run
     ```
 
-5. Now you have created a dummy version of your app. Press Ctrl+C to stop the app. This meteor app in your home folder **will only be used to store the database, as the VirtualBox synced folder does not support it.**
+5. Now you have created a dummy version of your app. Press Ctrl+C to stop the app. This meteor app in your virtual machine's home folder **will only be used to store the database, as the VirtualBox synced folder does not support it.**
 6. Now you can change to the **actual** project folder and create symlinks to the dummy app too make the database work:
 
     ```sh
+    # Still in the same shell, within the virtual machine
     cd /vagrant/app
     rm -rf .meteor/local
     mkdir .meteor/local
