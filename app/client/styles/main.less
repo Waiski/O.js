@@ -64,18 +64,26 @@ a:visited {
     }
 }
 
-.drink-property-set[contenteditable=true] {
-    border-bottom: 1px dashed @gray;
-    &:empty:before {
-        content: attr(placeholder);
-        color: @gray-light; 
+#drink-page-container {
+
+    #drink-category-show {
+        color: @gray;
     }
-}
 
-.underlined {
-    border-bottom: 1px solid black; 
-}
+    .drink-property-set[contenteditable=true] {
+        border-bottom: 1px dashed @gray;
+        &:empty:before {
+            content: attr(placeholder);
+            color: @gray-light; 
+        }
+    }
 
-.overlined {
-    border-top: 1px solid black;
+    .underlined {
+        border-bottom: 1px solid black; 
+    }
+
+    .overlined {
+        border-top: 1px solid black;
+    }
+
 }
