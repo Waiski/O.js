@@ -8,7 +8,6 @@ meteor-platform
 insecure
 less
 coffeescript
-gadicohen:famous-views
 mjn:famous
 iron:router
 natestrauser:font-awesome

@@ -1,23 +1,17 @@
 <template name="headerTmpl">
-  {{#ContainerSurface class="header-container" target="header"}}
-    {{#SequentialLayout direction="X"}}
-      {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
-        {{#Surface size="[undefined,undefined]" class="header-surface header-left"}}
-          {{>showTemplate name=leftActionTemplate}}
-        {{/Surface}}
-      {{/ContainerSurface}}
-      {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.605,1]"}}
-        {{#Surface size="[undefined,undefined]" class="header-surface header-center"}}
-          {{>showTemplate name=headerCenterTemplate}}
-        {{/Surface}}
-      {{/ContainerSurface}}
-      {{#ContainerSurface align="[0,0]" origin="[0,0]" proportions="[0.2,1]"}}
-        {{#Surface size="[undefined,undefined]" class="header-surface header-right"}}
-          {{>showTemplate name=rightActionTemplate}}
-        {{/Surface}}
-      {{/ContainerSurface}}
-    {{/SequentialLayout}}
-  {{/ContainerSurface}}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-2 header-surface header-left">
+        {{>showTemplate name=leftActionTemplate}}
+      </div>
+      <div class="col-xs-8 header-surface header-center">
+        {{>showTemplate name=headerCenterTemplate}}
+      </div>
+      <div class="col-xs-2 header-surface header-right">
+        {{>showTemplate name=rightActionTemplate}}
+      </div>
+    </div>
+  </div>
 </template>
 
 <template name="searchIcon">

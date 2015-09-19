@@ -5,51 +5,34 @@
 </head>
 
 <template name="layout">
-  {{#famousContext id="mainCtx"}}
-    {{#HeaderFooterLayout headerSize="80" footerSize="0"}}
+  {{>yield region="header"}}
 
-      {{>yield region="header"}}
+  {{>yield}}
 
-      {{#RenderController target="content" transition="opacity"}}
-        {{>yield}}
-      {{/RenderController}}
-
-    {{/HeaderFooterLayout}}
-  {{/famousContext}}
 </template>
 
 <template name="drinksList">
-  {{#ContainerSurface class="mainContent"}}
-    {{#SequentialLayout direction="X"}}
-      {{#StateModifier size=getLeftBarSize}}
-        {{#Scrollview}}
-          {{#famousEach categories}}
-            {{#Surface size="[undefined,true]" class="categorySelector"}}
-              <div class="category">{{name}}</div>
-            {{/Surface}}
-          {{/famousEach}}
-        {{/Scrollview}}
-      {{/StateModifier}}
-      {{#StateModifier size=getMainSize}}
-        {{#Scrollview}}
-          {{#famousEach categories}}
-            {{>drinkCategory}}
-          {{/famousEach}}
-        {{/Scrollview}}
-      {{/StateModifier}}
-    {{/SequentialLayout}}
-  {{/ContainerSurface}}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="hidden-xs col-sm-2 categorySelector">
+        {{#each categories}}
+          <div class="category">{{name}}</div>
+        {{/each}}
+      </div>
+      <div class="col-xs-12 col-sm-8">
+        {{#each categories}}
+          {{>drinkCategory}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
 </template>
 
 <template name="drinkCategory">
-  {{#Surface size="[undefined,true]" class="list-category-name"}}
-    {{name}}
-  {{/Surface}}
-  {{#famousEach drinks}}
-    {{#Surface size="[undefined,true]"}}
-      {{>drinkRow}}
-    {{/Surface}}
-  {{/famousEach}}
+  <h2>{{name}}</h2>
+  {{#each drinks}}
+    {{>drinkRow}}
+  {{/each}}
 </template>
 
 <template name="drinkRow">
@@ -67,7 +50,5 @@
 </template>
 
 <template name="loading">
-  {{#Surface size="[undefined,undefined]"}}
-    {{> spinner}}
-  {{/Surface}}
+  {{> spinner}}
 </template>

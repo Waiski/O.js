@@ -1,17 +1,11 @@
 <template name="drinkTmpl">
-  {{#StateModifier size=getSize align="[0.5,0]" origin="[0.5,0]"}}
-    {{>Surface size="[undefined,undefined]" class="mainContent" template="drinkPropertySheet"}}
-  {{/StateModifier}}
-</template>
-
-<template name="drinkPropertySheet">
   {{!--
     .drink-property-set -elements can be used for setting a property,
     .drink-property-show -elements display it
   --}}
-  <div class="container" id="drink-page-container">
+  <div class="container-fluid" id="drink-page-container">
     <div class="row">
-      <div class="col-xs-3">
+      <div class="col-xs-12 col-sm-offset-2 col-sm-8">
         <select
         id="drink-category-select"
         class="drink-property-set select{{#unless editmode}} hidden{{/unless}}"
@@ -24,20 +18,14 @@
         id="drink-category-show"
         class="drink-property-show{{#if editmode}} hidden{{/if}}"
         data-drink-property="categoryId"><em>{{getCategory}}</em> >></p>
-      </div>
-    </div>
-    <div class="row underlined">
-      <div class="col-xs-12 col-md-8">
-        <h1 
-        id="drink-name"
-        class="drink-property-set drink-property-show"
-        placeholder="Drink name"
-        data-drink-property="name"
-        contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{name}}</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-8">
+        <div class="underlined">
+          <h1 
+          id="drink-name"
+          class="drink-property-set drink-property-show"
+          placeholder="Drink name"
+          data-drink-property="name"
+          contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{name}}</h1>
+        </div>
         <p
         id="drink-manufacturer"
         class="drink-property-set {{#unless editmode}} hidden{{/unless}}"
@@ -53,44 +41,44 @@
         {{#unless editmode}}
           {{>drinkManufacturer}}
         {{/unless}}
+        <p
+        id="drink-region"
+        class="drink-property-set drink-property-show"
+        placeholder="Manufacturing country and region"
+        data-drink-property="region"
+        contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{#if region}}{{region}}{{/if}}</p>
+        <p
+        id="drink-strength"
+        class="drink-property-set drink-property-show"
+        placeholder="Alcohol content vol-%"
+        data-drink-property="strength"
+        contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{strength}}</p>
+        <p
+        id="drink-subcategory"
+        class="drink-property-set drink-property-show"
+        placeholder="Subcategory (i.e. Pale ale, Bourbon, Armagnac...)"
+        data-drink-property="subcategory"
+        contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{subcategory}}</p>
+        <p
+        id="drink-temperature"
+        class="drink-property-set drink-property-show"
+        placeholder="Recommended serving temperature"
+        data-drink-property="temperature"
+        contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{temperature}}</p>
+        <p
+        id="drink-description"
+        class="drink-property-set drink-property-show overlined"
+        placeholder="Description"
+        data-drink-property="description"
+        contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{description}}</p>
+        <strong
+        id="drink-price"
+        class="drink-property-set drink-property-show"
+        placeholder="Price"
+        data-drink-property="price"
+        contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{price}}</strong>
       </div>
     </div>
-    <p
-    id="drink-region"
-    class="drink-property-set drink-property-show"
-    placeholder="Manufacturing country and region"
-    data-drink-property="region"
-    contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{#if region}}{{region}}{{/if}}</p>
-    <p
-    id="drink-strength"
-    class="drink-property-set drink-property-show"
-    placeholder="Alcohol content vol-%"
-    data-drink-property="strength"
-    contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{strength}}</p>
-    <p
-    id="drink-subcategory"
-    class="drink-property-set drink-property-show"
-    placeholder="Subcategory (i.e. Pale ale, Bourbon, Armagnac...)"
-    data-drink-property="subcategory"
-    contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{subcategory}}</p>
-    <p
-    id="drink-temperature"
-    class="drink-property-set drink-property-show"
-    placeholder="Recommended serving temperature"
-    data-drink-property="temperature"
-    contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{temperature}}</p>
-    <p
-    id="drink-description"
-    class="drink-property-set drink-property-show overlined"
-    placeholder="Description"
-    data-drink-property="description"
-    contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{description}}</p>
-    <strong
-    id="drink-price"
-    class="drink-property-set drink-property-show"
-    placeholder="Price"
-    data-drink-property="price"
-    contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{price}}</strong>
   </div>
 </template>
 
