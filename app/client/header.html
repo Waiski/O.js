@@ -41,11 +41,19 @@
 </template>
 
 <template name="drinkOptions">
-  <i class="fa fa-3x fa-cog"></i>
-  <ul class="hidden drink-options">
-    <li><i class="fa fa-3x fa-edit"></i> Edit drink</li>
-    <li><i class="fa fa-3x fa-cog"></i> Remove drink</li>
-  </ul>
+  {{#if editmode}}
+    <i id="edits-done" class="fa fa-3x fa-check"></i>
+  {{else}}
+    <div class="dropdown">
+      <a id="drink-options-show" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-3x fa-cog"></i>
+      </a>
+      <ul id="drink-options" class="dropdown-menu" aria-labelledby="drink-options-show">
+        <li id="drink-edit" class="clickable"><i class="fa fa-3x fa-pencil"></i> Edit drink</li>
+        <li id="drink-remove" class="clickable"><i class="fa fa-3x fa-trash-o"></i> Remove drink</li>
+      </ul>
+    </div>
+  {{/if}}
 </template>
 
 <template name="editIcon">

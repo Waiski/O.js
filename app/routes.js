@@ -57,7 +57,7 @@ Router.route('/:slug', {
   name: 'drink',
   onBeforeAction: function() {
     Session.set('leftAction', 'backIcon');
-    Session.set('rightAction', 'editIcon');
+    Session.set('rightAction', 'drinkOptions');
     Session.set('headerCenter', 'empty');
     Session.set('addDrink', false);
     // Don't reset editmode on reactive reruns
