@@ -1,5 +1,5 @@
 <template name="headerTmpl">
-  <div class="container-fluid">
+  <div class="container-fluid header-container">
     <div class="row">
       <div class="col-xs-2 header-surface header-left">
         {{>showTemplate name=leftActionTemplate}}
@@ -49,8 +49,8 @@
         <i class="fa fa-3x fa-cog"></i>
       </a>
       <ul id="drink-options" class="dropdown-menu" aria-labelledby="drink-options-show">
-        <li id="drink-edit" class="clickable"><i class="fa fa-3x fa-pencil"></i> Edit drink</li>
-        <li id="drink-remove" class="clickable"><i class="fa fa-3x fa-trash-o"></i> Remove drink</li>
+        <li id="drink-edit" class="clickable"><i class="fa fa-3x fa-pencil"></i> <span class="dd-label">Edit drink</span></li>
+        <li id="drink-remove" class="clickable"><i class="fa fa-3x fa-trash-o"></i> <span class="dd-label">Remove drink</span></li>
       </ul>
     </div>
   {{/if}}
