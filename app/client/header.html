@@ -1,17 +1,15 @@
 <template name="headerTmpl">
-  <div class="container-fluid header-container">
-    <div class="row">
-      <div class="col-xs-2 header-surface header-left">
-        {{>showTemplate name=leftActionTemplate}}
-      </div>
-      <div class="col-xs-8 header-surface header-center">
-        {{>showTemplate name=headerCenterTemplate}}
-      </div>
-      <div class="col-xs-2 header-surface header-right">
-        {{>showTemplate name=rightActionTemplate}}
-      </div>
+  <nav class="ui menu navbar three column grid header-container">
+    <div class="three wide column header-surface header-left">
+      {{>showTemplate name=leftActionTemplate}}
     </div>
-  </div>
+    <div class="ten wide column header-surface header-center">
+      {{>showTemplate name=headerCenterTemplate}}
+    </div>
+    <div class="three wide column header-surface header-right">
+      {{>showTemplate name=rightActionTemplate}}
+    </div>
+  </nav>
 </template>
 
 <template name="searchIcon">

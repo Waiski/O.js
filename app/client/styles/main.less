@@ -1,5 +1,10 @@
-@import 'custom.bootstrap.import.less';
-@import 'custom.bootstrap.mixins.import.less';
+@gray-base:              #000;
+@gray-darker:            lighten(@gray-base, 13.5%); // #222
+@gray-dark:              lighten(@gray-base, 20%);   // #333
+@gray:                   lighten(@gray-base, 33.5%); // #555
+@gray-light:             lighten(@gray-base, 46.7%); // #777
+@gray-lighter:           lighten(@gray-base, 93.5%); // #eee
+@gray-lightest:          lighten(@gray-base, 96.5%); // #eee
 
 a:visited {
     color: inherit;
@@ -29,9 +34,9 @@ a {
     }
     .dropdown-menu {
         background-color: @gray-lightest;
-        left: -1* floor((@grid-gutter-width / 2));
+        //left: -1* floor((@grid-gutter-width / 2));
         right: 0;
-        padding-left: floor((@grid-gutter-width / 2));
+        //padding-left: floor((@grid-gutter-width / 2));
         border-radius: 0;
         margin: 0;
         box-shadow: 0 4px 3px rgba(0,0,0,.3);

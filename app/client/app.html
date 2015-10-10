@@ -10,14 +10,14 @@
 </template>
 
 <template name="drinksList">
-  <div class="container-fluid main-content">
-    <div class="row">
-      <div class="hidden-xs col-sm-2 categorySelector">
-        {{#each categories}}
-          <div class="category">{{name}}</div>
-        {{/each}}
-      </div>
-      <div class="col-xs-12 col-sm-8">
+  <div class="ui text container main-content">
+    <div class="ui one column grid">
+      <div class="column">
+        <div class="ui left rail categorySelector">
+          {{#each categories}}
+            <div class="category">{{name}}</div>
+          {{/each}}
+        </div>
         {{#each categories}}
           {{>drinkCategory}}
         {{/each}}

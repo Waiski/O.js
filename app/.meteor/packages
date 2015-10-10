@@ -5,12 +5,10 @@
 # but you can also edit it by hand.
 
 insecure
-less
 coffeescript
 mjn:famous
 iron:router
 natestrauser:font-awesome
-nemo64:bootstrap
 sacha:spin
 momentjs:moment
 aldeed:collection2
@@ -29,7 +27,7 @@ ejson
 spacebars
 check
 semantic:ui-modal
-semantic:ui-dimmer
 semantic:ui-transition
-semantic:ui-css
 chrismbeckett:toastr
+semantic:ui
+flemay:less-autoprefixer
