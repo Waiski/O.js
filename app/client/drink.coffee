@@ -38,7 +38,7 @@ Template.drinkOptions.events
     drink = Drinks.findOne( Session.get 'activeDrinkId' )
     edit.setOriginal drink
     Session.set 'edit', edit
-  'click .fa-check': ->
+  'click #edits-done': ->
     Session.set 'editMode', false
     edit = Session.get 'edit'
     unless Session.get 'addDrink'
@@ -61,3 +61,11 @@ Template.drinkOptions.events
         Drinks.insert edit.get(), (err, id) ->
           if not err then Meteor.call 'getDrinkName', id, (err, res) ->
             if not err then Router.go 'drink', slug: res
+  'click #drink-remove': ->
+    $('#drink-delete-confirm-modal').modal
+      onApprove: ->
+        id = Session.get 'activeDrinkId'
+        Router.go 'home'
+        toastr.info 'Drink successfully removed.'
+        Drinks.remove id
+    .modal 'show'

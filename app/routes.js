@@ -33,7 +33,7 @@ Router.route('/add', {
   name: 'add',
   onBeforeAction: function() {
     Session.set('leftAction', 'backIcon');
-    Session.set('rightAction', 'editIcon');
+    Session.set('rightAction', 'drinkOptions');
     Session.set('headerCenter', 'empty');
     Session.set('addDrink', true);
     Session.set('editMode', true);

@@ -28,3 +28,8 @@ random
 ejson
 spacebars
 check
+semantic:ui-modal
+semantic:ui-dimmer
+semantic:ui-transition
+semantic:ui-css
+chrismbeckett:toastr

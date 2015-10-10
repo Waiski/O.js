@@ -6,13 +6,11 @@
 
 <template name="layout">
   {{>yield region="header"}}
-
   {{>yield}}
-
 </template>
 
 <template name="drinksList">
-  <div class="container-fluid">
+  <div class="container-fluid main-content">
     <div class="row">
       <div class="hidden-xs col-sm-2 categorySelector">
         {{#each categories}}

@@ -25,10 +25,10 @@
 <template name="backIcon">
   <div class="header-left-container">
     {{#if editmode}}
-      <i class="fa fa-3x fa-times"></i>
+      <i class="fa fa-3x fa-times clickable"></i>
     {{else}}
       <a href="{{pathFor "home"}}">
-        <i class="fa fa-3x fa-arrow-left"></i>
+        <i class="fa fa-3x fa-arrow-left clicable"></i>
       </a>
     {{/if}}
   </div>
@@ -36,13 +36,13 @@
 
 <template name="addIcon">
   <a href="{{pathFor "add"}}">
-    <i class="fa fa-3x fa-plus-circle"></i>
+    <i class="fa fa-3x fa-plus-circle clickable"></i>
   </a>
 </template>
 
 <template name="drinkOptions">
   {{#if editmode}}
-    <i id="edits-done" class="fa fa-3x fa-check"></i>
+    <i id="edits-done" class="fa fa-3x fa-check clickable"></i>
   {{else}}
     <div class="dropdown">
       <a id="drink-options-show" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,18 +54,6 @@
       </ul>
     </div>
   {{/if}}
-</template>
-
-<template name="editIcon">
-  {{#if editmode}}
-    <i class="fa fa-3x fa-check"></i>
-  {{else}}
-    <i class="fa fa-3x fa-pencil"></i>
-  {{/if}}
-</template>
-
-<template name="doneIcon">
-  <i class="fa fa-3x fa-check"></i>
 </template>
 
 <template name="empty">

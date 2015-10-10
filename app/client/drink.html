@@ -3,7 +3,7 @@
     .drink-property-set -elements can be used for setting a property,
     .drink-property-show -elements display it
   --}}
-  <div class="container-fluid" id="drink-page-container">
+  <div class="container-fluid main-content" id="drink-page-container">
     <div class="row">
       <div class="col-xs-12 col-sm-offset-2 col-sm-8">
         <select
@@ -80,6 +80,9 @@
       </div>
     </div>
   </div>
+
+  {{>drinkDeleteConfirmModal}}
+
 </template>
 
 <template name="drinkManufacturer">
@@ -89,5 +92,18 @@
     {{else}}
       <p>{{manufacturer}}</p>
     {{/if}}
+  </div>
+</template>
+
+<template name="drinkDeleteConfirmModal">
+  <div class="ui modal" id="drink-delete-confirm-modal">
+    <div class="header">Confirm drink delete</div>
+    <div class="content">
+      <p>Are you sure you want to delete this drink? This action is irreversible.</p>
+    </div>
+    <div class="actions">
+      <div class="ui black cancel button">Cancel</div>
+      <div class="ui positive approve button">OK</div>
+    </div>
   </div>
 </template>
