@@ -63,7 +63,9 @@ Template.drinkOptions.events
       else
         Drinks.insert edit.get(), (err, id) ->
           if not err then Meteor.call 'getDrinkName', id, (err, res) ->
-            if not err then Router.go 'drink', slug: res
+            if not err
+              Router.go 'drink', slug: res
+              toastr.success 'Drink ' + res + ' added.'
   'click #drink-remove': ->
     $('#drink-delete-confirm-modal').modal
       onApprove: ->
