@@ -1,12 +1,12 @@
 <template name="headerTmpl">
   <nav class="ui menu navbar three column grid header-container">
-    <div class="three wide column header-surface header-left">
+    <div class="four wide column header-surface header-left">
       {{>showTemplate name=leftActionTemplate}}
     </div>
-    <div class="ten wide column header-surface header-center">
+    <div class="eight wide column header-surface header-center">
       {{>showTemplate name=headerCenterTemplate}}
     </div>
-    <div class="three wide column header-surface header-right">
+    <div class="four wide column header-surface header-right">
       {{>showTemplate name=rightActionTemplate}}
     </div>
   </nav>
@@ -42,16 +42,24 @@
   {{#if editmode}}
     <i id="edits-done" class="fa fa-3x fa-check clickable"></i>
   {{else}}
-    <div class="dropdown">
-      <a id="drink-options-show" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fa fa-3x fa-cog"></i>
-      </a>
-      <ul id="drink-options" class="dropdown-menu" aria-labelledby="drink-options-show">
-        <li id="drink-edit" class="clickable"><i class="fa fa-3x fa-pencil"></i> <span class="dd-label">Edit drink</span></li>
-        <li id="drink-remove" class="clickable"><i class="fa fa-3x fa-trash-o"></i> <span class="dd-label">Remove drink</span></li>
-      </ul>
-    </div>
+    {{>drinkOptionsDropdown}}
   {{/if}}
+</template>
+
+<template name="drinkOptionsDropdown">
+  <div class="ui dropdown">
+    <a id="drink-options-show">
+      <i class="fa fa-3x fa-cog"></i>
+    </a>
+    <div id="drink-options" class="menu">
+      <div id="drink-edit" class="item clickable">
+        <i class="fa fa-3x fa-pencil"></i> <span class="dd-label">Edit drink</span>
+      </div>
+      <div id="drink-remove" class="item clickable">
+        <i class="fa fa-3x fa-trash-o"></i> <span class="dd-label">Remove drink</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <template name="empty">

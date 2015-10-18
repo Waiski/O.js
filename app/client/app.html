@@ -13,9 +13,11 @@
   <div class="ui text container main-content">
     <div class="ui one column grid">
       <div class="column">
-        <div class="ui left rail categorySelector">
+        <div class="ui left dividing rail categorySelector">
           {{#each categories}}
-            <div class="category">{{name}}</div>
+            <div class="category-selector">
+              <a href="#drink-category-{{name}}">{{name}}</a>
+            </div>
           {{/each}}
         </div>
         {{#each categories}}
@@ -27,7 +29,7 @@
 </template>
 
 <template name="drinkCategory">
-  <h2>{{name}}</h2>
+  <h2 id="drink-category-{{name}}">{{name}}</h2>
   {{#each drinks}}
     {{>drinkRow}}
   {{/each}}

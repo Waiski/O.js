@@ -31,6 +31,9 @@ Template.drinkManufacturer.helpers
     else if SimpleSchema.RegEx.Url.test('http://' + @website)
       'http://' + @website
     
+Template.drinkOptionsDropdown.rendered = ->
+  @$('.ui.dropdown').dropdown()
+
 Template.drinkOptions.events
   'click #drink-edit': ->
     Session.set 'editMode', true
