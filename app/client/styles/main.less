@@ -78,6 +78,15 @@ a {
     display: none !important;
 }
 
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
 .categorySelector {
     text-align: right;
     font-size: 32px;
@@ -107,6 +116,9 @@ a {
     .drink-price {
         width: 40px;
         font-weight: bold;
+    }
+    &:last-child {
+        border-bottom: 1px solid @gray-light;
     }
 }
 
