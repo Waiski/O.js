@@ -31,15 +31,15 @@ a {
             vertical-align: middle;
             display: inline-block;
         }
-    }
-    .dropdown-menu {
-        background-color: @gray-lightest;
-        //left: -1* floor((@grid-gutter-width / 2));
-        right: 0;
-        //padding-left: floor((@grid-gutter-width / 2));
-        border-radius: 0;
-        margin: 0;
-        box-shadow: 0 4px 3px rgba(0,0,0,.3);
+        .menu {
+            background-color: @gray-lightest;
+            right: 0;
+            top: 50px;
+            border-radius: 0;
+            border-radius: 0;
+            margin: 0;
+            box-shadow: 0 4px 3px rgba(0,0,0,.3);
+        }
     }
 }
 
@@ -52,12 +52,18 @@ a {
     padding-top: 20px;
 }
 
+// Fix spinner moving too high
+.spinner-container {
+    min-height: 450px;
+}
+
 #search {
-    height: 50px;
+    line-height: 33px;
     font-size: 40px;
     display: inline-block;
     width: 100%;
     padding-left: 10px;
+    outline: 0;
     &:empty:before {
         content: attr(placeholder);
         color: @gray-light; 
@@ -134,6 +140,10 @@ a {
             content: attr(placeholder);
             color: @gray-light; 
         }
+    }
+
+    &.not-in-editmode .editmode-visible {
+        display: none;
     }
 
     .underlined {

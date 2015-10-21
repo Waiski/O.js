@@ -8,16 +8,26 @@ Template.drinkTmpl.helpers
 Template.drinkTmpl.rendered = ->
   # Set the select correctly
   @$('#drink-category-select').val(this.data.categoryId)
+  @$('#drink-category-select').dropdown
+    onChange: ->
+      readEdit $(@)
+
+
+readEdit = (element) ->
+  edit = Session.get 'edit'
+  property = element.data 'drink-property'
+  if not property then return
+  value = if element.is 'select' then element.val() else element.text().trim()
+  # Remove unnecessary whitespace and html tags
+  if value.length is 0 then element[0].innerHTML = ""
+  edit.add(property, value)
+  Session.set 'edit', edit
 
 Template.drinkTmpl.events
   'blur .drink-property-set': (event, tmpl) ->
-    edit = Session.get 'edit'
     self = $(event.target)
-    property = self.data 'drink-property'
-    value = if self.is 'select' then self.val() else self.text().trim()
-    if value.length is 0 then self[0].innerHTML = "" # Remove unnecessary whitespace and html tags
-    edit.add(property, value)
-    Session.set 'edit', edit
+    unless self.hasClass 'dropdown'
+      readEdit self
   'keydown .drink-property-set': (event) ->
     if event.keyCode is 13
       event.target.blur()
@@ -50,7 +60,8 @@ Template.drinkOptions.events
         redirect = false # If name is changed, then user must be redirected to the new address.
         _.each edit.edits, (oldAndNew, property) ->
           # Clear all attribute fields that will be repopulated by update reactivity
-          $('.drink-property-set').filter('[data-drink-property="' + property + '"]')[0].innerHTML = "&zwnj;"
+          elements = $('.drink-property-set').filter('[data-drink-property="' + property + '"]')
+          if elements.length then elements[0].innerHTML = "&zwnj;"
           # If the name has been edited, then redirect
           if not redirect and property is 'name' then redirect = true
         modifier = _.extend edit.setter(), edit.pusher()

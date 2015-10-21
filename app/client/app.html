@@ -13,7 +13,7 @@
   <div class="ui text container main-content">
     <div class="ui one column grid">
       <div class="column">
-        <div class="ui left dividing rail categorySelector">
+        <div class="computer only tablet only ui left dividing rail categorySelector">
           {{#each categories}}
             <div class="category-selector">
               <a href="#drink-category-{{name}}">{{name}}</a>
@@ -52,5 +52,11 @@
 </template>
 
 <template name="loading">
-  {{> spinner}}
+  <div class="ui text container main-content">
+    <div class="ui one column grid">
+      <div class="column">
+        {{> spinner}}
+      </div>
+    </div>
+  </div>
 </template>

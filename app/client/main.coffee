@@ -3,7 +3,7 @@
 Meteor.Spinner.options = 
     radius: 70,
     speed: 0.5,
-    width: 10,
+    width: 20,
     length: 50
 
 Template.registerHelper 'editmode', ->

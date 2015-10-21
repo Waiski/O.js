@@ -29,6 +29,11 @@ share.Edit.prototype =
       else
         oldVal = "" # Default to empty
     if oldVal is newVal
+      # If trying to set to the old value, just ignore
+      # this from the edit object altogether. Note that
+      # the edit might already be done, and now the
+      # user wants to restore the old value.
+      delete @edits[property]
       false
     else
       @edits[property] = set: newVal, old: oldVal

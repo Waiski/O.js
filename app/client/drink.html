@@ -3,44 +3,49 @@
     .drink-property-set -elements can be used for setting a property,
     .drink-property-show -elements display it
   --}}
-  <div class="ui text container main-content" id="drink-page-container">
-    <div class="ui one column grid">
-      <div class="column">
-        <select
-        id="drink-category-select"
-        class="drink-property-set select{{#unless editmode}} hidden{{/unless}}"
-        data-drink-property="categoryId">
-          {{#each categories}}
-            <option value="{{_id}}">{{name}}</option>
-          {{/each}}
-        </select>
-        <p
-        id="drink-category-show"
-        class="drink-property-show{{#if editmode}} hidden{{/if}}"
-        data-drink-property="categoryId"><em>{{getCategory}}</em> >></p>
-        <div class="underlined">
-          <h1 
-          id="drink-name"
-          class="drink-property-set drink-property-show"
-          placeholder="Drink name"
-          data-drink-property="name"
-          contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{name}}</h1>
-        </div>
+  <div class="ui text container main-content{{#if editmode}} in-editmode{{else}} not-in-editmode{{/if}}"
+       id="drink-page-container">
+
+    <select
+    id="drink-category-select"
+    class="ui dropdown drink-property-set select editmode-visible"
+    data-drink-property="categoryId">
+      {{#each categories}}
+        <option value="{{_id}}">{{name}}</option>
+      {{/each}}
+    </select>
+    <p
+    id="drink-category-show"
+    class="drink-property-show{{#if editmode}} hidden{{/if}}"
+    data-drink-property="categoryId"><em>{{getCategory}}</em> >></p>
+
+    <h1 class="ui dividing header">
+      <div class="content drink-property-set drink-property-show"
+           id="drink-name"
+           placeholder="Drink name"
+           data-drink-property="name"
+           contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{name}}</div>
+      <div class="sub header">
         <p
         id="drink-manufacturer"
-        class="drink-property-set {{#unless editmode}} hidden{{/unless}}"
+        class="drink-property-set editmode-visible"
         placeholder="Manufacturer (or brewery, distillery...)"
         data-drink-property="manufacturer"
         contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{manufacturer}}</p>
         <p
         id="drink-website"
-        class="drink-property-set underlined{{#unless editmode}} hidden{{/unless}}"
+        class="drink-property-set editmode-visible"
         placeholder="Manufacturer website URL"
         data-drink-property="website"
         contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{website}}</p>
         {{#unless editmode}}
           {{>drinkManufacturer}}
         {{/unless}}
+      </div>
+    </h1>
+
+    <div class="ui one column grid">
+      <div class="column">
         <p
         id="drink-region"
         class="drink-property-set drink-property-show"
@@ -86,7 +91,7 @@
 </template>
 
 <template name="drinkManufacturer">
-  <div class="drink-property-show underlined">
+  <div class="drink-property-show">
     {{#if hasValidUrl}}
       <a href="{{getUrl}}" target="_blank">{{manufacturer}}</a>
     {{else}}
