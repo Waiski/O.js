@@ -73,9 +73,7 @@ Router.route('/:slug', {
       if (!drink)
         this.redirect('home');
       Session.set('activeDrinkId', drink._id);
-      this.render('drinkTmpl', {
-        data: drink
-      });
+      this.render('drinkTmpl');
     } else
       this.render('loading');
   }

@@ -4,14 +4,26 @@ Template.drinkTmpl.helpers
     if cat then cat.name else ""
   categories: ->
     Categories.find()
+  drink: ->
+    Drinks.findOne( Session.get 'activeDrinkId' )
 
 Template.drinkTmpl.rendered = ->
-  # Set the select correctly
-  @$('#drink-category-select').val(this.data.categoryId)
   @$('#drink-category-select').dropdown
     onChange: ->
       readEdit $(@)
 
+  self = @
+  @autorun ->
+    drink = Drinks.findOne( Session.get 'activeDrinkId' )
+    # Set the select correctly
+    self.$('#drink-category-select').val(drink.categoryId)
+    # Hide unset property labels when not in editmode
+    self.$('.drink-detail-row').each (index, element) ->
+      prop = $(element).find('.drink-property-set').data 'drink-property'
+      if _.isEmpty(drink[prop])
+        $(element).addClass 'hidden-normally'
+      else
+        $(element).removeClass 'hidden-normally'
 
 readEdit = (element) ->
   edit = Session.get 'edit'
@@ -45,12 +57,18 @@ Template.drinkOptionsDropdown.rendered = ->
   @$('.ui.dropdown').dropdown()
 
 Template.drinkOptions.events
-  'click #drink-edit': ->
+  'click #drink-edit': (e, tmpl) ->
     Session.set 'editMode', true
     edit = new share.Edit
     drink = Drinks.findOne( Session.get 'activeDrinkId' )
     edit.setOriginal drink
     Session.set 'edit', edit
+    # Make sure empty properties are truly empty
+    # This is to fix strange bugs with :empty -CSS selector not working in some cases
+    $('.drink-detail-row').each (index, element) ->
+      prop = $(element).find('.drink-property-set').data 'drink-property'
+      if _.isEmpty(drink[prop]) then $(element).find('.drink-property-show')[0].innerHTML = ''
+
   'click #edits-done': ->
     Session.set 'editMode', false
     edit = Session.get 'edit'
@@ -66,7 +84,10 @@ Template.drinkOptions.events
           if not redirect and property is 'name' then redirect = true
         modifier = _.extend edit.setter(), edit.pusher()
         Drinks.update drink._id, modifier, ->
-          if redirect then Router.go 'drink', slug: edit.edits.name.set
+          if redirect
+            Router.go 'drink', slug: edit.edits.name.set
+          else
+
     else # Handle new drink add
       Session.set 'addDrink', false
       if _.isEmpty edit.edits
@@ -85,3 +106,10 @@ Template.drinkOptions.events
         toastr.info 'Drink successfully removed.'
         Drinks.remove id
     .modal 'show'
+
+###
+Template.drinkDetail.rendered = ->
+  console.log @
+  if @data.value and @data.value.length or Session.get 'editMode'
+    @$('.drink-detail-row').removeClass 'hidden'
+###

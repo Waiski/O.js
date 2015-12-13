@@ -1,93 +1,94 @@
 <template name="drinkTmpl">
-  {{!--
-    .drink-property-set -elements can be used for setting a property,
-    .drink-property-show -elements display it
-  --}}
-  <div class="ui text container main-content{{#if editmode}} in-editmode{{else}} not-in-editmode{{/if}}"
-       id="drink-page-container">
+  {{#with drink}}
+    {{!--
+      .drink-property-set -elements can be used for setting a property,
+      .drink-property-show -elements display it
+    --}}
+    <div class="ui text container main-content{{#if editmode}} in-editmode{{else}} not-in-editmode{{/if}}"
+         id="drink-page-container">
 
-    <select
-    id="drink-category-select"
-    class="ui dropdown drink-property-set select editmode-visible"
-    data-drink-property="categoryId">
-      {{#each categories}}
-        <option value="{{_id}}">{{name}}</option>
-      {{/each}}
-    </select>
-    <p
-    id="drink-category-show"
-    class="drink-property-show{{#if editmode}} hidden{{/if}}"
-    data-drink-property="categoryId"><em>{{getCategory}}</em> >></p>
+      <select
+      id="drink-category-select"
+      class="ui dropdown drink-property-set select editmode-visible"
+      data-drink-property="categoryId">
+        {{#each categories}}
+          <option value="{{_id}}">{{name}}</option>
+        {{/each}}
+      </select>
+      <p
+      id="drink-category-show"
+      class="drink-property-show{{#if editmode}} hidden{{/if}}"
+      data-drink-property="categoryId"><em>{{getCategory}}</em> >></p>
 
-    <h1 class="ui dividing header">
-      <div class="content drink-property-set drink-property-show"
-           id="drink-name"
-           placeholder="Drink name"
-           data-drink-property="name"
-           contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{name}}</div>
-      <div class="sub header">
-        <p
-        id="drink-manufacturer"
-        class="drink-property-set editmode-visible"
-        placeholder="Manufacturer (or brewery, distillery...)"
-        data-drink-property="manufacturer"
-        contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{manufacturer}}</p>
-        <p
-        id="drink-website"
-        class="drink-property-set editmode-visible"
-        placeholder="Manufacturer website URL"
-        data-drink-property="website"
-        contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{website}}</p>
-        {{#unless editmode}}
-          {{>drinkManufacturer}}
-        {{/unless}}
-      </div>
-    </h1>
+      <h1 class="ui dividing header">
+        <div class="content drink-property-set drink-property-show"
+             id="drink-name"
+             placeholder="Drink name"
+             data-drink-property="name"
+             contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{name}}</div>
+        <div class="sub header">
+          <p
+          id="drink-manufacturer"
+          class="drink-property-set editmode-visible"
+          placeholder="Manufacturer (or brewery, distillery...)"
+          data-drink-property="manufacturer"
+          contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{manufacturer}}</p>
+          <p
+          id="drink-website"
+          class="drink-property-set editmode-visible"
+          placeholder="Manufacturer website URL"
+          data-drink-property="website"
+          contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{website}}</p>
+          {{#unless editmode}}
+            {{>drinkManufacturer}}
+          {{/unless}}
+        </div>
+      </h1>
 
-    <div class="ui one column grid">
-      <div class="column">
-        <p
-        id="drink-region"
-        class="drink-property-set drink-property-show"
-        placeholder="Manufacturing country and region"
-        data-drink-property="region"
-        contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{#if region}}{{region}}{{/if}}</p>
-        <p
-        id="drink-strength"
-        class="drink-property-set drink-property-show"
-        placeholder="Alcohol content vol-%"
-        data-drink-property="strength"
-        contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{strength}}</p>
-        <p
-        id="drink-subcategory"
-        class="drink-property-set drink-property-show"
-        placeholder="Subcategory (i.e. Pale ale, Bourbon, Armagnac...)"
-        data-drink-property="subcategory"
-        contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{subcategory}}</p>
-        <p
-        id="drink-temperature"
-        class="drink-property-set drink-property-show"
-        placeholder="Recommended serving temperature"
-        data-drink-property="temperature"
-        contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{temperature}}</p>
-        <p
-        id="drink-description"
-        class="drink-property-set drink-property-show overlined"
-        placeholder="Description"
-        data-drink-property="description"
-        contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{description}}</p>
-        <strong
-        id="drink-price"
-        class="drink-property-set drink-property-show"
-        placeholder="Price"
-        data-drink-property="price"
-        contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{price}}</strong>
+      <div class="ui two column grid">
+        <div class="column drink-details">
+          <h3 class="ui dividing header">Details</h3>
+          {{!TODO: define drink details in drink schema dynamically rather than here}}
+          {{>drinkDetail name="region" label="Region" placeholder="Country and region" value=region}}
+          {{>drinkDetail name="strength" label="Alc-vol" placeholder="Alcohol vol-%" value=strength}}
+          {{>drinkDetail name="subcategory" label="Type" placeholder="(i.e. Pale ale, Bourbon)" value=subcategory}}
+          {{>drinkDetail name="temperature" label="Serving temp" placeholder="20°C" value=temperature}}
+        </div>
+        <div class="column drink-description">
+          <h3 class="ui dividing header">Description</h3>
+
+          {{>drinkDetail name="description" placeholder="Description" value=description}}
+
+          <strong
+          id="drink-price"
+          class="drink-property-set drink-property-show"
+          placeholder="Price"
+          data-drink-property="price"
+          contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{price}}</strong>
+        </div>
       </div>
     </div>
+
+    {{>drinkDeleteConfirmModal}}
+  {{/with}}
+</template>
+
+<template name="drinkDetail">
+  <div class="drink-detail-row">
+    {{#if label}}
+      <div class="drink-detail-label">
+        {{label}}
+      </div>
+    {{/if}}
+    <div class="drink-detail-value">
+      <p id="drink-{{name}}"
+         class="drink-property-set drink-property-show"
+         placeholder="{{placeholder}}"
+         data-drink-property="{{name}}"
+         contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{value}}</p>
+    </div>
+    <div class="clearfix"></div>
   </div>
-
-  {{>drinkDeleteConfirmModal}}
-
 </template>
 
 <template name="drinkManufacturer">
