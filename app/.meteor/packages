@@ -31,3 +31,6 @@ semantic:ui-transition
 chrismbeckett:toastr
 semantic:ui
 flemay:less-autoprefixer
+accounts-password
+useraccounts:semantic-ui
+useraccounts:iron-routing
