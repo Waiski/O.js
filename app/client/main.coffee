@@ -3,7 +3,7 @@
 Meteor.Spinner.options = 
     radius: 70,
     speed: 0.5,
-    width: 20,
+    width: 30,
     length: 50
 
 Template.registerHelper 'editmode', ->
@@ -21,3 +21,5 @@ Template.mainOptionsDropdown.rendered = ->
 Template.mainOptionsDropdown.events
     'click #logout': ->
         AccountsTemplates.logout()
+    'click #invite-user': ->
+        $('#invite-user-modal').modal 'show'

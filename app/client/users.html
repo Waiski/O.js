@@ -1,0 +1,23 @@
+<template name="inviteUserModal">
+  <div class="ui modal" id="invite-user-modal">
+    <div class="header">Invite user</div>
+    <div class="content">
+      <form class="ui form" id="invite-user-form">
+        <div class="field">
+          <label>Username</label>
+          <input name="username" placeholder="JaloJ" type="text">
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input name="email" placeholder="jjalo@aalto.fi" type="text">
+        </div>
+      </form>
+    </div>
+    <div class="actions">
+      <div class="ui black cancel button">Cancel</div>
+      <button class="ui positive approve button" type="submit" form="invite-user-form">
+        Invite
+      </button>
+    </div>
+  </div>
+</template>

@@ -31,7 +31,6 @@ AccountsTemplates.configureRoute('signIn', {
 });
 
 AccountsTemplates.configureRoute('changePwd');
-AccountsTemplates.configureRoute('enrollAccount');
 AccountsTemplates.configureRoute('forgotPwd');
 AccountsTemplates.configureRoute('resetPwd');
 AccountsTemplates.configureRoute('signUp');
@@ -105,6 +104,8 @@ Router.route('/:slug', {
     this.next();
   },
   action: function() {
+    if (!this.params.slug)
+      this.redirect('home');
     this.subscribe("drink", this.params.slug).wait();
     this.subscribe("categories").wait();
     this.render('headerTmpl', {to: 'header'});
