@@ -52,6 +52,45 @@ Router.route('/add', {
   }
 });
 
+// Accounts configuration
+AccountsTemplates.configure({
+    // Behavior
+    enablePasswordChange: true,
+    forbidClientAccountCreation: false,
+    overrideLoginErrors: true,
+
+    // Appearance
+    showForgotPasswordLink: true,
+    showResendVerificationEmailLink: false,
+
+    // Client-side Validation
+    showValidating: true,
+
+    // Privacy Policy and Terms of Use
+    // privacyUrl: 'privacy',
+
+    // Redirects
+    homeRoutePath: '/',
+    redirectTimeout: 2000,
+});
+
+// Accounts routes
+AccountsTemplates.configureRoute('signIn', {
+    name: 'signin',
+    path: '/login'
+});
+
+AccountsTemplates.configureRoute('changePwd');
+AccountsTemplates.configureRoute('enrollAccount');
+AccountsTemplates.configureRoute('forgotPwd');
+AccountsTemplates.configureRoute('resetPwd');
+AccountsTemplates.configureRoute('signUp');
+
+// Protect non-account-related pages.
+Router.plugin('ensureSignedIn', {
+  except: _.pluck(AccountsTemplates.routes, 'name').concat([/* No public routes at this point */])
+});
+
 // THIS MUST BE DEFINED LAST SO THAT ALL OTHER ROUTES TAKE PRECEDENCE
 Router.route('/:slug', {
   name: 'drink',
