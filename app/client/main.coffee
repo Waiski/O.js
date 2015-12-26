@@ -9,6 +9,15 @@ Meteor.Spinner.options =
 Template.registerHelper 'editmode', ->
     Session.get 'editMode'
 
+###
 Meteor.startup ->
    $(window).resize ->
      Session.set 'viewportWidth', $(window).width()
+###
+
+Template.mainOptionsDropdown.rendered = ->
+  @$('.ui.dropdown').dropdown()
+
+Template.mainOptionsDropdown.events
+    'click #logout': ->
+        AccountsTemplates.logout()

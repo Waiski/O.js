@@ -38,6 +38,24 @@
   </a>
 </template>
 
+<template name="mainOptionsDropdown">
+  <div class="ui dropdown">
+    <a id="main-options-show">
+      <i class="fa fa-3x fa-cog"></i>
+    </a>
+    <div id="drink-options" class="menu">
+      <div class="item clickable">
+        <a href="{{pathFor "add"}}">
+          <i class="fa fa-3x fa-plus-circle"></i> <span class="dd-label">Add drink</span>
+        </a>
+      </div>
+      <div id="logout" class="item clickable">
+        <i class="fa fa-3x fa-sign-out"></i> <span class="dd-label">Log out</span>
+      </div>
+    </div>
+  </div>
+</template>
+
 <template name="drinkOptions">
   {{#if editmode}}
     <i id="edits-done" class="fa fa-3x fa-check clickable"></i>
