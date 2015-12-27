@@ -21,5 +21,3 @@ Template.mainOptionsDropdown.rendered = ->
 Template.mainOptionsDropdown.events
     'click #logout': ->
         AccountsTemplates.logout()
-    'click #invite-user': ->
-        $('#invite-user-modal').modal 'show'
