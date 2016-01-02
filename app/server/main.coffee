@@ -8,6 +8,8 @@ Meteor.startup ->
       email: 'valtter@vihervuori.fi'
       profile:
         name: 'Administrator'
+
+  process.env.MAIL_URL = 'smtp://postmaster%40sandbox186cd8745abd449e91d8d4786b7985fd.mailgun.org:8afe68722894c9042d5a793b0a94689e@smtp.mailgun.org:587'
   
 
 Meteor.methods
@@ -20,4 +22,11 @@ Meteor.methods
     data.password = Random.id(10)
     data.profile = {}
     id = Accounts.createUser data
-    data.password
+    Email.send
+      'from': 'OJS-noreply <noreply@oty.fi>'
+      'to': data.email
+      'subject': 'Welcome to o.js'
+      'text': 'Your account at ' + Router.url('home') + ' has been created. ' + 
+              'Please login using your email address: ' + data.email + ' and ' +
+              'password: ' + data.password + ' Please change your password as ' +
+              'soon as possible.'

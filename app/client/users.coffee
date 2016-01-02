@@ -10,5 +10,5 @@ Template.mainOptionsDropdown.events
           if error
             toastr.error error.message
           else
-            console.log value
+            toastr.success 'User suffessfully added'
     .modal 'show'
