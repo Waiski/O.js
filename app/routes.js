@@ -40,17 +40,21 @@ Router.plugin('ensureSignedIn', {
   except: _.pluck(AccountsTemplates.routes, 'name').concat([/* No public routes at this point */])
 });
 
+var resetSession = function() {
+  // If returning from editing, ensure that editmode is not preserved
+  Session.set('editMode', false);
+  Session.set('addDrink', false);
+  Session.set('search', '');
+  Session.set('edit', undefined);
+};
+
 Router.route('/', {
   name: 'home',
   onBeforeAction: function() {
     Session.set('leftAction', 'searchIcon');
     Session.set('rightAction', 'mainOptionsDropdown');
     Session.set('headerCenter', 'searchBar');
-    // If returning from editing, ensure that editmode is not preserved
-    Session.set('editMode', false);
-    Session.set('addDrink', false);
-    Session.set('search', '');
-    Session.set('edit', undefined);
+    resetSession();
     this.next();
   },
   action: function() {
@@ -83,6 +87,28 @@ Router.route('/add', {
     this.render('headerTmpl', {to: 'header'});
     if (this.ready()) {
       this.render('drinkTmpl', {
+        data: { addition: true }
+      });
+    } else
+      this.render('loading');
+  }
+});
+
+Router.route('/users', {
+  name: 'users',
+  onBeforeAction: function() {
+    Session.set('leftAction', 'searchIcon');
+    Session.set('rightAction', 'mainOptionsDropdown');
+    Session.set('headerCenter', 'searchBar');
+    resetSession();
+    this.next();
+  },
+  action: function() {
+    this.subscribe('users').wait();
+    this.subscribe('roles').wait();
+    this.render('headerTmpl', {to: 'header'});
+    if (this.ready()) {
+      this.render('usersList', {
         data: { addition: true }
       });
     } else

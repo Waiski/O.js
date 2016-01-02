@@ -12,3 +12,15 @@ Template.mainOptionsDropdown.events
           else
             toastr.success 'User suffessfully added'
     .modal 'show'
+
+Template.usersList.helpers
+  users: ->
+    Meteor.users.find()
+  color: (role) ->
+    if role is 'admin'
+      'red'
+    else if role is 'user'
+      'green'
+    else
+      'blue' 
+

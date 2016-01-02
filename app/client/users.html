@@ -21,3 +21,27 @@
     </div>
   </div>
 </template>
+
+<template name="usersList">
+  <div class="ui text container main-content">
+    <div class="ui one column grid">
+      <div class="column">
+        {{#each users}}
+          <div class="stacked-row">
+            <div class="pull-left user-name">
+              <strong>{{username}}</strong> {{emails.[0].address}}
+            </div>
+            <div class="pull-right user-roles">
+              {{#each roles}}
+                <div class="ui {{color this}} label">{{this}}</div>
+              {{/each}}
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  {{>inviteUserModal}}
+</template>
+
