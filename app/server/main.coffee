@@ -17,9 +17,6 @@ Meteor.startup ->
   unless Meteor.roles.findOne( name: 'user' )
     Roles.createRole 'user'
 
-  admin = Meteor.users.findOne()._id
-  Roles.addUsersToRoles admin, 'admin'
-
   process.env.MAIL_URL = 'smtp://postmaster%40sandbox186cd8745abd449e91d8d4786b7985fd.mailgun.org:8afe68722894c9042d5a793b0a94689e@smtp.mailgun.org:587'
   
 
@@ -33,6 +30,7 @@ Meteor.methods
     data.password = Random.id(10)
     data.profile = {}
     id = Accounts.createUser data
+    Roles.addUsersToRoles id, 'user'
     Email.send
       'from': 'OJS-noreply <noreply@oty.fi>'
       'to': data.email
