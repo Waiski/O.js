@@ -18,7 +18,13 @@ Template.mainOptionsDropdown.events
 
 Template.usersList.helpers
   users: ->
-    Meteor.users.find()
+    search = Session.get 'search'
+    searchObj =
+      $regex: search
+      $options:'i'
+    Meteor.users.find(
+      {$or: [{username: searchObj}, {'emails.0.address': searchObj}]},
+      sort: {username: 1})
   color: (role) ->
     if role is 'admin'
       'red'
