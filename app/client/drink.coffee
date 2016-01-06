@@ -5,7 +5,10 @@ Template.drinkTmpl.helpers
   categories: ->
     Categories.find()
   drink: ->
-    Drinks.findOne( Session.get 'activeDrinkId' )
+    if @addition
+      {}
+    else
+      Drinks.findOne( Session.get 'activeDrinkId' )
 
 Template.drinkTmpl.rendered = ->
   @$('#drink-category-select').dropdown
@@ -13,17 +16,18 @@ Template.drinkTmpl.rendered = ->
       readEdit $(@)
 
   self = @
-  @autorun ->
-    drink = Drinks.findOne( Session.get 'activeDrinkId' )
-    # Set the select correctly
-    self.$('#drink-category-select').val(drink.categoryId)
-    # Hide unset property labels when not in editmode
-    self.$('.drink-detail-row').each (index, element) ->
-      prop = $(element).find('.drink-property-set').data 'drink-property'
-      if _.isEmpty(drink[prop])
-        $(element).addClass 'hidden-normally'
-      else
-        $(element).removeClass 'hidden-normally'
+  unless @data and @data.addition
+    @autorun ->
+      drink = Drinks.findOne( Session.get 'activeDrinkId' )
+      # Set the select correctly
+      self.$('#drink-category-select').val(drink.categoryId)
+      # Hide unset property labels when not in editmode
+      self.$('.drink-detail-row').each (index, element) ->
+        prop = $(element).find('.drink-property-set').data 'drink-property'
+        if _.isEmpty(drink[prop])
+          $(element).addClass 'hidden-normally'
+        else
+          $(element).removeClass 'hidden-normally'
 
 readEdit = (element) ->
   edit = Session.get 'edit'
