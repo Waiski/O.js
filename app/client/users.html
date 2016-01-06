@@ -23,8 +23,8 @@
 </template>
 
 <template name="editUserModal">
-  {{#with user}}
-    <div class="ui modal" id="edit-user-modal">
+  <div class="ui modal" id="edit-user-modal">
+    {{#with user}}
       <div class="header">Edit user {{username}}</div>
       <div class="content">
         <div class="ui form" id="edit-user-form">
@@ -38,14 +38,19 @@
           </div>
           <div class="field">
             <label>Roles</label>
-            <select multiple name="roles" class="full-width">
+            <select multiple name="roles" style="width: 100%;">
               {{#each roles}}
-                <option value="{{_id}}">{{name}}</option>
+                <option value="{{name}}">{{name}}</option>
               {{/each}}
             </select>
           </div>
         </div>
-        <p><strong>User id:</strong> {{_id}}</p>
+        <p>
+          <strong>User id:</strong> {{_id}}
+        </p>
+        <button type="button" id="delete-user" class="ui red compact button">
+          Delete user
+        </button>
       </div>
       <div class="actions">
         <div class="ui black cancel button">Cancel</div>
@@ -53,8 +58,23 @@
           Submit changes
         </button>
       </div>
+    {{/with}}
+  </div>
+</template>
+
+<template name="confirmUserDelete">
+  <div class="ui modal" id="delete-user-modal">
+    <div class="header">Delete user</div>
+    <div class="content">
+      <p>Are you sure you want to delete this user? This action cannot be undone.</p>
     </div>
-  {{/with}}
+    <div class="actions">
+      <div class="ui black cancel button">Cancel</div>
+      <button class="ui red approve button">
+        Confirm
+      </button>
+    </div>
+  </div>
 </template>
 
 <template name="usersList">
@@ -79,5 +99,6 @@
   </div>
   {{>inviteUserModal}}
   {{>editUserModal}}
+  {{>confirmUserDelete}}
 </template>
 
