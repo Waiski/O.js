@@ -49,7 +49,34 @@
           <i class="fa fa-3x fa-plus-circle"></i> <span class="dd-label">Add drink</span>
         </a>
       </div>
-      {{!-- Admin checks should be implemented --}}
+      {{#if isInRole 'admin'}}
+        <div id="invite-user" class="item clickable">
+          <a href="{{pathFor "users"}}">
+            <i class="fa fa-3x fa-users"></i> <span class="dd-label">Manage users</span>
+          </a>
+        </div>
+      {{/if}}
+      <div class="item clickable">
+        <a href="{{pathFor "atChangePwd"}}">
+          <i class="fa fa-3x fa-key"></i> <span class="dd-label">Change password</span>
+        </a>
+      </div>
+      {{>logoutLink}}
+    </div>
+  </div>
+</template>
+
+<template name="usersOptionsDropdown">
+  <div class="ui dropdown">
+    <a id="users-options-show">
+      <i class="fa fa-3x fa-cog"></i>
+    </a>
+    <div id="users-options" class="menu">
+      <div class="item clickable">
+        <a href="{{pathFor "home"}}">
+          <i class="fa fa-3x fa-arrow-left"></i> <span class="dd-label">Drinks</span>
+        </a>
+      </div>
       <div id="invite-user" class="item clickable">
         <i class="fa fa-3x fa-user-plus"></i> <span class="dd-label">Invite user</span>
       </div>
@@ -58,10 +85,14 @@
           <i class="fa fa-3x fa-key"></i> <span class="dd-label">Change password</span>
         </a>
       </div>
-      <div id="logout" class="item clickable">
-        <i class="fa fa-3x fa-sign-out"></i> <span class="dd-label">Log out</span>
-      </div>
+      {{>logoutLink}}
     </div>
+  </div>
+</template>
+
+<template name="logoutLink">
+  <div id="logout" class="item clickable">
+    <i class="fa fa-3x fa-sign-out"></i> <span class="dd-label">Log out</span>
   </div>
 </template>
 

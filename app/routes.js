@@ -98,7 +98,7 @@ Router.route('/users', {
   name: 'users',
   onBeforeAction: function() {
     Session.set('leftAction', 'searchIcon');
-    Session.set('rightAction', 'mainOptionsDropdown');
+    Session.set('rightAction', 'usersOptionsDropdown');
     Session.set('headerCenter', 'searchBar');
     resetSession();
     this.next();
@@ -108,9 +108,7 @@ Router.route('/users', {
     this.subscribe('roles').wait();
     this.render('headerTmpl', {to: 'header'});
     if (this.ready()) {
-      this.render('usersList', {
-        data: { addition: true }
-      });
+      this.render('usersList');
     } else
       this.render('loading');
   }

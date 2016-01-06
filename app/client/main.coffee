@@ -18,6 +18,9 @@ Meteor.startup ->
 Template.mainOptionsDropdown.rendered = ->
   @$('.ui.dropdown').dropdown()
 
-Template.mainOptionsDropdown.events
+Template.usersOptionsDropdown.rendered = ->
+  @$('.ui.dropdown').dropdown()
+
+Template.logoutLink.events
     'click #logout': ->
         AccountsTemplates.logout()
