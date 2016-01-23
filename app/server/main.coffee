@@ -24,18 +24,20 @@ Meteor.methods
   # Get the name of a drink without the need to subscribe to it
   # Remember to include auth check when accounts are implemented
   getDrinkName: (id) ->
-    drink = Drinks.findOne(id)
-    if drink then drink.name else undefined
+    unless @userId is null
+      drink = Drinks.findOne(id)
+      if drink then drink.name else undefined
   inviteUser: (data) ->
-    data.password = Random.id(10)
-    data.profile = {}
-    id = Accounts.createUser data
-    Roles.addUsersToRoles id, 'user'
-    Email.send
-      'from': 'OJS-noreply <noreply@oty.fi>'
-      'to': data.email
-      'subject': 'Welcome to o.js'
-      'text': 'Your account at ' + Router.url('home') + ' has been created. ' + 
-              'Please login using your email address: ' + data.email + ' and ' +
-              'password: ' + data.password + ' Please change your password as ' +
-              'soon as possible.'
+    if Roles.userIsInRole @userId, 'admin'
+      data.password = Random.id(10)
+      data.profile = {}
+      id = Accounts.createUser data
+      Roles.addUsersToRoles id, 'user'
+      Email.send
+        'from': 'OJS-noreply <noreply@oty.fi>'
+        'to': data.email
+        'subject': 'Welcome to o.js'
+        'text': 'Your account at ' + Router.url('home') + ' has been created. ' + 
+                'Please login using your email address: ' + data.email + ' and ' +
+                'password: ' + data.password + ' Please change your password as ' +
+                'soon as possible.'

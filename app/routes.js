@@ -65,6 +65,7 @@ Router.route('/', {
   action: function() {
     this.subscribe("drinks").wait();
     this.subscribe("categories").wait();
+    this.subscribe("myTransactions").wait();
     this.render('headerTmpl', {to: 'header'});
     if (this.ready()) {
       this.render('drinksList');
@@ -113,6 +114,7 @@ Router.route('/users', {
   action: function() {
     this.subscribe('users').wait();
     this.subscribe('roles').wait();
+    this.subscribe('transactions').wait();
     this.render('headerTmpl', {to: 'header'});
     if (this.ready()) {
       this.render('usersList');
