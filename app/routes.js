@@ -51,7 +51,7 @@ var resetSession = function() {
 Router.route('/', {
   name: 'home',
   onBeforeAction: function() {
-    Session.set('leftAction', 'searchIcon');
+    Session.set('leftAction', 'empty');
     Session.set('rightAction', 'mainOptionsDropdown');
     Session.set('headerCenter', 'searchBar');
     resetSession();
@@ -97,7 +97,7 @@ Router.route('/add', {
 Router.route('/users', {
   name: 'users',
   onBeforeAction: function() {
-    Session.set('leftAction', 'searchIcon');
+    Session.set('leftAction', 'backIcon');
     Session.set('rightAction', 'usersOptionsDropdown');
     Session.set('headerCenter', 'searchBar');
     resetSession();

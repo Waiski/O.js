@@ -13,10 +13,11 @@
 </template>
 
 <template name="searchIcon">
-  <i class="fa fa-3x fa-search fa-flip-horizontal pull-right"></i>
+  {{!--<i class="fa fa-3x fa-search fa-flip-horizontal pull-right"></i>--}}
 </template>
 
 <template name="searchBar">
+  <i class="fa fa-3x fa-search fa-flip-horizontal search-icon"></i>
   <div id="search" contentEditable="true" placeholder="Search..."></div>
 </template>
 
@@ -74,7 +75,7 @@
     <div id="users-options" class="menu">
       <div class="item clickable">
         <a href="{{pathFor "home"}}">
-          <i class="fa fa-3x fa-arrow-left"></i> <span class="dd-label">Drinks</span>
+          <i class="fa fa-3x fa-beer"></i> <span class="dd-label">Drinks</span>
         </a>
       </div>
       <div id="invite-user" class="item clickable">

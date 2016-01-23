@@ -1,178 +1,183 @@
-@gray-base:              #000;
-@gray-darker:            lighten(@gray-base, 13.5%); // #222
-@gray-dark:              lighten(@gray-base, 20%);   // #333
-@gray:                   lighten(@gray-base, 33.5%); // #555
-@gray-light:             lighten(@gray-base, 46.7%); // #777
-@gray-lighter:           lighten(@gray-base, 93.5%); // #eee
-@gray-lightest:          lighten(@gray-base, 96.5%); // #eee
+@gray-base:        #000;
+@gray-darker:      lighten(@gray-base, 13.5%); // #222
+@gray-dark:        lighten(@gray-base, 20%);   // #333
+@gray:             lighten(@gray-base, 33.5%); // #555
+@gray-light:       lighten(@gray-base, 46.7%); // #777
+@gray-lighter:     lighten(@gray-base, 93.5%); // #eee
+@gray-lightest:    lighten(@gray-base, 96.5%); // #eee
 
 a:visited {
-    color: inherit;
+  color: inherit;
 }
 
 a {
-    color: inherit;
+  color: inherit;
 }
 
 .header-container {
-    box-shadow: 0 1px 6px rgba(0,0,0,.3);
+  box-shadow: 0 1px 6px rgba(0,0,0,.3);
 }
 
 .header-surface {
-    background-color: @gray-lighter;
-    border-bottom: 1px solid @gray-dark;
-    padding-top: 13px;
-    height: 65px;
-    .dropdown {
-        height: 100%;
-        .dd-label {
-            padding-bottom: 1.5em;
-            margin-left: 5px;
-            vertical-align: middle;
-            display: inline-block;
-        }
-        .menu {
-            background-color: @gray-lightest;
-            right: 0;
-            top: 50px;
-            border-radius: 0;
-            border-radius: 0;
-            margin: 0;
-            box-shadow: 0 4px 3px rgba(0,0,0,.3);
-        }
+  background-color: @gray-lighter;
+  border-bottom: 1px solid @gray-dark;
+  padding-top: 13px;
+  height: 65px;
+  .dropdown {
+    height: 100%;
+    .dd-label {
+      padding-bottom: 1.5em;
+      margin-left: 5px;
+      vertical-align: middle;
+      display: inline-block;
     }
+    .menu {
+      background-color: @gray-lightest;
+      right: 0;
+      top: 50px;
+      border-radius: 0;
+      border-radius: 0;
+      margin: 0;
+      box-shadow: 0 4px 3px rgba(0,0,0,.3);
+    }
+  }
 }
 
 .header-left-container {
-    display: inline;
-    float: right;
+  display: inline;
+  float: right;
 }
 
 .main-content {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
 // Fix spinner moving too high
 .spinner-container {
-    min-height: 450px;
+  min-height: 450px;
+}
+
+.search-icon {
+    float: left;
 }
 
 #search {
-    line-height: 33px;
-    font-size: 40px;
-    display: inline-block;
-    width: 100%;
-    padding-left: 10px;
-    outline: 0;
-    &:empty:before {
-        content: attr(placeholder);
-        color: @gray-light; 
-    }
+  line-height: 35px;
+  font-size: 40px;
+  display: inline-block;
+  float: left;
+  width: calc(100% - 50px);
+  padding-left: 20px;
+  outline: 0;
+  &:empty:before {
+    content: attr(placeholder);
+    color: @gray-light; 
+  }
 }
 
 // Helper classes
 
 .clickable {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .no-events {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .hidden {
-    display: none !important;
+  display: none !important;
 }
 
 .clearfix:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
 }
 
 .categorySelector {
-    text-align: right;
-    font-size: 32px;
-    font-weight: bold;
-    padding-right: 10px;
-    overflow: hidden;
+  text-align: right;
+  font-size: 32px;
+  font-weight: bold;
+  padding-right: 10px;
+  overflow: hidden;
 }
 
 .list-category-name {
-    border-top: 1px solid @gray-light;
-    font-size: 24px;
-    margin-left: 10px;
-    font-weight: bold;
-    color: @gray-dark;
-    padding-top: 10px;
-    &:first-child {
-        padding-top: 0;
-        border: none;
-    }
+  border-top: 1px solid @gray-light;
+  font-size: 24px;
+  margin-left: 10px;
+  font-weight: bold;
+  color: @gray-dark;
+  padding-top: 10px;
+  &:first-child {
+    padding-top: 0;
+    border: none;
+  }
 }
 
 .stacked-row {
-    border-top: 1px solid @gray-light;
-    font-size: 18px;
-    margin-left: 10px;
-    padding-bottom: 4px;
-    .drink-price {
-        width: 40px;
-        font-weight: bold;
-    }
-    &:last-child {
-        border-bottom: 1px solid @gray-light;
-    }
+  border-top: 1px solid @gray-light;
+  font-size: 18px;
+  margin-left: 10px;
+  padding-bottom: 4px;
+  .drink-price {
+    width: 40px;
+    font-weight: bold;
+  }
+  &:last-child {
+    border-bottom: 1px solid @gray-light;
+  }
 }
 
 #drink-page-container {
 
-    #drink-category-show {
-        color: @gray;
-    }
+  #drink-category-show {
+    color: @gray;
+  }
 
-    .drink-detail-label {
-        //display: inline-block;
-        float: left;
-    }
-    .drink-detail-value {
-        float: right;
-    }
+  .drink-detail-label {
+    //display: inline-block;
+    float: left;
+  }
+  .drink-detail-value {
+    float: right;
+  }
 
-    .drink-property-set[contenteditable=true] {
-        border-bottom: 1px dashed @gray;
-        &:empty:before {
-            content: attr(placeholder);
-            color: @gray-light; 
-        }
+  .drink-property-set[contenteditable=true] {
+    border-bottom: 1px dashed @gray;
+    &:empty:before {
+      content: attr(placeholder);
+      color: @gray-light; 
     }
+  }
 
-    &.not-in-editmode .editmode-visible {
-        display: none;
-    }
+  &.not-in-editmode .editmode-visible {
+    display: none;
+  }
 
-    .underlined {
-        border-bottom: 1px solid black; 
-    }
+  .underlined {
+    border-bottom: 1px solid black; 
+  }
 
-    .overlined {
-        border-top: 1px solid black;
-    }
+  .overlined {
+    border-top: 1px solid black;
+  }
 
 }
 
 .not-in-editmode .hidden-normally {
-    display: none;
+  display: none;
 }
 
 // Fix for Select2
 
 .select2-search__field {
-    border: medium none !important;
-    outline: 0px none !important;
-    background: none !important;
-    padding: 0 !important;
+  border: medium none !important;
+  outline: 0px none !important;
+  background: none !important;
+  padding: 0 !important;
 }
