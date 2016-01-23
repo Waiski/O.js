@@ -58,13 +58,19 @@
           <h3 class="ui dividing header">Description</h3>
 
           {{>drinkDetail name="description" placeholder="Description" value=description}}
-
-          <strong
-          id="drink-price"
-          class="drink-property-set drink-property-show"
-          placeholder="Price"
-          data-drink-property="price"
-          contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{price}}</strong>
+        </div>
+      </div>
+      <div class="ui one column grid">
+        <div class="column">
+          <div class="ui huge teal label">
+            Price: 
+            <strong
+            id="drink-price"
+            class="drink-property-set drink-property-show"
+            placeholder="Price"
+            data-drink-property="price"
+            contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{price}}</strong>
+          </div>
         </div>
       </div>
     </div>
