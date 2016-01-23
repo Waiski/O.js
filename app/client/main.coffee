@@ -9,8 +9,12 @@ Meteor.Spinner.options =
 Template.registerHelper 'editmode', ->
     Session.get 'editMode'
 
-###
 Meteor.startup ->
+  Deps.autorun ->
+    title = Session.get 'documentTitle'
+    title = if title then title else 'O.js'
+    document.title = title
+###
    $(window).resize ->
      Session.set 'viewportWidth', $(window).width()
 ###

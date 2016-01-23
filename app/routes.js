@@ -30,6 +30,8 @@ AccountsTemplates.configureRoute('signIn', {
     path: '/login'
 });
 
+// TODO: set document titles for accounts-related stuff
+
 AccountsTemplates.configureRoute('changePwd');
 AccountsTemplates.configureRoute('forgotPwd');
 AccountsTemplates.configureRoute('resetPwd');
@@ -37,7 +39,9 @@ AccountsTemplates.configureRoute('signUp');
 
 // Protect non-account-related pages.
 Router.plugin('ensureSignedIn', {
-  except: _.pluck(AccountsTemplates.routes, 'name').concat([/* No public routes at this point */])
+  except: _.pluck(AccountsTemplates.routes, 'name').concat([
+    // No public routes at this point
+  ])
 });
 
 var resetSession = function() {
@@ -51,6 +55,7 @@ var resetSession = function() {
 Router.route('/', {
   name: 'home',
   onBeforeAction: function() {
+    Session.set('documentTitle', 'O.js - Drinks');
     Session.set('leftAction', 'empty');
     Session.set('rightAction', 'mainOptionsDropdown');
     Session.set('headerCenter', 'searchBar');
@@ -74,6 +79,7 @@ SpecialRoutes = ['add'];
 Router.route('/add', {
   name: 'add',
   onBeforeAction: function() {
+    Session.set('documentTitle', 'O.js - Add drink');
     Session.set('leftAction', 'backIcon');
     Session.set('rightAction', 'drinkOptions');
     Session.set('headerCenter', 'empty');
@@ -97,6 +103,7 @@ Router.route('/add', {
 Router.route('/users', {
   name: 'users',
   onBeforeAction: function() {
+    Session.set('documentTitle', 'O.js - Manage users');
     Session.set('leftAction', 'backIcon');
     Session.set('rightAction', 'usersOptionsDropdown');
     Session.set('headerCenter', 'searchBar');
@@ -119,6 +126,7 @@ Router.route('/users', {
 Router.route('/:slug', {
   name: 'drink',
   onBeforeAction: function() {
+    Session.set('documentTitle', 'O.js - ' + this.params.slug);
     Session.set('leftAction', 'backIcon');
     Session.set('rightAction', 'drinkOptions');
     Session.set('headerCenter', 'empty');
