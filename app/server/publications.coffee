@@ -15,10 +15,8 @@ Meteor.publish "categories", ->
 
 Meteor.publish "users", ->
   unless @userId is null 
-    if isAdmin @userId
-      Meteor.users.find()
-    else
-      Meteor.users.findOne @userId
+    # TODO: limit fields!
+    Meteor.users.find()
 
 Meteor.publish "roles", ->
   if @userId isnt null and isAdmin @userId

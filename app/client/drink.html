@@ -62,10 +62,9 @@
       </div>
       <div class="ui one column grid">
         <div class="column">
-          <div class="ui huge teal label">
+          <div class="ui huge black link label" id="drink-price">
             Price: 
             <strong
-            id="drink-price"
             class="drink-property-set drink-property-show"
             placeholder="Price"
             data-drink-property="price"
@@ -76,6 +75,7 @@
     </div>
 
     {{>drinkDeleteConfirmModal}}
+    {{>userTabsModal}}
   {{/with}}
 </template>
 

@@ -47,6 +47,11 @@ Template.drinkTmpl.events
   'keydown .drink-property-set': (event) ->
     if event.keyCode is 13
       event.target.blur()
+  'click #drink-price': ->
+    $('#tabs-modal').modal
+      onApprove: ->
+        #Something...
+    .modal 'show'
 
 Template.drinkManufacturer.helpers
   hasValidUrl: ->

@@ -26,6 +26,7 @@
       </div>
     </div>
   </div>
+  {{>userTabsModal}}
   {{>inviteUserModal}}
 </template>
 
@@ -49,6 +50,26 @@
       </div>
       <div class="clearfix"></div>
     </a>
+  </div>
+</template>
+
+<template name="userTabsModal">
+  <div class="ui modal" id="tabs-modal">
+    <div class="header">Buy drink</div>
+    <div class="content">
+      <div class="ui link cards">
+        {{#each users}}
+          <div class="card user-tab-card" data-id="{{_id}}">
+            <div class="content">
+              <div class="header">{{username}}</div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui black cancel button">Cancel</div>
+    </div>
   </div>
 </template>
 
