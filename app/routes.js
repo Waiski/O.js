@@ -143,6 +143,7 @@ Router.route('/:slug', {
       this.redirect('home');
     this.subscribe("drink", this.params.slug).wait();
     this.subscribe("categories").wait();
+    this.subscribe("users").wait();
     this.render('headerTmpl', {to: 'header'});
     if (this.ready()) {
       var drink = Drinks.findOne({name: this.params.slug});
