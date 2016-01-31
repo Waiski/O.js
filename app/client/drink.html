@@ -32,13 +32,13 @@
           class="drink-property-set editmode-visible"
           placeholder="Manufacturer (or brewery, distillery...)"
           data-drink-property="manufacturer"
-          contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{manufacturer}}</p>
+          contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{getValue properties.manufacturer}}</p>
           <p
           id="drink-website"
           class="drink-property-set editmode-visible"
           placeholder="Manufacturer website URL"
           data-drink-property="website"
-          contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{website}}</p>
+          contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{getValue properties.website}}</p>
           {{#unless editmode}}
             {{>drinkManufacturer}}
           {{/unless}}
@@ -49,20 +49,21 @@
         <div class="column drink-details">
           <h3 class="ui dividing header">Details</h3>
           {{!TODO: define drink details in drink schema dynamically rather than here}}
-          {{>drinkDetail name="region" label="Region" placeholder="Country and region" value=region}}
-          {{>drinkDetail name="strength" label="Alc-vol" placeholder="Alcohol vol-%" value=strength}}
-          {{>drinkDetail name="subcategory" label="Type" placeholder="(i.e. Pale ale, Bourbon)" value=subcategory}}
-          {{>drinkDetail name="temperature" label="Serving temp" placeholder="20°C" value=temperature}}
+          {{>drinkDetail name="region" label="Region" placeholder="Country and region" value=properties.region}}
+          {{>drinkDetail name="strength" label="Alc-vol" placeholder="Alcohol vol-%" value=properties.strength}}
+          {{>drinkDetail name="subcategory" label="Type" placeholder="(i.e. Pale ale, Bourbon)" value=properties.subcategory}}
+          {{>drinkDetail name="temperature" label="Serving temp" placeholder="20°C" value=properties.temperature}}
         </div>
         <div class="column drink-description">
           <h3 class="ui dividing header">Description</h3>
 
-          {{>drinkDetail name="description" placeholder="Description" value=description}}
+          {{>drinkDetail name="description" placeholder="Description" value=properties.description}}
         </div>
       </div>
+
       <div class="ui one column grid">
         <div class="column">
-          <div class="ui huge black link label clickable" id="drink-price">
+          <div class="ui huge black link label {{#unless editmode}}clickable{{/unless}}" id="drink-price">
             Price: 
             <strong
             class="drink-property-set drink-property-show"
@@ -91,7 +92,7 @@
          class="drink-property-set drink-property-show"
          placeholder="{{placeholder}}"
          data-drink-property="{{name}}"
-         contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{value}}</p>
+         contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{getValue}}</p>
     </div>
     <div class="clearfix"></div>
   </div>
@@ -100,9 +101,9 @@
 <template name="drinkManufacturer">
   <div class="drink-property-show">
     {{#if hasValidUrl}}
-      <a href="{{getUrl}}" target="_blank">{{manufacturer}}</a>
+      <a href="{{getUrl}}" target="_blank">{{getValue properties.manufacturer}}</a>
     {{else}}
-      <p>{{manufacturer}}</p>
+      <p>{{getValue properties.manufacturer}}</p>
     {{/if}}
   </div>
 </template>

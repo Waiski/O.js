@@ -6,9 +6,7 @@ restoreEditObject = (saved) ->
   edit
 
 share.Edit = (makerId) ->
-  # Enable with accounts-package
-  #@maker = if makerId then makerID else Meteor.userId() 
-  @maker = ''
+  @maker = if makerId then makerId else Meteor.userId() 
   @edits = {}
   return
 
@@ -24,10 +22,13 @@ share.Edit.prototype =
 
   add: (property, newVal, oldVal) ->
     if not oldVal
-      if @original[property]
-        oldVal = @original[property]
+      if _.contains Drink.prototype.topLevelProps, property
+        orig = @original[property]
+      else if @original.properties and @original.properties[property]
+        oldVal = @original.properties[property]
       else
         oldVal = "" # Default to empty
+
     if oldVal is newVal
       # If trying to set to the old value, just ignore
       # this from the edit object altogether. Note that
@@ -61,8 +62,13 @@ share.Edit.prototype =
   get: (old) ->
     direction = if old then 'old' else 'set'
     obj = {}
+    # These are separately defined in the Drink schema
+    # and don't go in the properties-subobject
     _.each @edits, (change, property) ->
-      obj[property] = change[direction]
+      # Note that the setter needs to work with the dot notation so that
+      # the whole properties object won't be replaced on update.
+      propName = if _.contains(Drink.prototype.topLevelProps, property) then property else 'properties.' + property
+      obj[propName] = change[direction]
     obj
 
   toJSONValue: ->
@@ -73,3 +79,14 @@ share.Edit.prototype =
 
 EJSON.addType 'edit', (json) ->
   restoreEditObject json
+
+# For validating objects that store edit history
+share.EditSchema = new SimpleSchema
+  maker: 
+    type: String
+    regEx: SimpleSchema.RegEx.Id
+  time:
+    type: Date
+  edits:
+    type: Object
+    blackbox: true

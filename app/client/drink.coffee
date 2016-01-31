@@ -6,7 +6,7 @@ Template.drinkTmpl.helpers
     Categories.find()
   drink: ->
     if @addition
-      {}
+      { properties: {} }
     else
       Drinks.findOne( Session.get 'activeDrinkId' )
 
@@ -19,12 +19,13 @@ Template.drinkTmpl.rendered = ->
   unless @data and @data.addition
     @autorun ->
       drink = Drinks.findOne( Session.get 'activeDrinkId' )
+      if not drink then return
       # Set the select correctly
       self.$('#drink-category-select').val(drink.categoryId)
       # Hide unset property labels when not in editmode
       self.$('.drink-detail-row').each (index, element) ->
         prop = $(element).find('.drink-property-set').data 'drink-property'
-        if _.isEmpty(drink[prop])
+        if _.isEmpty(drink.properties[prop])
           $(element).addClass 'hidden-normally'
         else
           $(element).removeClass 'hidden-normally'
@@ -48,6 +49,8 @@ Template.drinkTmpl.events
     if event.keyCode is 13
       event.target.blur()
   'click #drink-price': ->
+    # Don't buy drinks in editmode...
+    if Session.get 'editMode' then return
     $('#tabs-modal').modal
       onApprove: ->
         #Something...
@@ -55,12 +58,12 @@ Template.drinkTmpl.events
 
 Template.drinkManufacturer.helpers
   hasValidUrl: ->
-    SimpleSchema.RegEx.Url.test(@website) or SimpleSchema.RegEx.Url.test('http://' + @website)
+    SimpleSchema.RegEx.Url.test(@properties.website) or SimpleSchema.RegEx.Url.test('http://' + @properties.website)
   getUrl: ->
-    if SimpleSchema.RegEx.Url.test @website
-      @website
-    else if SimpleSchema.RegEx.Url.test('http://' + @website)
-      'http://' + @website
+    if SimpleSchema.RegEx.Url.test @properties.website
+      @properties.website
+    else if SimpleSchema.RegEx.Url.test('http://' + @properties.website)
+      'http://' + @properties.website
     
 Template.drinkOptionsDropdown.rendered = ->
   @$('.ui.dropdown').dropdown()
@@ -76,7 +79,7 @@ Template.drinkOptions.events
     # This is to fix strange bugs with :empty -CSS selector not working in some cases
     $('.drink-detail-row').each (index, element) ->
       prop = $(element).find('.drink-property-set').data 'drink-property'
-      if _.isEmpty(drink[prop]) then $(element).find('.drink-property-show')[0].innerHTML = ''
+      if _.isEmpty(drink.properties[prop]) then $(element).find('.drink-property-show')[0].innerHTML = ''
 
   'click #edits-done': ->
     Session.set 'editMode', false
@@ -92,21 +95,36 @@ Template.drinkOptions.events
           # If the name has been edited, then redirect
           if not redirect and property is 'name' then redirect = true
         modifier = _.extend edit.setter(), edit.pusher()
-        Drinks.update drink._id, modifier, ->
-          if redirect
+        Drinks.update drink._id, modifier, (err) ->
+          if err
+            toastr.error err.message
+          else if redirect
             Router.go 'drink', slug: edit.edits.name.set
-          else
 
     else # Handle new drink add
+      console.log 'ASDFADSFAADSFA'
       Session.set 'addDrink', false
+      error = false
       if _.isEmpty edit.edits
         Router.go 'home'
       else
         Drinks.insert edit.get(), (err, id) ->
-          if not err then Meteor.call 'getDrinkName', id, (err, res) ->
-            if not err
-              Router.go 'drink', slug: res
-              toastr.success 'Drink ' + res + ' added.'
+          console.log 'ds'
+          if not err
+            Meteor.call 'getDrinkName', id, (err, res) ->
+              console.log 'res' + res
+              if not err
+                Router.go 'drink', slug: res
+                toastr.success 'Drink ' + res + ' added.'
+              else
+                error = err
+          else
+            error = err
+      if error
+        toastr.error error.message
+        Session.set 'addDrink', true
+        Session.set 'editMode', true
+
   'click #drink-remove': ->
     $('#drink-delete-confirm-modal').modal
       onApprove: ->
@@ -115,10 +133,3 @@ Template.drinkOptions.events
         toastr.info 'Drink successfully removed.'
         Drinks.remove id
     .modal 'show'
-
-###
-Template.drinkDetail.rendered = ->
-  console.log @
-  if @data.value and @data.value.length or Session.get 'editMode'
-    @$('.drink-detail-row').removeClass 'hidden'
-###

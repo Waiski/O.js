@@ -8,10 +8,6 @@ var isUser = function(userId) {
   return _.isString(userId);
 }
 
-var no = function() {
-  return false;
-}
-
 Meteor.users.allow({
   insert: function (userId, doc) {
     return false;
@@ -46,7 +42,7 @@ Drinks.allow({
 // elaborate so that only standard transactions are allowed
 // for normal users.
 Transactions.allow({
- insert: isUser,
- update: isUser,
- remove: isAdmin
+  insert: isUser,
+  update: isAdmin,
+  remove: isAdmin
 });
