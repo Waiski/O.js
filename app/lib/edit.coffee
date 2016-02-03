@@ -45,7 +45,7 @@ share.Edit.prototype =
 
   setter: ->
     this.time = new Date
-    $set: @get(false)
+    $set: @get(false, true)
 
   # Returns a modifier that adds this edit to the edits array
   pusher: ->
@@ -54,21 +54,28 @@ share.Edit.prototype =
     $push: editHistory: saveable
 
   undoSetter: ->
-    $set: @get(true)
+    $set: @get(true, true)
 
   getOlds: ->
     @get(true)
 
-  get: (old) ->
+  get: (old, dotNotation) ->
     direction = if old then 'old' else 'set'
     obj = {}
-    # These are separately defined in the Drink schema
-    # and don't go in the properties-subobject
+    if not dotNotation then obj.properties = {}
+
     _.each @edits, (change, property) ->
-      # Note that the setter needs to work with the dot notation so that
-      # the whole properties object won't be replaced on update.
-      propName = if _.contains(Drink.prototype.topLevelProps, property) then property else 'properties.' + property
-      obj[propName] = change[direction]
+      value = change[direction]
+      if not _.contains(Drink.prototype.topLevelProps, property)
+        if dotNotation
+          # The setter needs to work with the dot notation so that
+          # the whole properties object won't be replaced on update.
+          obj['properties.' + property] = value
+        else
+          obj.properties[property] = value
+      else
+        obj[property] = value
+   
     obj
 
   toJSONValue: ->

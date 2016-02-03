@@ -102,7 +102,6 @@ Template.drinkOptions.events
             Router.go 'drink', slug: edit.edits.name.set
 
     else # Handle new drink add
-      console.log 'ASDFADSFAADSFA'
       Session.set 'addDrink', false
       error = false
       if _.isEmpty edit.edits
