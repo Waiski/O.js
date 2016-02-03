@@ -76,7 +76,8 @@ Router.route('/', {
 });
 
 // A global array of special routes, used so that a drink name cannot collide with any of these
-SpecialRoutes = ['add'];
+// Remember to specify all these in lowercase, as the comparison is made with String.toLowerCase()
+SpecialRoutes = ['add', 'users', 'login', 'change-password', 'forgot-password', 'reset-password', 'sign-up', 'verify-email', 'send-again'];
 
 Router.route('/add', {
   name: 'add',
@@ -92,6 +93,8 @@ Router.route('/add', {
   },
   action: function() {
     this.subscribe("categories").wait();
+    // Subscribe to drinks so that name uniqueness can be cheched in front-end
+    this.subscribe('drinks').wait();
     this.render('headerTmpl', {to: 'header'});
     if (this.ready()) {
       this.render('drinkTmpl', {
@@ -134,6 +137,7 @@ Router.route('/:slug', {
     Session.set('rightAction', 'drinkOptions');
     Session.set('headerCenter', 'empty');
     Session.set('addDrink', false);
+    Session.set('activeDrinkId', undefined);
     // Don't reset editmode on reactive reruns
     Session.setDefault('editMode', false);
     this.next();
@@ -141,17 +145,15 @@ Router.route('/:slug', {
   action: function() {
     if (!this.params.slug)
       this.redirect('home');
-    this.subscribe("drink", this.params.slug).wait();
-    this.subscribe("categories").wait();
-    this.subscribe("users").wait();
+    this.subscribe('drinks').wait();
+    this.subscribe('categories').wait();
+    this.subscribe('users').wait();
     this.render('headerTmpl', {to: 'header'});
-    if (this.ready()) {
-      var drink = Drinks.findOne({name: this.params.slug});
-      if (!drink)
-        this.redirect('home');
-      Session.set('activeDrinkId', drink._id);
-      this.render('drinkTmpl');
-    } else
+    if (this.ready())
+      this.render('drinkTmpl', {
+        data: { drinkName: this.params.slug }
+      });
+    else
       this.render('loading');
   }
 });

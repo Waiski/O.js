@@ -1,3 +1,5 @@
+currentDrinkId = undefined;
+
 Template.drinkTmpl.helpers
   getCategory: ->
     cat = Categories.findOne(@categoryId)
@@ -8,7 +10,12 @@ Template.drinkTmpl.helpers
     if @addition
       { properties: {} }
     else
-      Drinks.findOne( Session.get 'activeDrinkId' )
+      Drinks.findOne( currentDrinkId )
+
+Template.drinkTmpl.created = ->
+  unless @data.addition
+    currentDrinkId = Drinks.findOne( name: @data.drinkName )._id
+    if not currentDrinkId then Router.go 'home'
 
 Template.drinkTmpl.rendered = ->
   @$('#drink-category-select').dropdown
@@ -72,7 +79,7 @@ Template.drinkOptions.events
   'click #drink-edit': (e, tmpl) ->
     Session.set 'editMode', true
     edit = new share.Edit
-    drink = Drinks.findOne( Session.get 'activeDrinkId' )
+    drink = Drinks.findOne( currentDrinkId )
     edit.setOriginal drink
     Session.set 'edit', edit
     # Make sure empty properties are truly empty
@@ -86,7 +93,7 @@ Template.drinkOptions.events
     edit = Session.get 'edit'
     unless Session.get 'addDrink'
       unless _.isEmpty edit.edits
-        drink = Drinks.findOne( Session.get 'activeDrinkId' )
+        drink = Drinks.findOne( currentDrinkId )
         redirect = false # If name is changed, then user must be redirected to the new address.
         _.each edit.edits, (oldAndNew, property) ->
           # Clear all attribute fields that will be repopulated by update reactivity
@@ -98,6 +105,13 @@ Template.drinkOptions.events
         Drinks.update drink._id, modifier, (err) ->
           if err
             toastr.error err.message
+            Session.set 'editMode', true
+            _.each edit.edits, (oldAndNew, property) ->
+              # Repopulate the fields since the reactivity isn't doing so.
+              # There could be a better way of doing this by forcing a 
+              # reactive recalculation, maybe figure that out some time.
+              elements = $('.drink-property-set').filter('[data-drink-property="' + property + '"]')
+              if elements.length then elements[0].innerHTML = oldAndNew.old
           else if redirect
             Router.go 'drink', slug: edit.edits.name.set
 
@@ -108,10 +122,8 @@ Template.drinkOptions.events
         Router.go 'home'
       else
         Drinks.insert edit.get(), (err, id) ->
-          console.log 'ds'
           if not err
             Meteor.call 'getDrinkName', id, (err, res) ->
-              console.log 'res' + res
               if not err
                 Router.go 'drink', slug: res
                 toastr.success 'Drink ' + res + ' added.'
@@ -127,7 +139,7 @@ Template.drinkOptions.events
   'click #drink-remove': ->
     $('#drink-delete-confirm-modal').modal
       onApprove: ->
-        id = Session.get 'activeDrinkId'
+        id = currentDrinkId
         Router.go 'home'
         toastr.info 'Drink successfully removed.'
         Drinks.remove id

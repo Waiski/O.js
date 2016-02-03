@@ -23,7 +23,7 @@ share.Edit.prototype =
   add: (property, newVal, oldVal) ->
     if not oldVal
       if _.contains Drink.prototype.topLevelProps, property
-        orig = @original[property]
+        oldVal = @original[property]
       else if @original.properties and @original.properties[property]
         oldVal = @original.properties[property]
       else

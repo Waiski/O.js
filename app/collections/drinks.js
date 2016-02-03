@@ -19,9 +19,20 @@ Drink.prototype = {
   }
 };
 
-Drinks.attachSchema(new SimpleSchema({
+var DrinkSchema = new SimpleSchema({
   name: {
-    type: String
+    type: String,
+    unique: true,
+    index: true,
+    custom: function() {
+      // Ensure that the drink name does not conflict with any route
+      // and that there are no slashes in the name.
+      if (_.contains(SpecialRoutes, this.value.toLowerCase()))
+        return 'reservedName';
+      if (this.value.indexOf('/') > -1)
+        return 'noSlashes';
+      return true;
+    }
   },
   price: {
     type: Number
@@ -55,4 +66,11 @@ Drinks.attachSchema(new SimpleSchema({
   "editHistory.$": {
     type: __coffeescriptShare.EditSchema
   }
-}));
+});
+
+DrinkSchema.messages({
+  'reservedName': 'Sorry, you can\'t use that as drink name!',
+  'noSlashes': 'Sorry, you can\'t use slashes in the drink name!'
+});
+
+Drinks.attachSchema(DrinkSchema);
