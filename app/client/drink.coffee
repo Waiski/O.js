@@ -6,6 +6,8 @@ Template.drinkTmpl.helpers
     if cat then cat.name else ""
   categories: ->
     Categories.find()
+  isSelected: (a, b) ->
+    if a is b then 'selected' else ''
   drink: ->
     if @addition
       { properties: {} }
