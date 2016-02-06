@@ -45,23 +45,17 @@
       <i class="fa fa-3x fa-cog"></i>
     </a>
     <div id="drink-options" class="menu">
-      <div class="item clickable">
-        <a href="{{pathFor "add"}}">
-          <i class="fa fa-3x fa-plus-circle"></i> <span class="dd-label">Add drink</span>
-        </a>
-      </div>
+      <a href="{{pathFor "add"}}" class="item">
+        <i class="fa fa-3x fa-plus-circle"></i> <span class="dd-label">Add drink</span>
+      </a>
       {{#if isInRole 'admin'}}
-        <div id="invite-user" class="item clickable">
-          <a href="{{pathFor "users"}}">
-            <i class="fa fa-3x fa-users"></i> <span class="dd-label">Manage users</span>
-          </a>
-        </div>
-      {{/if}}
-      <div class="item clickable">
-        <a href="{{pathFor "atChangePwd"}}">
-          <i class="fa fa-3x fa-key"></i> <span class="dd-label">Change password</span>
+        <a href="{{pathFor "users"}}" class="item">
+          <i class="fa fa-3x fa-users"></i> <span class="dd-label">Manage users</span>
         </a>
-      </div>
+      {{/if}}
+      <a href="{{pathFor "atChangePwd"}}" class="item">
+        <i class="fa fa-3x fa-key"></i> <span class="dd-label">Change password</span>
+      </a>
       {{>logoutLink}}
     </div>
   </div>
@@ -73,19 +67,15 @@
       <i class="fa fa-3x fa-cog"></i>
     </a>
     <div id="users-options" class="menu">
-      <div class="item clickable">
-        <a href="{{pathFor "home"}}">
-          <i class="fa fa-3x fa-beer"></i> <span class="dd-label">Drinks</span>
-        </a>
-      </div>
+      <a href="{{pathFor "home"}}" class="item">
+        <i class="fa fa-3x fa-beer"></i> <span class="dd-label">Drinks</span>
+      </a>
       <div id="invite-user" class="item clickable">
         <i class="fa fa-3x fa-user-plus"></i> <span class="dd-label">Invite user</span>
       </div>
-      <div class="item clickable">
-        <a href="{{pathFor "atChangePwd"}}">
-          <i class="fa fa-3x fa-key"></i> <span class="dd-label">Change password</span>
-        </a>
-      </div>
+      <a href="{{pathFor "atChangePwd"}}" class="item">
+        <i class="fa fa-3x fa-key"></i> <span class="dd-label">Change password</span>
+      </a>
       {{>logoutLink}}
     </div>
   </div>
