@@ -1,6 +1,21 @@
 OTY app
 ===================
 
+Contributing
+------------
+
+**Everyone's help is needed!** No matter how little you code, there's something to do. Please check the issues at GitHub and find something where you can contribute.
+
+To make changes to the code:
+
+1. Read this readme
+2. Install the app locally using the instructions here
+3. Learn basic [JavaScript syntax](https://developer.mozilla.org/en-US/Learn/Getting_started_with_the_web/JavaScript_basics) and learn about [CoffeeScript]
+4. Familiarize yourself with [Meteor basics](http://guide.meteor.com/)
+5. If you want to contribute to the front-end, learn about [Semantic UI], [Font Awesome] and [LESS]
+6. If you want to contribute to the back-end, learn about [Meteor collections](http://guide.meteor.com/collections.html) and [MongoDB]
+7. Push commits!
+
 Technical basis
 ---------------
 
@@ -12,10 +27,11 @@ The app makes use of several Javascript libraries and technologies, some of whic
 - [underscore.js]
 - [MongoDB] - the database used with Meteor
 - [Semantic UI] - the front-end library used in this project
-- [meteor-famous-views] - integration package between Famo.us and Meteor
 - [Iron.Router] - Used for Meteor URI routing
 - [Meteor Up] - to deploy the app
 - [CoffeeScript] - a JS dialect used in several files
+- [Font Awesome] - a library of icons for web applications
+- [Meteor collection2 package] - A popular package for defining database schemas and data model validations and automations
 
 Software requirements
 ---------------------
@@ -98,3 +114,6 @@ Resources
 [meteor-famous-views]: https://famous-views.meteor.com/
 [Iron.Router]: https://github.com/iron-meteor/iron-router
 [CoffeeScript]: http://coffeescript.org/
+[Font Awesome]: https://fortawesome.github.io/Font-Awesome/icons/
+[LESS]: http://lesscss.org/
+[Meteor collection2 package]: https://github.com/aldeed/meteor-collection2
