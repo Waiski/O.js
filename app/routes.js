@@ -6,7 +6,7 @@ Router.configure({
 AccountsTemplates.configure({
     // Behavior
     enablePasswordChange: true,
-    forbidClientAccountCreation: false,
+    forbidClientAccountCreation: true,
     overrideLoginErrors: true,
 
     // Appearance
@@ -35,7 +35,6 @@ AccountsTemplates.configureRoute('signIn', {
 AccountsTemplates.configureRoute('changePwd');
 AccountsTemplates.configureRoute('forgotPwd');
 AccountsTemplates.configureRoute('resetPwd');
-AccountsTemplates.configureRoute('signUp');
 
 // Protect non-account-related pages.
 Router.plugin('ensureSignedIn', {
