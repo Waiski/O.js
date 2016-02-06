@@ -33,12 +33,6 @@
   </div>
 </template>
 
-<template name="addIcon">
-  <a href="{{pathFor "add"}}">
-    <i class="fa fa-3x fa-plus-circle clickable"></i>
-  </a>
-</template>
-
 <template name="mainOptionsDropdown">
   <div class="ui dropdown">
     <a id="main-options-show">
@@ -46,15 +40,15 @@
     </a>
     <div id="drink-options" class="menu">
       <a href="{{pathFor "add"}}" class="item">
-        <i class="fa fa-3x fa-plus-circle"></i> <span class="dd-label">Add drink</span>
+        <i class="fa fa-2x fa-plus-circle"></i> <span class="dd-label">Add drink</span>
       </a>
       {{#if isInRole 'admin'}}
         <a href="{{pathFor "users"}}" class="item">
-          <i class="fa fa-3x fa-users"></i> <span class="dd-label">Manage users</span>
+          <i class="fa fa-2x fa-users"></i> <span class="dd-label">Manage users</span>
         </a>
       {{/if}}
       <a href="{{pathFor "atChangePwd"}}" class="item">
-        <i class="fa fa-3x fa-key"></i> <span class="dd-label">Change password</span>
+        <i class="fa fa-2x fa-key"></i> <span class="dd-label">Change password</span>
       </a>
       {{>logoutLink}}
     </div>
@@ -68,13 +62,13 @@
     </a>
     <div id="users-options" class="menu">
       <a href="{{pathFor "home"}}" class="item">
-        <i class="fa fa-3x fa-beer"></i> <span class="dd-label">Drinks</span>
+        <i class="fa fa-2x fa-beer"></i> <span class="dd-label">Drinks</span>
       </a>
       <div id="invite-user" class="item clickable">
-        <i class="fa fa-3x fa-user-plus"></i> <span class="dd-label">Invite user</span>
+        <i class="fa fa-2x fa-user-plus"></i> <span class="dd-label">Invite user</span>
       </div>
       <a href="{{pathFor "atChangePwd"}}" class="item">
-        <i class="fa fa-3x fa-key"></i> <span class="dd-label">Change password</span>
+        <i class="fa fa-2x fa-key"></i> <span class="dd-label">Change password</span>
       </a>
       {{>logoutLink}}
     </div>
@@ -83,7 +77,7 @@
 
 <template name="logoutLink">
   <div id="logout" class="item clickable">
-    <i class="fa fa-3x fa-sign-out"></i> <span class="dd-label">Log out</span>
+    <i class="fa fa-2x fa-sign-out"></i> <span class="dd-label">Log out</span>
   </div>
 </template>
 
@@ -102,10 +96,10 @@
     </a>
     <div id="drink-options" class="menu">
       <div id="drink-edit" class="item clickable">
-        <i class="fa fa-3x fa-pencil"></i> <span class="dd-label">Edit drink</span>
+        <i class="fa fa-2x fa-pencil"></i> <span class="dd-label">Edit drink</span>
       </div>
       <div id="drink-remove" class="item clickable">
-        <i class="fa fa-3x fa-trash-o"></i> <span class="dd-label">Remove drink</span>
+        <i class="fa fa-2x fa-trash-o"></i> <span class="dd-label">Remove drink</span>
       </div>
     </div>
   </div>
