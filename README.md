@@ -11,10 +11,11 @@ The app makes use of several Javascript libraries and technologies, some of whic
 - [jQuery]
 - [underscore.js]
 - [MongoDB] - the database used with Meteor
-- [Famo.us] - a very fancy front-end library
+- [Semantic UI] - the front-end library used in this project
 - [meteor-famous-views] - integration package between Famo.us and Meteor
 - [Iron.Router] - Used for Meteor URI routing
 - [Meteor Up] - to deploy the app
+- [CoffeeScript] - a JS dialect used in several files
 
 Software requirements
 ---------------------
@@ -49,6 +50,25 @@ Installation
 
 7. Now your're all set. Run `meteor run` to run the app and navigate your browser to `http://localhost:3000` to see it. To quit the app, press Ctrl+C, to exit the virtual machine connection, run `exit`, and to shut down the virtual machine, run `vagrant halt`.
 
+Coding guidelines
+-----------------
+
+- Comments and commit messages in English.
+- Write informative commit messages.
+- Commit as often as possible.
+- Indentation: 2 spaces.
+- Meteor has lots of nice features. Try to use them.
+- Most problems are better solved by someone else. Go to [Atmospherejs] to find packages for Meteor.
+
+App structure
+-------------
+
+In Meteor framework the same code can run in the browser and server. This is a great and powerful feature. However many functions need to only work on the client or the server. Folders `app/client/` and `app/server/` house these respectively.
+
+The basic idea is that as much of the logic as possible is run on the client. This makes for a better user experience and simpler code. The server's number one priority is security. The files `app/server/publications.coffee` and `app/server/rules.js` are most important for data security.
+
+Meteor automatically includes all code in all files to the application, there is no need to import anything specifically. Thus you are free to place code wherever you think is best. 
+
 Resources
 ---------
 
@@ -63,7 +83,7 @@ Resources
 [Meteor docs]: http://docs.meteor.com/
 [Git]: http://git-scm.com/
 [Vagrant]: https://www.vagrantup.com/
-[Famo.us]: http://famo.us/
+[Semantic UI]: http://semantic-ui.com/
 [node.js]: http://nodejs.org/
 [MongoDB]: http://www.mongodb.org/
 [VirtualBox]: https://www.virtualbox.org/
@@ -75,3 +95,4 @@ Resources
 [Meteor Up]: https://github.com/arunoda/meteor-up
 [meteor-famous-views]: https://famous-views.meteor.com/
 [Iron.Router]: https://github.com/iron-meteor/iron-router
+[CoffeeScript]: http://coffeescript.org/
