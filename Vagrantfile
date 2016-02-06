@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777", "fmode=666"]
   
   config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
     v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
   end
 
