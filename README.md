@@ -67,7 +67,9 @@ In Meteor framework the same code can run in the browser and server. This is a g
 
 The basic idea is that as much of the logic as possible is run on the client. This makes for a better user experience and simpler code. The server's number one priority is security. The files `app/server/publications.coffee` and `app/server/rules.js` are most important for data security.
 
-Meteor automatically includes all code in all files to the application, there is no need to import anything specifically. Thus you are free to place code wherever you think is best. 
+Meteor automatically includes all code in all files to the application, there is no need to import anything specifically. Thus you are free to place code wherever you think is best.
+
+[Read more at Meteor docs.](http://docs.meteor.com/#/full/structuringyourapp)
 
 Resources
 ---------
