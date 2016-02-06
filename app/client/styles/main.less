@@ -4,7 +4,6 @@
 @gray:             lighten(@gray-base, 33.5%); // #555
 @gray-light:       lighten(@gray-base, 46.7%); // #777
 @gray-lighter:     lighten(@gray-base, 93.5%); // #eee
-@gray-lightest:    lighten(@gray-base, 96.5%);
 
 a:visited {
   color: inherit;
@@ -33,7 +32,8 @@ a {
       display: inline-block;
     }
     .menu {
-      background-color: @gray-lightest;
+      background-color: #FCFCFC;
+      left: auto; // To override the value so that right:0 works.
       right: 0;
       top: 50px;
       border-radius: 0;
