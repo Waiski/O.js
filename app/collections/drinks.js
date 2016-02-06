@@ -35,7 +35,8 @@ var DrinkSchema = new SimpleSchema({
     }
   },
   price: {
-    type: Number
+    type: Number,
+    decimal: true
   },
   categoryId: {
     type: String,
