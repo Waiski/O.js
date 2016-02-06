@@ -21,13 +21,9 @@ Template.registerHelper 'getValue', (value) ->
 
 Meteor.startup ->
   Deps.autorun ->
-  title = Session.get 'documentTitle'
-  title = if title then title else 'O.js'
-  document.title = title
-###
-   $(window).resize ->
-   Session.set 'viewportWidth', $(window).width()
-###
+    title = Session.get 'documentTitle'
+    title = if title then title else 'O.js'
+    document.title = title
 
 Template.mainOptionsDropdown.rendered = ->
   @$('.ui.dropdown').dropdown()
