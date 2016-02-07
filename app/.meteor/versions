@@ -32,6 +32,7 @@ ecmascript@0.1.6
 ecmascript-runtime@0.2.6
 ejson@1.0.7
 email@1.0.8
+evaisse:diacritics@0.0.1
 fastclick@1.0.7
 flemay:less-autoprefixer@1.2.0
 geojson-utils@1.0.4

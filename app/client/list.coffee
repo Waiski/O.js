@@ -11,7 +11,7 @@ Template.drinksList.helpers
 Template.drinkCategory.helpers
   drinks: ->
     search = Session.get 'search'
-    Drinks.find {name: {$regex: search, $options:'i'},categoryId: @._id}, {sort: {name: 1}}
+    Drinks.find {nameSearchable: {$regex: search, $options:'i'}, categoryId: @._id}, {sort: {name: 1}}
 
 Template.userTabsModal.helpers
   users: ->

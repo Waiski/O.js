@@ -34,6 +34,22 @@ var DrinkSchema = new SimpleSchema({
       return true;
     }
   },
+  // Since drink names often contain accents,
+  // and that makes searching difficult, make
+  // a version of the name that can be searched
+  // diacritic-insensitively
+  nameSearchable: {
+    type: String,
+    index: true,
+    optional: true,
+    autoValue: function() {
+      var name = this.field('name');
+      if (name.isSet)
+        return Diacritics.remove(name.value);
+      else
+        this.unset();
+    }
+  },
   price: {
     type: Number,
     decimal: true
