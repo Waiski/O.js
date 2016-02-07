@@ -1,12 +1,12 @@
 <template name="headerTmpl">
-  <nav class="ui menu navbar three column grid header-container">
-    <div class="four wide column header-surface header-left">
+  <nav class="ui menu navbar header-container small large screen only">
+    <div class="header-surface header-left">
       {{>showTemplate name=leftActionTemplate}}
     </div>
-    <div class="eight wide column header-surface header-center">
+    <div class="header-surface header-center">
       {{>showTemplate name=headerCenterTemplate}}
     </div>
-    <div class="four wide column header-surface header-right">
+    <div class="header-surface header-right">
       {{>showTemplate name=rightActionTemplate}}
     </div>
   </nav>
@@ -17,7 +17,7 @@
 </template>
 
 <template name="searchBar">
-  <i class="fa fa-3x fa-search fa-flip-horizontal search-icon"></i>
+  <i class="fa fa-3x fa-search fa-flip-horizontal search-icon hidden-xs"></i>
   <div id="search" contentEditable="true" placeholder="Search..."></div>
 </template>
 
@@ -34,7 +34,7 @@
 </template>
 
 <template name="mainOptionsDropdown">
-  <div class="ui dropdown">
+  <div class="ui dropdown pull-right-sm">
     <a id="main-options-show">
       <i class="fa fa-3x fa-bars"></i>
     </a>
