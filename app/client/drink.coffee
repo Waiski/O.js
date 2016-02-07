@@ -43,7 +43,15 @@ readEdit = (element) ->
   edit = Session.get 'edit'
   property = element.data 'drink-property'
   if not property then return
-  value = if element.is 'select' then element.val() else element.text().trim()
+  if element.is 'select'
+    value = element.val()
+  else if element.hasClass 'no-linebreaks'
+    # jQuery.text() strips all HTML
+    value = element.text().trim()
+  else
+    # Remove everything but linebreaks
+    element.find('*:not(br)').contents().unwrap()
+    value = element.html().trim()
   # Remove unnecessary whitespace and html tags
   if value.length is 0 then element[0].innerHTML = ""
   edit.add(property, value)
@@ -54,7 +62,10 @@ Template.drinkTmpl.events
     self = $(event.target)
     unless self.hasClass 'dropdown'
       readEdit self
-  'keydown .drink-property-set': (event) ->
+  'keydown .drink-property-set.no-linebreaks': (event) ->
+    # Disable pressing enter
+    # Linebreaks can still be added to contenteditables
+    # by copying text etc., but that's the user's problem. 
     if event.keyCode is 13
       event.target.blur()
   'click #drink-price': ->

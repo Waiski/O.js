@@ -58,7 +58,7 @@
         <div class="column drink-description">
           <h3 class="ui dividing header">Description</h3>
 
-          {{>drinkDetail name="description" placeholder="Description" value=properties.description}}
+          {{>drinkDetail name="description" placeholder="Description" value=properties.description multirow=true}}
         </div>
       </div>
 
@@ -90,10 +90,10 @@
     {{/if}}
     <div class="drink-detail-value">
       <p id="drink-{{name}}"
-         class="drink-property-set drink-property-show"
+         class="drink-property-set drink-property-show {{#unless multirow}}no-linebreaks{{/unless}}"
          placeholder="{{placeholder}}"
          data-drink-property="{{name}}"
-         contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{getValue}}</p>
+         contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{{getValue}}}</p>
     </div>
     <div class="clearfix"></div>
   </div>
