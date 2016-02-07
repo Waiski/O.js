@@ -1,3 +1,9 @@
+Template.drinksList.onRendered ->
+  # Maybe someday CSS position: sticky will work in all browsers
+  # But for now this requires JS 
+  @$('.ui.sticky').sticky
+    context: '#drinks-list'
+
 Template.drinksList.helpers
   categories: ->
     Categories.find()

@@ -152,12 +152,20 @@ a {
   height: 0;
 }
 
-.categorySelector {
+.category-selector {
   text-align: right;
-  font-size: 32px;
+  font-size: 18px;
   font-weight: bold;
   padding-right: 10px;
   overflow: hidden;
+  a {
+    &:hover {
+      color: @gray;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
 .list-category-name {

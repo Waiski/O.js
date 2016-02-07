@@ -12,13 +12,15 @@
 <template name="drinksList">
   <div class="ui text container main-content">
     <div class="ui one column grid">
-      <div class="column">
-        <div class="hidden-sm ui left dividing rail categorySelector">
-          {{#each categories}}
-            <div class="category-selector">
-              <a href="#{{name}}"><h3>{{name}}</h3></a>
-            </div>
-          {{/each}}
+      <div class="column" id="drinks-list">
+        <div class="hidden-sm ui left dividing rail">
+          <div class="ui sticky">
+            {{#each categories}}
+              <div class="category-selector">
+                <a href="#{{name}}">{{name}}</a>
+              </div>
+            {{/each}}
+          </div>
         </div>
         {{#each categories}}
           {{>drinkCategory}}
