@@ -27,7 +27,7 @@ Template.drinkTmpl.rendered = ->
   self = @
   unless @data and @data.addition
     @autorun ->
-      drink = Drinks.findOne( Session.get 'activeDrinkId' )
+      drink = Drinks.findOne( currentDrinkId )
       if not drink then return
       # Set the select correctly
       self.$('#drink-category-select').val(drink.categoryId)
@@ -67,7 +67,11 @@ Template.drinkTmpl.events
 
 Template.drinkManufacturer.helpers
   hasValidUrl: ->
-    SimpleSchema.RegEx.Url.test(@properties.website) or SimpleSchema.RegEx.Url.test('http://' + @properties.website)
+    if @properties.website
+      SimpleSchema.RegEx.Url.test(@properties.website) or
+      SimpleSchema.RegEx.Url.test('http://' + @properties.website)
+    else
+      false
   getUrl: ->
     if SimpleSchema.RegEx.Url.test @properties.website
       @properties.website
