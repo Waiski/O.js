@@ -74,6 +74,8 @@ Template.drinkTmpl.events
     # Don't buy drinks in editmode...
     if Session.get 'editMode' then return
     Session.set 'drinkBeingBought', currentDrinkId
+    # The settings and refresh are required for the positioning to work
+    # See: https://github.com/Semantic-Org/Semantic-UI/issues/614
     $('#tabs-modal').modal
       detachable: false
       observeChanges: true
