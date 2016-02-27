@@ -7,11 +7,13 @@
       //"password": "password",
       // or pem file (ssh based authentication)
       // WARNING: Keys protected by a passphrase are not supported
-      "pem": "~/.ssh/id_rsa"
+      "pem": "~/.ssh/id_rsa",
       // Also, for non-standard ssh port use this
       //"sshOptions": { "port" : 49154 },
       // server specific environment variables
-      //"env": {}
+      "env": {
+        "ENVIRON": "production"
+      }
     }
   ],
 
@@ -24,7 +26,7 @@
   // Location of app (local directory). This can reference '~' as the users home directory.
   // i.e., "app": "~/Meteor/my-app",
   // This is the same as the line below.
-  "app": "../app",
+  "app": "../../app",
 
   // Configure environment
   // ROOT_URL must be set to your correct domain (https or http)
@@ -38,8 +40,8 @@
   "deployCheckWaitTime": 30,
 
   "ssl": {
-    "certificate": "./fullchain.pem", // this is a bundle of certificates
-    "key": "./privkey.pem", // this is the private key of the certificate
+    "certificate": "../fullchain.pem", // this is a bundle of certificates
+    "key": "../privkey.pem", // this is the private key of the certificate
     "port": 443 // 443 is the default value and it's the standard HTTPS port
   },
 
