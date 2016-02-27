@@ -75,10 +75,10 @@ Template.drinkTmpl.events
     if Session.get 'editMode' then return
     Session.set 'drinkBeingBought', currentDrinkId
     $('#tabs-modal').modal
+      detachable: false
       observeChanges: true
-      onApprove: ->
-        #Something...
     .modal 'show'
+    .modal 'refresh'
 
 Template.drinkManufacturer.helpers
   hasValidUrl: ->
