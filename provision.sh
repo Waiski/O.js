@@ -28,4 +28,4 @@ curl https://install.meteor.com | /bin/sh
 
 apt-get install sshpass
 
-npm install -g mup
+npm install -g mupx
