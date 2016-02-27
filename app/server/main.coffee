@@ -34,7 +34,7 @@ Meteor.methods
       id = Accounts.createUser data
       Roles.addUsersToRoles id, 'user'
       Email.send
-        'from': 'OJS-noreply <noreply@oty.fi>'
+        'from': 'OJS-noreply <noreply@otnas.fi>'
         'to': data.email
         'subject': 'Welcome to o.js'
         'text': 'Your account at ' + Router.url('home') + ' has been created. ' + 
