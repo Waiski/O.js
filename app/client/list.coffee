@@ -10,5 +10,5 @@ Template.drinksList.helpers
 
 Template.drinkCategory.helpers
   drinks: ->
-    search = Session.get 'search'
+    search = Diacritics.remove Session.get 'search'
     Drinks.find {nameSearchable: {$regex: search, $options:'i'}, categoryId: @._id}, {sort: {name: 1}}
