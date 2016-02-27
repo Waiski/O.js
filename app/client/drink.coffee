@@ -69,6 +69,8 @@ Template.drinkTmpl.events
     if event.keyCode is 13
       event.target.blur()
   'click #drink-price': ->
+    # Remove this when ready
+    unless Session.get 'developmentfeatures' then return
     # Don't buy drinks in editmode...
     if Session.get 'editMode' then return
     $('#tabs-modal').modal

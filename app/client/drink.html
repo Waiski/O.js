@@ -64,7 +64,7 @@
 
       <div class="ui one column grid">
         <div class="column">
-          <div class="ui huge black link label {{#unless editmode}}clickable{{/unless}}" id="drink-price">
+          <div class="ui huge black link label {{#unless editmode}}{{#if devFeatures}}clickable{{/if}}{{/unless}}" id="drink-price">
             Price: 
             <strong
             class="drink-property-set drink-property-show"

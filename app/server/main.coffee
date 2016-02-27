@@ -41,3 +41,6 @@ Meteor.methods
                 'Please login using your email address: ' + data.email + ' and ' +
                 'password: ' + data.password + ' Please change your password as ' +
                 'soon as possible.'
+
+  isDevelopment: ->
+    process.env.NODE_ENV is 'development'

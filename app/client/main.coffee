@@ -19,11 +19,17 @@ Template.registerHelper 'getValue', (value) ->
   else
     ''
 
+Template.registerHelper 'devFeatures', ->
+  Session.get 'developmentfeatures'
+
 Meteor.startup ->
   Deps.autorun ->
     title = Session.get 'documentTitle'
     title = if title then title else 'O.js'
     document.title = title
+
+  Meteor.call 'isDevelopment', (err, res) ->
+    Session.set 'developmentfeatures', res
 
 Template.mainOptionsDropdown.rendered = ->
   @$('.ui.dropdown').dropdown()
