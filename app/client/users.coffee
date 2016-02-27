@@ -44,7 +44,8 @@ Template.usersList.events
       transition: 'fade'
       onShow: ->
         rolesEl = $(this).find('select[name="roles"]')
-        rolesEl.select2().select2 'val', Roles.getRolesForUser id
+        rolesEl.val Roles.getRolesForUser id
+        rolesEl.select2()
       onVisible: ->
         $(this).find('#delete-user').click ->
           $('#delete-user-modal').modal
