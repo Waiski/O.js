@@ -73,6 +73,12 @@ UserSchema = new SimpleSchema({
   lastActive: {
     type: Date,
     optional: true
+  },
+  tabValue: {
+    type: Number,
+    optional: true,
+    decimal: true,
+    defaultValue: 0
   }
 });
 

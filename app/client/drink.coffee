@@ -73,6 +73,7 @@ Template.drinkTmpl.events
     unless Session.get 'developmentfeatures' then return
     # Don't buy drinks in editmode...
     if Session.get 'editMode' then return
+    Session.set 'drinkBeingBought', currentDrinkId
     $('#tabs-modal').modal
       onApprove: ->
         #Something...

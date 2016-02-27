@@ -12,6 +12,29 @@ Transaction.prototype = {
   constructor: Transaction
 };
 
+Transactions.after.insert(function(uid, doc) {
+  // Note: uid is the maker of the transaction, not
+  // necessarily the one whose tab is being used
+
+  // $inc -operator increments the value
+  Meteor.users.update(doc.userId, {$inc: {
+    tabValue: doc.amount
+  }, $set: {
+    lastActive: new Date
+  }});
+});
+
+// I'm not sure if any updates to the amount should be done,
+// but better be prepared. The rules only allow transactions
+// modification for admins.
+Transactions.after.update(function(uid, doc) {
+  var difference = this.previous.amount - doc.amount
+  // $inc -operator increments the value
+  Meteor.users.update(doc.userId, {$inc: {
+    tabValue: difference
+  }});
+});
+
 var TransactionSchema = new SimpleSchema({
   userId: {
     type: String,
@@ -34,7 +57,8 @@ var TransactionSchema = new SimpleSchema({
     }
   },
   amount: {
-    type: Number
+    type: Number,
+    decimal: true
   },
   "drink.name": {
     type: String,

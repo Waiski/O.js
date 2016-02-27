@@ -146,6 +146,7 @@ Router.route('/:slug', {
       this.redirect('home');
     this.subscribe('drinks').wait();
     this.subscribe('categories').wait();
+    this.subscribe('myTransactions').wait();
     this.subscribe('users').wait();
     this.render('headerTmpl', {to: 'header'});
     if (this.ready())
