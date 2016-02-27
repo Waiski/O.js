@@ -55,26 +55,6 @@
   </div>
 </template>
 
-<template name="userTabsModal">
-  <div class="ui large modal" id="tabs-modal">
-    <div class="header">Buy drink</div>
-    <div class="content">
-      <div class="ui three stackable link cards">
-        {{#each users}}
-          <div class="card user-tab-card" data-id="{{_id}}">
-            <div class="content">
-              <div class="header">{{username}}</div>
-            </div>
-          </div>
-        {{/each}}
-      </div>
-    </div>
-    <div class="actions">
-      <div class="ui black cancel button">Cancel</div>
-    </div>
-  </div>
-</template>
-
 <template name="loading">
   <div class="ui text container main-content">
     <div class="ui one column grid">

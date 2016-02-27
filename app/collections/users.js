@@ -68,6 +68,11 @@ UserSchema = new SimpleSchema({
   heartbeat: {
     type: Date,
     optional: true
+  },
+  // Custom stuff
+  lastActive: {
+    type: Date,
+    optional: true
   }
 });
 

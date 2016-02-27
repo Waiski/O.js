@@ -1,0 +1,30 @@
+<template name="userTabsModal">
+  <div class="ui large modal" id="tabs-modal">
+    <div class="header">Buy drink</div>
+    <div class="content">
+      <h4>Recent users</h4>
+      <div class="ui three stackable link cards">
+        {{#each recentUsers}}
+          {{>tabCard}}
+        {{/each}}
+      </div>
+      <h4>All users</h4>
+      <div class="ui three stackable link cards">
+        {{#each users}}
+          {{>tabCard}}
+        {{/each}}
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui black cancel button">Cancel</div>
+    </div>
+  </div>
+</template>
+
+<template name="tabCard">
+  <div class="card user-tab-card" data-id="{{_id}}">
+    <div class="content">
+      <div class="header">{{username}}</div>
+    </div>
+  </div>
+</template>
