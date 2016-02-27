@@ -24,7 +24,12 @@
 <template name="tabCard">
   <div class="card user-tab-card" data-id="{{_id}}">
     <div class="content">
-      <div class="header">{{username}}</div>
+      <div class="header">
+        {{username}}
+        <div class="ui label pull-right">
+          <i class="fa fa-credit-card"></i> {{tabValue}}
+        </div>
+      </div>
     </div>
   </div>
 </template>
