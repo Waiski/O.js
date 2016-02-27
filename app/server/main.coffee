@@ -46,4 +46,4 @@ Meteor.methods
                 'soon as possible.'
 
   isDevelopment: ->
-    process.env.ENVIRON is 'development'
+    process.env.ENVIRON is 'development' or process.env.NODE_ENV is 'development' 
