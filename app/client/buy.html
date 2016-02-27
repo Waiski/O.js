@@ -8,9 +8,9 @@
           {{>tabCard}}
         {{/each}}
       </div>
-      <h4>All users</h4>
+      <div id="user-search" class="search" contentEditable="true" placeholder="Search more users..."></div>
       <div class="ui three stackable link cards">
-        {{#each users}}
+        {{#each searchedUsers}}
           {{>tabCard}}
         {{/each}}
       </div>

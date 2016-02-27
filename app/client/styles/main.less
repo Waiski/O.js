@@ -86,22 +86,32 @@ a {
     float: left;
 }
 
+.search {
+  outline: 0;
+  &:empty:before {
+    content: attr(placeholder);
+    color: @gray-light; 
+  }
+}
+
 #search {
-  line-height: 30px;
-  font-size: 30px;
   display: inline-block;
   float: left;
+  line-height: 30px;
+  font-size: 30px;
   // LESS escaped string. See:
   // http://stackoverflow.com/questions/17904088/disable-less-css-overwriting-calc
   width: ~"calc(100% - 50px)";
   @media (min-width: @screen-xs) {
     padding-left: 20px;
   }
-  outline: 0;
-  &:empty:before {
-    content: attr(placeholder);
-    color: @gray-light; 
-  }
+}
+
+#user-search {
+  line-height: 30px;
+  font-size: 30px;
+  margin-top: 1rem;
+  width: ~"calc(100% - 50px)";
 }
 
 // Helper classes

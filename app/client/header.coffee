@@ -4,6 +4,9 @@ Template.searchBar.events
     # Clear any generated html elements
     tmpl.$('#search').empty() if not content.length
     Session.set 'search', content
+  'keydown #search': (event) ->
+    if event.keyCode is 13
+      event.target.blur()
 
 Template.searchIcon.events
   'click': ->
