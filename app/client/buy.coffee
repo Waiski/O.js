@@ -22,8 +22,11 @@ Template.tabCard.onRendered ->
       drink:
         id: drink._id
         name: drink.name
-      , (err) ->
+      , (err, id) ->
         if err
           toastr.error err.message
         else
           toastr.success 'Drink successfully bought'
+          $('#tabs-modal').modal 'hide'
+          # For undoing (TODO)
+          Session.set 'lastTransactionId', id

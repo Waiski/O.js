@@ -34,6 +34,11 @@ Transactions.after.update(function(uid, doc) {
     tabValue: difference
   }});
 });
+Transactions.after.remove(function(uid, doc) {
+  Meteor.users.update(doc.userId, {$inc: {
+    tabValue: -doc.amount
+  }});
+});
 
 var TransactionSchema = new SimpleSchema({
   userId: {
