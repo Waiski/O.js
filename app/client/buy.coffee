@@ -26,7 +26,19 @@ Template.tabCard.onRendered ->
         if err
           toastr.error err.message
         else
-          toastr.success 'Drink successfully bought'
+          # The second argument is the title, it has to be there for the options to work
+          toast = toastr.success(
+            'Drink successfully bought! <a class="undo">Undo</a>',
+            '',
+            timeOut: 15000
+            )
           $('#tabs-modal').modal 'hide'
+          
+          toast.find('.undo').click ->
+            Transactions.remove id, (err) ->
+              if (err)
+                toastr.error err.message
+              else
+                toastr.info 'Purchase undone.'
           # For undoing (TODO)
           Session.set 'lastTransactionId', id

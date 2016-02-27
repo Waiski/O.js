@@ -16,12 +16,16 @@ Transactions.after.insert(function(uid, doc) {
   // Note: uid is the maker of the transaction, not
   // necessarily the one whose tab is being used
 
-  // $inc -operator increments the value
-  Meteor.users.update(doc.userId, {$inc: {
-    tabValue: doc.amount
-  }, $set: {
-    lastActive: new Date
-  }});
+  // Note that these are only done on the server, so
+  // that the value wouldn't be incremented twice.
+  if (Meteor.isServer) {
+    // $inc -operator increments the value
+    Meteor.users.update(doc.userId, {$inc: {
+      tabValue: doc.amount
+    }, $set: {
+      lastActive: new Date
+    }});
+  }
 });
 
 // I'm not sure if any updates to the amount should be done,
@@ -30,14 +34,18 @@ Transactions.after.insert(function(uid, doc) {
 Transactions.after.update(function(uid, doc) {
   var difference = this.previous.amount - doc.amount
   // $inc -operator increments the value
-  Meteor.users.update(doc.userId, {$inc: {
-    tabValue: difference
-  }});
+  if (Meteor.isServer) {
+    Meteor.users.update(doc.userId, {$inc: {
+      tabValue: difference
+    }});
+  }
 });
 Transactions.after.remove(function(uid, doc) {
-  Meteor.users.update(doc.userId, {$inc: {
-    tabValue: -doc.amount
-  }});
+  if (Meteor.isServer) {
+    Meteor.users.update(doc.userId, {$inc: {
+      tabValue: -doc.amount
+    }});
+  }
 });
 
 var TransactionSchema = new SimpleSchema({

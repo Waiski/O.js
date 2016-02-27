@@ -44,5 +44,14 @@ Drinks.allow({
 Transactions.allow({
   insert: isUser,
   update: isAdmin,
-  remove: isAdmin
+  remove: function(uid, doc) {
+    if (isAdmin(uid))
+      return true;
+    // For undoing, allow users to remove their transactions during the first 5 minutes
+    if (doc.doneBy === uid || doc.userId === uid) {
+      if (doc.time > new Date - 1000*60*5)
+        return true;
+    }
+    return false;
+  }
 });
