@@ -44,5 +44,9 @@ Categories.attachSchema(new SimpleSchema({
       }
     },
     optional: true
-	}
+	},
+  order: {
+    type: Number,
+    optional: true
+  }
 }));

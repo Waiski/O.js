@@ -6,7 +6,7 @@ Template.drinksList.onRendered ->
 
 Template.drinksList.helpers
   categories: ->
-    Categories.find()
+    Categories.find {}, sort: order: 1
 
 Template.drinkCategory.helpers
   drinks: ->
