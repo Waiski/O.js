@@ -66,7 +66,7 @@ Template.usersList.events
             toastr.error error.message
           else
             toastr.success 'User updated!'
-        roles = $(this).find('select[name="roles"]').select2 'val'
+        roles = $(this).find('select[name="roles"]').val()
         if not roles then roles = []
         Roles.setUserRoles id, roles
     .modal 'show'
