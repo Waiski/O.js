@@ -164,6 +164,21 @@ a.link {
   width: ~"calc(100% - 50px)";
 }
 
+// CONTEXT MENU
+
+.has-context-menu {
+  position: relative;
+  .context-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    .dropdown .menu {
+      left: auto;
+      right: 0;
+    }
+  }
+}
+
 // HELPER CLASSES
 
 .clickable {
@@ -216,6 +231,8 @@ a.link {
   height: 0;
 }
 
+// DRINKS LIST
+
 .category-selector {
   text-align: right;
   font-size: 18px;
@@ -257,6 +274,8 @@ a.link {
   }
 }
 
+// DRINK PAGE
+
 #drink-page-container {
 
   #drink-category-show {
@@ -281,7 +300,7 @@ a.link {
     }
   }
 
-  &.not-in-editmode p:not(.no-linebreaks) br {
+  &.not-in-editmode p.multiline br {
     display: block;
     margin-top: 5px;
   }

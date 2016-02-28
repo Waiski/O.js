@@ -14,17 +14,16 @@ Template.drinkTmpl.helpers
     else
       Drinks.findOne( currentDrinkId )
 
-Template.drinkTmpl.created = ->
+Template.drinkTmpl.onCreated ->
   unless @data.addition
     currentDrinkId = Drinks.findOne( name: @data.drinkName )._id
     if not currentDrinkId then Router.go 'home'
 
-Template.drinkTmpl.rendered = ->
+Template.drinkTmpl.onRendered ->
   @$('#drink-category-select').dropdown
     onChange: ->
       readEdit $(@)
 
-  self = @
   unless @data and @data.addition
     @autorun ->
       drink = Drinks.findOne( currentDrinkId )
@@ -98,10 +97,19 @@ Template.drinkManufacturer.helpers
     else if SimpleSchema.RegEx.Url.test('http://' + @properties.website)
       'http://' + @properties.website
     
-Template.drinkOptionsDropdown.rendered = ->
+Template.drinkContextMenu.onRendered ->
   @$('.ui.dropdown').dropdown()
 
-Template.drinkOptions.events
+Template.drinkContextMenu.events
+  'click #drink-remove': ->
+    $('#drink-delete-confirm-modal').modal
+      onApprove: ->
+        id = currentDrinkId
+        Router.go 'home'
+        toastr.info 'Drink successfully removed.'
+        Drinks.remove id
+    .modal 'show'
+
   'click #drink-edit': (e, tmpl) ->
     Session.set 'editMode', true
     edit = new share.Edit
@@ -114,6 +122,7 @@ Template.drinkOptions.events
       prop = $(element).find('.drink-property-set').data 'drink-property'
       if _.isEmpty(drink.properties[prop]) then $(element).find('.drink-property-show')[0].innerHTML = ''
 
+Template.drinkOptions.events
   'click #edits-done': ->
     Session.set 'editMode', false
     edit = Session.get 'edit'
@@ -161,12 +170,3 @@ Template.drinkOptions.events
         toastr.error error.message
         Session.set 'addDrink', true
         Session.set 'editMode', true
-
-  'click #drink-remove': ->
-    $('#drink-delete-confirm-modal').modal
-      onApprove: ->
-        id = currentDrinkId
-        Router.go 'home'
-        toastr.info 'Drink successfully removed.'
-        Drinks.remove id
-    .modal 'show'

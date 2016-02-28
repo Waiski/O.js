@@ -21,30 +21,41 @@
            class="drink-property-show"
            data-drink-property="categoryId"><em>{{getCategory}}</em> >></p>
       {{/unless}}
-      <h1 class="ui dividing header">
-        <div class="content drink-property-set drink-property-show"
-             id="drink-name"
-             placeholder="Drink name"
-             data-drink-property="name"
-             contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{name}}</div>
-        <div class="sub header">
-          <p
-          id="drink-manufacturer"
-          class="drink-property-set editmode-visible"
-          placeholder="Manufacturer (or brewery, distillery...)"
-          data-drink-property="manufacturer"
-          contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{getValue properties.manufacturer}}</p>
-          <p
-          id="drink-website"
-          class="drink-property-set editmode-visible"
-          placeholder="Manufacturer website URL"
-          data-drink-property="website"
-          contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{getValue properties.website}}</p>
-          {{#unless editmode}}
-            {{>drinkManufacturer}}
-          {{/unless}}
+      <div class="has-context-menu">
+        <h1 class="ui dividing header">
+          <div class="content drink-property-set drink-property-show"
+               id="drink-name"
+               placeholder="Drink name"
+               data-drink-property="name"
+               contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{name}}</div>
+          <div class="sub header">
+            <p
+            id="drink-manufacturer"
+            class="drink-property-set editmode-visible"
+            placeholder="Manufacturer (or brewery, distillery...)"
+            data-drink-property="manufacturer"
+            contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{getValue properties.manufacturer}}</p>
+            <p
+            id="drink-website"
+            class="drink-property-set editmode-visible"
+            placeholder="Manufacturer website URL"
+            data-drink-property="website"
+            contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{getValue properties.website}}</p>
+            {{#unless editmode}}
+              {{>drinkManufacturer}}
+            {{/unless}}
+          </div>
+        </h1>
+        <div class="context-menu">
+          {{#if editmode}}
+            <button class="circular ui icon button">
+              <i class="large checkmark icon"></i>
+            </button>
+          {{else}}
+            {{> drinkContextMenu}}
+          {{/if}}
         </div>
-      </h1>
+      </div>
 
       <div class="ui stackable two column grid">
         <div class="column drink-details">
@@ -91,6 +102,22 @@
     {{>drinkDeleteConfirmModal}}
     {{>userTabsModal}}
   {{/with}}
+</template>
+
+<template name="drinkContextMenu">
+  <div class="ui dropdown" id="drink-context-menu-dropdown">
+    <button class="circular ui icon button">
+      <i class="large ellipsis vertical icon"></i>
+    </button>
+    <div class="menu">
+      <div id="drink-edit" class="item">
+        <i class="fa fa-pencil"></i> <span class="dd-label">Edit drink</span>
+      </div>
+      <div id="drink-remove" class="item">
+        <i class="fa fa-trash-o"></i> <span class="dd-label">Remove drink</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <template name="drinkDetail">
