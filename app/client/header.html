@@ -1,12 +1,10 @@
 <template name="headerTmpl">
-  <nav class="ui menu navbar header-container small large screen only">
-    <div class="header-surface header-left">
-      <button class="ui button" id="toggle-menu">
+  <nav class="navbar">
+    <div class="ui text container">
+      <button class="ui grey button" id="toggle-menu">
         <i class="icon sidebar"></i>
         Menu
       </button>
-    </div>
-    <div class="header-surface header-center">
       {{>showTemplate name=headerCenterTemplate}}
     </div>
   </nav>
@@ -17,8 +15,10 @@
 </template>
 
 <template name="searchBar">
-  <i class="fa fa-2x fa-search fa-flip-horizontal search-icon hidden-xs"></i>
-  <div id="search" class="search" contentEditable="true" placeholder="Search..."></div>
+  <div class="search-container">
+    <i class="fa fa-2x fa-search fa-flip-horizontal search-icon hidden-xs"></i>
+    <span id="search" class="search" contentEditable="true" placeholder="Search..."></span>
+  </div>
 </template>
 
 <template name="empty">

@@ -55,8 +55,6 @@ Router.route('/', {
   name: 'home',
   onBeforeAction: function() {
     Session.set('documentTitle', 'O.js - Drinks');
-    Session.set('leftAction', 'empty');
-    Session.set('rightAction', 'mainOptionsDropdown');
     Session.set('headerCenter', 'searchBar');
     resetSession();
     this.next();
@@ -82,8 +80,6 @@ Router.route('/add', {
   name: 'add',
   onBeforeAction: function() {
     Session.set('documentTitle', 'O.js - Add drink');
-    Session.set('leftAction', 'backIcon');
-    Session.set('rightAction', 'drinkOptions');
     Session.set('headerCenter', 'empty');
     Session.set('addDrink', true);
     Session.set('editMode', true);
@@ -108,8 +104,6 @@ Router.route('/users', {
   name: 'users',
   onBeforeAction: function() {
     Session.set('documentTitle', 'O.js - Manage users');
-    Session.set('leftAction', 'backIcon');
-    Session.set('rightAction', 'usersOptionsDropdown');
     Session.set('headerCenter', 'searchBar');
     resetSession();
     this.next();
@@ -132,8 +126,6 @@ Router.route('/:slug', {
   name: 'drink',
   onBeforeAction: function() {
     Session.set('documentTitle', 'O.js - ' + this.params.slug);
-    Session.set('leftAction', 'backIcon');
-    Session.set('rightAction', 'mainOptionsDropdown');
     Session.set('headerCenter', 'empty');
     Session.set('addDrink', false);
     Session.set('activeDrinkId', undefined);
