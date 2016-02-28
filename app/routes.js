@@ -133,7 +133,7 @@ Router.route('/:slug', {
   onBeforeAction: function() {
     Session.set('documentTitle', 'O.js - ' + this.params.slug);
     Session.set('leftAction', 'backIcon');
-    Session.set('rightAction', 'drinkOptions');
+    Session.set('rightAction', 'mainOptionsDropdown');
     Session.set('headerCenter', 'empty');
     Session.set('addDrink', false);
     Session.set('activeDrinkId', undefined);

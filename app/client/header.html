@@ -93,30 +93,6 @@
   </div>
 </template>
 
-<template name="drinkOptions">
-  {{#if editmode}}
-    <i id="edits-done" class="fa fa-2x fa-check clickable"></i>
-  {{else}}
-    {{>drinkOptionsDropdown}}
-  {{/if}}
-</template>
-
-<template name="drinkOptionsDropdown">
-  <div class="ui dropdown">
-    <a id="drink-options-show">
-      <i class="fa fa-2x fa-bars"></i>
-    </a>
-    <div id="drink-options" class="menu">
-      <div id="drink-edit" class="item clickable">
-        <i class="fa fa-2x fa-pencil"></i> <span class="dd-label">Edit drink</span>
-      </div>
-      <div id="drink-remove" class="item clickable">
-        <i class="fa fa-2x fa-trash-o"></i> <span class="dd-label">Remove drink</span>
-      </div>
-    </div>
-  </div>
-</template>
-
 <template name="empty">
 
 </template>
