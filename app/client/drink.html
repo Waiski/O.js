@@ -101,11 +101,19 @@
       </div>
     {{/if}}
     <div class="drink-detail-value">
-      <p id="drink-{{name}}"
-         class="drink-property-set drink-property-show {{#unless multirow}}no-linebreaks{{/unless}}"
-         placeholder="{{placeholder}}"
-         data-drink-property="{{name}}"
-         contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{{getValue}}}</p>
+      {{#if editmode}}
+        <p id="drink-{{name}}"
+           class="drink-property-set {{#unless multirow}}no-linebreaks{{/unless}}"
+           placeholder="{{placeholder}}"
+           data-drink-property="{{name}}"
+           contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{{getValue}}}</p>
+      {{else}}
+        <p id="drink-{{name}}"
+           class="drink-property-show"
+           data-drink-property="{{name}}">
+          {{{getValue}}}
+        </p>
+      {{/if}}
     </div>
     <div class="clearfix"></div>
   </div>

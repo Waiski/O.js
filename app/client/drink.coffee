@@ -33,7 +33,7 @@ Template.drinkTmpl.rendered = ->
       self.$('#drink-category-select').val(drink.categoryId)
       # Hide unset property labels when not in editmode
       self.$('.drink-detail-row').each (index, element) ->
-        prop = $(element).find('.drink-property-set').data 'drink-property'
+        prop = $(element).find('.drink-detail-value > p').data 'drink-property'
         if _.isEmpty(drink.properties[prop])
           $(element).addClass 'hidden-normally'
         else
