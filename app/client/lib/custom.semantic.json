@@ -1,9 +1,9 @@
 {
   "definitions": {
-    "accordion": true,
-    "ad": true,
+    "accordion": false,
+    "ad": false,
     "api": true,
-    "breadcrumb": true,
+    "breadcrumb": false,
     "button": true,
     "card": true,
     "checkbox": true,
@@ -39,7 +39,7 @@
     "search": false,
     "segment": true,
     "shape": true,
-    "sidebar": false,
+    "sidebar": true,
     "site": true,
     "state": true,
     "statistic": false,
