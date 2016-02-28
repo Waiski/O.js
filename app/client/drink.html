@@ -17,9 +17,15 @@
         {{/each}}
       </select>
       {{#unless editmode}}
-        <p id="drink-category-show"
-           class="drink-property-show"
-           data-drink-property="categoryId"><em>{{getCategory}}</em> >></p>
+        <div class="ui breadcrumb drink-category-breadcrumb">
+          <a class="section link" href="/">Drinks</a>
+          <i class="right angle icon divider"></i>
+          <div class="active section">
+            <span id="drink-category-show"
+                  class="drink-property-show"
+                  data-drink-property="categoryId">{{getCategory}}</span>
+          </div>
+        </div>
       {{/unless}}
       <div class="has-context-menu">
         <h1 class="ui dividing header">
