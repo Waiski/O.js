@@ -25,7 +25,6 @@ Template.registerHelper 'getValue', (value) ->
   else
     ''
 
-
 Meteor.startup ->
   Deps.autorun ->
     title = Session.get 'documentTitle'
@@ -35,12 +34,10 @@ Meteor.startup ->
   Meteor.call 'isDevelopment', (err, res) ->
     Session.set 'developmentfeatures', res
 
-Template.mainOptionsDropdown.rendered = ->
-  @$('.ui.dropdown').dropdown()
+Template.headerTmpl.events
+  'click #toggle-menu': ->
+    $('#main-menu').sidebar 'toggle'
 
-Template.usersOptionsDropdown.rendered = ->
-  @$('.ui.dropdown').dropdown()
-
-Template.logoutLink.events
+Template.mainMenu.events
   'click #logout': ->
     AccountsTemplates.logout()

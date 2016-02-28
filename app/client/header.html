@@ -1,25 +1,13 @@
-<head>
-    <link rel="apple-touch-icon" sizes="57x57" href="/favicon57.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/favicon72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/favicon114.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/favicon144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/favicon152.png">
-<link rel="icon" type="image/png" sizes="144x144"  href="/favicon144.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon16.png">
-</head>
-
-
 <template name="headerTmpl">
   <nav class="ui menu navbar header-container small large screen only">
     <div class="header-surface header-left">
-      {{>showTemplate name=leftActionTemplate}}
+      <button class="ui button" id="toggle-menu">
+        <i class="icon sidebar"></i>
+        Menu
+      </button>
     </div>
     <div class="header-surface header-center">
       {{>showTemplate name=headerCenterTemplate}}
-    </div>
-    <div class="header-surface header-right">
-      {{>showTemplate name=rightActionTemplate}}
     </div>
   </nav>
 </template>
@@ -31,62 +19,6 @@
 <template name="searchBar">
   <i class="fa fa-2x fa-search fa-flip-horizontal search-icon hidden-xs"></i>
   <div id="search" class="search" contentEditable="true" placeholder="Search..."></div>
-</template>
-
-<template name="backIcon">
-  <div class="header-left-container">
-    <a href="{{pathFor "home"}}">
-      <i class="fa fa-2x fa-arrow-left clicable"></i>
-    </a>
-  </div>
-</template>
-
-<template name="mainOptionsDropdown">
-  <div class="ui dropdown pull-right-sm">
-    <a id="main-options-show">
-      <i class="fa fa-2x fa-bars"></i>
-    </a>
-    <div id="drink-options" class="menu">
-      <a href="{{pathFor "add"}}" class="item">
-        <i class="fa fa-2x fa-plus-circle"></i> <span class="dd-label">Add drink</span>
-      </a>
-      {{#if isInRole 'admin'}}
-        <a href="{{pathFor "users"}}" class="item">
-          <i class="fa fa-2x fa-users"></i> <span class="dd-label">Manage users</span>
-        </a>
-      {{/if}}
-      <a href="{{pathFor "atChangePwd"}}" class="item">
-        <i class="fa fa-2x fa-key"></i> <span class="dd-label">Change password</span>
-      </a>
-      {{>logoutLink}}
-    </div>
-  </div>
-</template>
-
-<template name="usersOptionsDropdown">
-  <div class="ui dropdown">
-    <a id="users-options-show">
-      <i class="fa fa-2x fa-bars"></i>
-    </a>
-    <div id="users-options" class="menu">
-      <a href="{{pathFor "home"}}" class="item">
-        <i class="fa fa-2x fa-beer"></i> <span class="dd-label">Drinks</span>
-      </a>
-      <div id="invite-user" class="item clickable">
-        <i class="fa fa-2x fa-user-plus"></i> <span class="dd-label">Invite user</span>
-      </div>
-      <a href="{{pathFor "atChangePwd"}}" class="item">
-        <i class="fa fa-2x fa-key"></i> <span class="dd-label">Change password</span>
-      </a>
-      {{>logoutLink}}
-    </div>
-  </div>
-</template>
-
-<template name="logoutLink">
-  <div id="logout" class="item clickable">
-    <i class="fa fa-2x fa-sign-out"></i> <span class="dd-label">Log out</span>
-  </div>
 </template>
 
 <template name="empty">

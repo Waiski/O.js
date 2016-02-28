@@ -1,4 +1,4 @@
-Template.usersOptionsDropdown.events
+Template.mainMenu.events
   'click #invite-user': ->
     $('#invite-user-modal').modal
       onApprove: ->
