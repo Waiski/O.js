@@ -16,11 +16,11 @@
           <option value="{{_id}}" {{isSelected _id ../categoryId}}>{{name}}</option>
         {{/each}}
       </select>
-      <p
-      id="drink-category-show"
-      class="drink-property-show{{#if editmode}} hidden{{/if}}"
-      data-drink-property="categoryId"><em>{{getCategory}}</em> >></p>
-
+      {{#unless editmode}}
+        <p id="drink-category-show"
+           class="drink-property-show"
+           data-drink-property="categoryId"><em>{{getCategory}}</em> >></p>
+      {{/unless}}
       <h1 class="ui dividing header">
         <div class="content drink-property-set drink-property-show"
              id="drink-name"
@@ -103,7 +103,7 @@
     <div class="drink-detail-value">
       {{#if editmode}}
         <p id="drink-{{name}}"
-           class="drink-property-set {{#unless multirow}}no-linebreaks{{/unless}}"
+           class="drink-property-set {{#if multirow}}multiline{{/if}}"
            placeholder="{{placeholder}}"
            data-drink-property="{{name}}"
            contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{{getValue}}}</p>

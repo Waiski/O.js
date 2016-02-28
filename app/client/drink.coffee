@@ -43,17 +43,25 @@ readEdit = (element) ->
   edit = Session.get 'edit'
   property = element.data 'drink-property'
   if not property then return
+  empty = false
+
+  # Determine the value and emptiness
   if element.is 'select'
     value = element.val()
-  else if element.hasClass 'no-linebreaks'
-    # jQuery.text() strips all HTML
-    value = element.text().trim()
-  else
+  else if element.hasClass 'multiline'
+    # Check HTML-entityless length
+    empty = element.text().trim().length is 0
     # Remove everything but linebreaks
     element.find('*:not(br)').contents().unwrap()
     value = element.html().trim()
+  else
+    # jQuery.text() strips all HTML
+    value = element.text().trim()
+    empty = value.length is 0
+
   # Remove unnecessary whitespace and html tags
-  if value.length is 0 then element[0].innerHTML = ""
+  if empty then element[0].innerHTML = ""
+
   edit.add(property, value)
   Session.set 'edit', edit
 
@@ -62,7 +70,7 @@ Template.drinkTmpl.events
     self = $(event.target)
     unless self.hasClass 'dropdown'
       readEdit self
-  'keydown .drink-property-set.no-linebreaks': (event) ->
+  'keydown .drink-property-set:not(.multiline)': (event) ->
     # Disable pressing enter
     # Linebreaks can still be added to contenteditables
     # by copying text etc., but that's the user's problem. 
