@@ -41,3 +41,7 @@ Template.headerTmpl.events
 Template.mainMenu.events
   'click #logout': ->
     AccountsTemplates.logout()
+  # Dunno why this isn't default behavior
+  'click .item': ->
+    $('#main-menu').sidebar 'toggle'
+    
