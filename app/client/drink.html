@@ -102,7 +102,7 @@
 <template name="drinkManufacturer">
   <div class="drink-property-show">
     {{#if hasValidUrl}}
-      <a href="{{getUrl}}" target="_blank">{{getValue properties.manufacturer}}</a>
+      <a href="{{getUrl}}" target="_blank" class="link">{{getValue properties.manufacturer}}</a>
     {{else}}
       <p>{{getValue properties.manufacturer}}</p>
     {{/if}}

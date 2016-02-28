@@ -5,17 +5,65 @@
 @gray-light:       lighten(@gray-base, 46.7%); // #777
 @gray-lighter:     lighten(@gray-base, 93.5%); // #eee
 @gray-lightest:    lighten(@gray-base, 96.5%);
+@light-blue: #4183C4; 
+@blue: #1e70bf;
 
 @screen-xs: 768px;
 @screen-sm: 992px;
 
-a:visited {
-  color: inherit;
+// LINKS
+
+// a.link are specially 'linky'
+a:not(.link) {
+  color: @gray-base;
+  outline: none;
+  &:visited {
+    color: inherit;
+  }
+  &:hover {
+    color: @blue;
+  }
 }
 
-a {
-  color: inherit;
+a.link {
+  color: @light-blue;
+  // These are imitated from the cool effects
+  // in semantic UI's website
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: top;
+  z-index: 0;
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
+  outline: none;
+  &::before {
+    position: absolute;
+    top: auto;
+    bottom: 1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: @light-blue;
+    content: '';
+    -webkit-transition: all 0.2s;
+    -webkit-backface-visibility: hidden;
+    transition: all 0.2s;
+    backface-visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+  }
+  &:hover {
+    color: @blue;
+  }
+  &:hover::before {
+    background-color: @blue;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
 }
+
+// HEADER
 
 .header-container {
   box-shadow: 0 1px 6px rgba(0,0,0,.3);
@@ -86,6 +134,8 @@ a {
     float: left;
 }
 
+// SEARCHES
+
 .search {
   outline: 0;
   &:empty:before {
@@ -114,7 +164,7 @@ a {
   width: ~"calc(100% - 50px)";
 }
 
-// Helper classes
+// HELPER CLASSES
 
 .clickable {
   cursor: pointer;
@@ -172,14 +222,6 @@ a {
   font-weight: bold;
   padding-right: 10px;
   overflow: hidden;
-  a {
-    &:hover {
-      color: @gray;
-    }
-    &:focus {
-      outline: none;
-    }
-  }
 }
 
 .list-category-name {
