@@ -64,14 +64,26 @@
 
       <div class="ui one column grid">
         <div class="column">
-          <div class="ui huge black link label {{#unless editmode}}{{#if devFeatures}}clickable{{/if}}{{/unless}}" id="drink-price">
-            Price: 
-            <strong
-            class="drink-property-set drink-property-show"
-            placeholder="Price"
-            data-drink-property="price"
-            contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{price}}</strong>
-          </div>
+          {{#if devFeaturesAndNotEditmode}}
+            <div class="ui animated big blue fade button" tabindex="0" id="drink-price">
+              <div class="visible content">
+                Price: {{price}}
+              </div>
+              <div class="hidden content">
+                Buy
+              </div>
+            </div>
+          {{else}}
+            {{! Static version for environments with buying disabled}}
+            <div class="ui big blue label" id="drink-price">
+              Price: 
+              <span
+              class="drink-property-set"
+              placeholder="Price"
+              data-drink-property="price"
+              contenteditable="{{#if editmode}}true{{else}}false{{/if}}">{{price}}</span>
+            </div>
+          {{/if}}
         </div>
       </div>
     </div>

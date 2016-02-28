@@ -9,6 +9,12 @@ Meteor.Spinner.options =
 Template.registerHelper 'editmode', ->
   Session.get 'editMode'
 
+Template.registerHelper 'devFeatures', ->
+  Session.get 'developmentfeatures'
+
+Template.registerHelper 'devFeaturesAndNotEditmode', ->
+  not Session.get('editMode') and Session.get('developmentfeatures')
+
 Template.registerHelper 'getValue', (value) ->
   # Circumvent the issue that the HTML node might
   # not be created if the value is not set. 
@@ -19,8 +25,6 @@ Template.registerHelper 'getValue', (value) ->
   else
     ''
 
-Template.registerHelper 'devFeatures', ->
-  Session.get 'developmentfeatures'
 
 Meteor.startup ->
   Deps.autorun ->
