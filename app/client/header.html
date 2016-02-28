@@ -35,13 +35,9 @@
 
 <template name="backIcon">
   <div class="header-left-container">
-    {{#if editmode}}
-      <i class="fa fa-2x fa-times clickable"></i>
-    {{else}}
-      <a href="{{pathFor "home"}}">
-        <i class="fa fa-2x fa-arrow-left clicable"></i>
-      </a>
-    {{/if}}
+    <a href="{{pathFor "home"}}">
+      <i class="fa fa-2x fa-arrow-left clicable"></i>
+    </a>
   </div>
 </template>
 

@@ -122,8 +122,13 @@ Template.drinkContextMenu.events
       prop = $(element).find('.drink-property-set').data 'drink-property'
       if _.isEmpty(drink.properties[prop]) then $(element).find('.drink-property-show')[0].innerHTML = ''
 
-Template.drinkOptions.events
-  'click #edits-done': ->
+Template.drinkTmpl.events
+  'click #cancel-edits': ->
+    Session.set 'edit', undefined
+    Session.set 'editMode', false
+    if Session.get 'addDrink'
+      Router.go 'home'
+  'click #save-edits': ->
     Session.set 'editMode', false
     edit = Session.get 'edit'
     unless Session.get 'addDrink'

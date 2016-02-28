@@ -12,13 +12,6 @@ Template.searchIcon.events
   'click': ->
     $('#search').focus()
 
-Template.backIcon.events
-  'click .fa-times': ->
-    Session.set 'edit', undefined
-    Session.set 'editMode', false
-    if Session.get 'addDrink'
-      Router.go 'home'
-
 Template.headerTmpl.helpers
   showTemplate: ->
     Template[@.name]

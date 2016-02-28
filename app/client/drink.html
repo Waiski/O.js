@@ -48,7 +48,10 @@
         </h1>
         <div class="context-menu">
           {{#if editmode}}
-            <button class="circular ui icon button">
+            <button class="circular ui orange icon button" id="cancel-edits" title="Cancel">
+              <i class="large remove icon"></i>
+            </button>
+            <button class="circular ui olive icon button" id="save-edits" title="Save">
               <i class="large checkmark icon"></i>
             </button>
           {{else}}
@@ -106,7 +109,7 @@
 
 <template name="drinkContextMenu">
   <div class="ui dropdown" id="drink-context-menu-dropdown">
-    <button class="circular ui icon button">
+    <button class="circular ui icon button" title="Drink options">
       <i class="large ellipsis vertical icon"></i>
     </button>
     <div class="menu">
