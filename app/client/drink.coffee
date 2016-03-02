@@ -129,9 +129,9 @@ Template.drinkContextMenu.events
         toastr.error error.message
       else
         if status
-          toastr.success 'Status changed to <b>Out of stock</b>!'
-        else
           toastr.success 'Status changed to <b>In stock</b>!'
+        else
+          toastr.success 'Status changed to <b>Out of stock</b>!'
 
 Template.drinkTmpl.events
   'click #cancel-edits': ->
