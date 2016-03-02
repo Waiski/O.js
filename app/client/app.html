@@ -46,9 +46,11 @@
       <i class="fa {{#if getShowAll}}fa-check-square-o{{else}}fa-square-o{{/if}}"></i>
       {{#if getShowAll}}Show only in stock{{else}}Show all drinks{{/if}}
     </div>
-    <a href="{{pathFor "atChangePwd"}}" class="item">
-      <i class="fa fa-key"></i> Change password
-    </a>
+    {{#unless isInRole 'notabber'}}
+      <a href="{{pathFor "atChangePwd"}}" class="item">
+        <i class="fa fa-key"></i> Change password
+      </a>
+    {{/unless}}
     <a href="/pdfs/Tilaohjesaannot.pdf" class="item">
       <i class="fa fa-file-pdf-o"></i> Tilaohjesäännöt
     </a>
