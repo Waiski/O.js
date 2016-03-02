@@ -28,12 +28,17 @@
         </div>
       {{/unless}}
       <div class="has-context-menu">
-        <h1 class="ui dividing header">
-          <div class="content drink-property-set drink-property-show"
-               id="drink-name"
-               placeholder="Drink name"
-               data-drink-property="name"
-               contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{name}}</div>
+        <div class="ui dividing header">
+          <div class="drink-header">
+            <h1 class="content drink-property-set drink-property-show"
+                 id="drink-name"
+                 placeholder="Drink name"
+                 data-drink-property="name"
+                 contenteditable={{#if editmode}}true{{else}}false{{/if}}>{{name}}</h1>
+            {{#if ended}}
+              <span class="ui small red tag label">Out of stock</span>
+            {{/if}}
+          </div>
           <div class="sub header">
             <p
             id="drink-manufacturer"
@@ -51,7 +56,7 @@
               {{>drinkManufacturer}}
             {{/unless}}
           </div>
-        </h1>
+        </div>
         <div class="context-menu">
           {{#if editmode}}
             <button class="circular ui orange icon button" id="cancel-edits" title="Cancel">
