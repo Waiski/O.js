@@ -96,7 +96,7 @@
           {{else}}
             {{! Static version for environments with buying disabled}}
             <div class="ui big blue label" id="drink-price">
-              Price: 
+              Price:
               <span
               class="drink-property-set"
               placeholder="Price"
@@ -121,6 +121,10 @@
     <div class="menu">
       <div id="drink-edit" class="item">
         <i class="fa fa-pencil"></i> <span class="dd-label">Edit drink</span>
+      </div>
+      <div id="drink-end" class="item">
+        <i class="fa {{#if ended}}fa-check-square-o{{else}}fa-square-o{{/if}}"></i>
+        <span class="dd-label">{{#if ended}}Add to stock{{else}}Hide from stock{{/if}}</span>
       </div>
       <div id="drink-remove" class="item">
         <i class="fa fa-trash-o"></i> <span class="dd-label">Remove drink</span>

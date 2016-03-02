@@ -72,7 +72,7 @@ Template.drinkTmpl.events
   'keydown .drink-property-set:not(.multiline)': (event) ->
     # Disable pressing enter
     # Linebreaks can still be added to contenteditables
-    # by copying text etc., but that's the user's problem. 
+    # by copying text etc., but that's the user's problem.
     if event.keyCode is 13
       event.target.blur()
   'click #drink-price': ->
@@ -96,7 +96,7 @@ Template.drinkManufacturer.helpers
       @properties.website
     else if SimpleSchema.RegEx.Url.test('http://' + @properties.website)
       'http://' + @properties.website
-    
+
 Template.drinkContextMenu.onRendered ->
   @$('.ui.dropdown').dropdown()
 
@@ -121,6 +121,17 @@ Template.drinkContextMenu.events
     $('.drink-detail-row').each (index, element) ->
       prop = $(element).find('.drink-property-set').data 'drink-property'
       if _.isEmpty(drink.properties[prop]) then $(element).find('.drink-property-show')[0].innerHTML = ''
+
+  'click #drink-end': ->
+    status = Drinks.findOne(currentDrinkId).ended
+    Drinks.update currentDrinkId, $set: 'ended': ! status, (error) ->
+      if error
+        toastr.error error.message
+      else
+        if status
+          toastr.success 'Status changed to <b>Out of stock</b>!'
+        else
+          toastr.success 'Status changed to <b>In stock</b>!'
 
 Template.drinkTmpl.events
   'click #cancel-edits': ->
@@ -148,7 +159,7 @@ Template.drinkTmpl.events
             Session.set 'editMode', true
             _.each edit.edits, (oldAndNew, property) ->
               # Repopulate the fields since the reactivity isn't doing so.
-              # There could be a better way of doing this by forcing a 
+              # There could be a better way of doing this by forcing a
               # reactive recalculation, maybe figure that out some time.
               elements = $('.drink-property-set').filter('[data-drink-property="' + property + '"]')
               if elements.length then elements[0].innerHTML = oldAndNew.old

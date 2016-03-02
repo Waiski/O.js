@@ -70,6 +70,10 @@ var DrinkSchema = new SimpleSchema({
       }
     }
   },
+  ended: {
+    type: Boolean,
+    optional: true
+  },
   // Perhaps, at some point, a more throrough schema for properties could be done
   properties: {
     type: Object,
