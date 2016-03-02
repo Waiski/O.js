@@ -52,5 +52,5 @@ Template.mainMenu.events
     else
       Session.set 'showAll', true
   # Dunno why this isn't default behavior
-  'click .item': ->
+  'click .item:not(.no-close)': ->
     $('#main-menu').sidebar 'toggle'
