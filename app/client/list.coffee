@@ -23,4 +23,6 @@ Template.drinksList.helpers
 Template.drinkCategory.helpers
   drinks: ->
     search = Diacritics.remove Session.get 'search'
-    Drinks.find {nameSearchable: {$regex: search, $options:'i'}, categoryId: @._id}, {sort: {name: 1}}
+    selector = {nameSearchable: {$regex: search, $options:'i'}, categoryId: @._id}
+    if not Session.get 'showAll' then selector.ended = {$ne: true}
+    Drinks.find selector, {sort: {name: 1}}

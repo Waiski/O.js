@@ -78,14 +78,7 @@
   <h2 id="{{name}}">{{name}}</h2>
   <div class="drinks-list-within-category">
     {{#each drinks}}
-      {{#if getShowAll}}
-        {{>drinkRow}}
-      {{else}}
-        {{#unless ended}}
-          {{>drinkRow}}
-        {{/unless}}
-      {{/if}}
-
+      {{>drinkRow}}
     {{/each}}
   </div>
 </template>
