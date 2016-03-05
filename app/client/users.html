@@ -82,19 +82,40 @@
     <div class="ui one column grid">
       <div class="column">
         <h1>Users</h1>
-        {{#each users}}
-          <div class="user-row stacked-row clickable" data-id="{{_id}}">
-            <div class="pull-left user-name">
-              <strong>{{username}}</strong> {{emails.[0].address}}
-            </div>
-            <div class="pull-right user-roles">
-              {{#each roles}}
-                <div class="ui {{color this}} label">{{this}}</div>
-              {{/each}}
-            </div>
-            <div class="clearfix"></div>
-          </div>
-        {{/each}}
+
+        <table class="ui unstackable selectable celled table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Roles</th>
+              <th>Tab</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each users}}
+              <tr data-id="{{_id}}" class="user-row">
+                <td>{{username}}</td>
+                <td>{{emails.[0].address}}</td>
+                <td class="right aligned">
+                  {{#each roles}}
+                    <div class="ui {{color this}} label">{{this}}</div>
+                  {{/each}}
+                </td>
+                <td class="center aligned">
+                  <a class="ui animated teal button" tabindex="0" href="{{pathFor route='tab' data=getUserId}}">
+                    <div class="visible content">
+                      <i class="fa fa-credit-card"></i> {{tabValue}}
+                    </div>
+                    <div class="hidden content">
+                      Show tab
+                    </div>
+                  </a>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

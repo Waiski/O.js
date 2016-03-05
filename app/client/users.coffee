@@ -32,12 +32,20 @@ Template.usersList.helpers
       'green'
     else
       'blue'
+  getUserId: ->
+    userid: @_id
 
 Template.usersList.created = ->
   Session.set 'userIdBeingEdited', undefined
 
 Template.usersList.events
   'click .user-row': (e, thisTmpl) ->
+    # Let links do their own thing
+    target = $(e.target)
+    # If clicked element is link, or within a link
+    if target.is('a') or target.parents('a').length > 0
+      return
+    # Otherwise open user edit modal
     id = this._id
     Session.set 'userIdBeingEdited', id
     $('#edit-user-modal').modal
