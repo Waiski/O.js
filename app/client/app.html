@@ -31,11 +31,13 @@
     <a href="{{pathFor "home"}}" class="item">
       <i class="fa fa-beer"></i> Drinks
     </a>
-    {{#unless isInRole 'notabber'}}
-      <a href="{{pathFor "tab"}}" class="item">
-        <i class="fa fa-credit-card"></i> My tab
-      </a>
-    {{/unless}}
+    {{#if currentUser}}
+      {{#unless isInRole 'notabber'}}
+        <a href="{{pathFor "tab"}}" class="item">
+          <i class="fa fa-credit-card"></i> My tab
+        </a>
+      {{/unless}}
+    {{/if}}
     <a href="{{pathFor "add"}}" class="item">
       <i class="fa fa-plus-circle"></i> Add drink
     </a>
@@ -51,15 +53,15 @@
       <i class="fa {{#if getShowAll}}fa-check-square-o{{else}}fa-square-o{{/if}}"></i>
       {{#if getShowAll}}Show only in stock{{else}}Show all drinks{{/if}}
     </div>
-    {{#unless isInRole 'notabber'}}
-      <a href="{{pathFor "atChangePwd"}}" class="item">
-        <i class="fa fa-key"></i> Change password
-      </a>
-    {{/unless}}
-    <a href="/pdfs/Tilaohjesaannot.pdf" class="item">
-      <i class="fa fa-file-pdf-o"></i> Tilaohjesäännöt
-    </a>
     {{#if currentUser}}
+      {{#unless isInRole 'notabber'}}
+        <a href="{{pathFor "atChangePwd"}}" class="item">
+          <i class="fa fa-key"></i> Change password
+        </a>
+      {{/unless}}
+      <a href="/pdfs/Tilaohjesaannot.pdf" class="item">
+        <i class="fa fa-file-pdf-o"></i> Tilaohjesäännöt
+      </a>
       <div id="logout" class="link item">
         <i class="fa fa-sign-out"></i> Log out
       </div>
