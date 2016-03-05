@@ -88,8 +88,10 @@ SpecialRoutes = [
 ];
 
 var sendNonadminsHome = function() {
-  if (!Roles.userIsInRole(Meteor.user(), 'admin'))
+  if (!Roles.userIsInRole(Meteor.user(), 'admin')) {
+    toastr.error('You need admin privileges to do this!', '403 Unauthorized');
     Router.go('home');
+  }
 };
 
 Router.route('/add', {
@@ -119,7 +121,6 @@ Router.route('/add', {
 Router.route('/users', {
   name: 'users',
   onBeforeAction: function() {
-    sendNonadminsHome();
     Session.set('documentTitle', 'O.js - Manage users');
     Session.set('headerCenter', 'searchBar');
     resetSession();
@@ -130,6 +131,7 @@ Router.route('/users', {
     this.subscribe('roles').wait();
     this.render('headerTmpl', {to: 'header'});
     if (this.ready()) {
+      sendNonadminsHome();
       this.render('usersList');
     } else
       this.render('loading');
@@ -146,15 +148,17 @@ Router.route('/tab/:userid?', {
   },
   action: function() {
     var uid = this.params.userid;
-    if (uid)
-      sendNonadminsHome();
-    else
+    if (!uid)
       uid = Meteor.userId();
     this.subscribe('users').wait();
     this.subscribe('transactions', uid).wait();
     this.render('headerTmpl', {to: 'header'});
     if (this.ready()) {
       var user = Meteor.users.findOne(uid);
+      // Send non admins home if they try finding by userid
+      if (this.params.userid)
+        sendNonadminsHome();
+      // Display error if user is not found
       if (!user) {
         toastr.error('User not found!');
         this.redirect('home');
