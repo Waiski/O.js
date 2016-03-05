@@ -42,34 +42,33 @@ Template.userTabsModal.onCreated ->
   .modal 'refresh'
 
 Template.tabCard.onRendered ->
-  id = @data._id
+  uid = @data._id
   @$('.user-tab-card').click ->
     # Remember to set this when opening the modal
     drink = Drinks.findOne Session.get 'drinkBeingBought'
     if not drink then return console.error 'Drink not found!'
     Transactions.insert
-      userId: id
+      userId: uid
       amount: drink.price
       drink:
         id: drink._id
         name: drink.name
-      , (err, id) ->
+      , (err, tid) ->
         if err
           toastr.error err.message
         else
+          user = Meteor.users.findOne uid
+          message = drink.name + ' added on ' + user.username + '\'s tab. '
+          message += '<a class="undo"><strong>Undo</strong></a>'
           # The second argument is the title, it has to be there for the options to work
-          toast = toastr.success(
-            'Drink successfully bought! <a class="undo">Undo</a>',
-            '',
-            timeOut: 15000
-            )
+          toast = toastr.success message, '', {timeOut: 15000, extendedTimeOut: 15000}
           $('#tabs-modal').modal 'hide'
-          
+          # Add undo handler to the toast
           toast.find('.undo').click ->
-            Transactions.remove id, (err) ->
+            Transactions.remove tid, (err) ->
               if (err)
                 toastr.error err.message
               else
                 toastr.info 'Purchase undone.'
-          # For undoing (TODO)
-          Session.set 'lastTransactionId', id
+          # For possible other means of undoing
+          Session.set 'lastTransactionId', tid
