@@ -14,6 +14,7 @@
               <th>Value</th>
               <th>Time</th>
               <th>Done by</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -23,6 +24,7 @@
                 <td>{{amount}}</td>
                 <td title="{{time}}">{{getTime}}</td>
                 <td>{{getDoneBy}}</td>
+                <td>{{> Template.dynamic template=action data=this}}</td>
               </tr>
             {{/each}}
           </tbody>
@@ -30,4 +32,10 @@
       </div>
     </div>
   </div>
+</template>
+
+<template name="undoLink">
+  <button type="button" class="ui tiny red button">
+    Undo
+  </button>
 </template>

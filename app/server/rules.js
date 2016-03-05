@@ -49,6 +49,7 @@ Transactions.allow({
       return true;
     // For undoing, allow users to remove their transactions during the first 5 minutes
     if (doc.doneBy === uid || doc.userId === uid) {
+      // TODO: save global undo time limit on some config thing instead of here!
       if (doc.time > new Date - 1000*60*5)
         return true;
     }
