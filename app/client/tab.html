@@ -1,0 +1,31 @@
+<template name="tab">
+
+  <div class="ui text container main-content">
+    <div class="ui one column grid">
+      <div class="column" id="transactions-list">
+        <h1>{{user.username}}'s transactions</h1>
+
+        <table class="ui very basic celled table">
+          <thead>
+            <tr>
+              <th>Drink</th>
+              <th>Value</th>
+              <th>Time</th>
+              <th>Done by</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each transactions}}
+              <tr>
+                <td>{{drink.name}}</td>
+                <td>{{amount}}</td>
+                <td title="{{time}}">{{getTime}}</td>
+                <td>{{getDoneBy}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>

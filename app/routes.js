@@ -74,7 +74,23 @@ Router.route('/', {
 
 // A global array of special routes, used so that a drink name cannot collide with any of these
 // Remember to specify all these in lowercase, as the comparison is made with String.toLowerCase()
-SpecialRoutes = ['add', 'users', 'login', 'change-password', 'forgot-password', 'reset-password', 'sign-up', 'verify-email', 'send-again'];
+SpecialRoutes = [
+  'add',
+  'users',
+  'tab',
+  'login',
+  'change-password',
+  'forgot-password',
+  'reset-password',
+  'sign-up',
+  'verify-email',
+  'send-again'
+];
+
+var sendNonadminsHome = function() {
+  if (!Roles.userIsInRole(Meteor.user(), 'admin'))
+    Router.go('home');
+};
 
 Router.route('/add', {
   name: 'add',
@@ -103,6 +119,7 @@ Router.route('/add', {
 Router.route('/users', {
   name: 'users',
   onBeforeAction: function() {
+    sendNonadminsHome();
     Session.set('documentTitle', 'O.js - Manage users');
     Session.set('headerCenter', 'searchBar');
     resetSession();
@@ -111,7 +128,6 @@ Router.route('/users', {
   action: function() {
     this.subscribe('users').wait();
     this.subscribe('roles').wait();
-    this.subscribe('transactions').wait();
     this.render('headerTmpl', {to: 'header'});
     if (this.ready()) {
       this.render('usersList');
@@ -120,6 +136,37 @@ Router.route('/users', {
   }
 });
 
+Router.route('/tab/:userid?', {
+  name: 'tab',
+  onBeforeAction: function() {
+    Session.set('documentTitle', 'O.js - Tab');
+    Session.set('headerCenter', 'empty');
+    resetSession();
+    this.next();
+  },
+  action: function() {
+    var uid = this.params.userid;
+    if (uid)
+      sendNonadminsHome();
+    else
+      uid = Meteor.userId();
+    this.subscribe('users').wait();
+    this.subscribe('transactions', uid).wait();
+    this.render('headerTmpl', {to: 'header'});
+    if (this.ready()) {
+      var user = Meteor.users.findOne(uid);
+      if (!user) {
+        toastr.error('User not found!');
+        this.redirect('home');
+      } else {
+        this.render('tab', {
+          data: {user: user}
+        });
+      }
+    } else
+      this.render('loading');
+  }
+});
 
 // THIS MUST BE DEFINED LAST SO THAT ALL OTHER ROUTES TAKE PRECEDENCE
 Router.route('/:slug', {
