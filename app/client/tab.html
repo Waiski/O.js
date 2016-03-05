@@ -4,7 +4,9 @@
     <div class="ui one column grid">
       <div class="column" id="transactions-list">
         <h1>{{user.username}}'s transactions</h1>
-
+        <div class="ui large {{getColor}} label">
+          Current balance: <strong>{{user.tabValue}}</strong>
+        </div>
         <table class="ui very basic celled table">
           <thead>
             <tr>
