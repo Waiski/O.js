@@ -28,6 +28,8 @@ Meteor.publish "users", ->
 Meteor.publish "roles", ->
   if @userId isnt null and isAdmin @userId
     Meteor.roles.find()
+  else
+    []
 
 Meteor.publish "transactions", (forUid) ->
   unless @userId is null
