@@ -16,8 +16,12 @@ Template.drinkTmpl.helpers
 
 Template.drinkTmpl.onCreated ->
   unless @data.addition
-    currentDrinkId = Drinks.findOne( name: @data.drinkName )._id
-    if not currentDrinkId then Router.go 'home'
+    drink = Drinks.findOne( name: @data.drinkName )
+    if not drink
+      toastr.error 'Not found!', '404'
+      Router.go 'home'
+    else
+      currentDrinkId = drink._id
 
 Template.drinkTmpl.onRendered ->
   @$('#drink-category-select').dropdown
