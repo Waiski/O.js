@@ -73,6 +73,7 @@ Practical tips
 - If the virtual machine or Meteor instance gets jammed, first try booting the virtual machine by running `vagrant reload` on the host machine terminal.
 - Whenever you save changes to the application files, Meteor loads them automatically and refreshes the page. This can sometimes take a little time though.
 - Try stuff! The local environment *is for* playing around, you're not going to break anything.
+- When using CoffeeScript, it's often helpful to have [CoffeeScript] home page open on one tab, and use the 'Try CoffeeScript' testing feature there to check if it compiles as you expect it to.
 - **Ask for help!** All programmers suffer unnecessarily from inferiority complex, because it's so easy to find super-experts' answers to Stack Overflow questions etc. The fact is, you are not as bad as you think, so your question isn't as stupid as you think it is. 
 
 Coding guidelines
